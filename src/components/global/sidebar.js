@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useTheme } from "@mui/material/styles"; // Import theme
 import { usePathname } from "next/navigation";
 import { Drawer, List, ListItemButton, ListItemIcon, ListItemText, IconButton, Box, Typography } from "@mui/material";
-import { Dashboard, ListAlt, Person, Dns, People, Layers, Settings, Menu, ChevronLeft, Cloud, RestartAlt, Bolt } from "@mui/icons-material";
+import { Dashboard, ListAlt, Person, Dns, People, Layers, Settings, Menu, ChevronLeft, Cloud, RestartAlt, Bolt, LocalShipping } from "@mui/icons-material";
 
 const menuItems = [
   { text: "Dashboard", icon: <Dashboard />, path: "/dashboard" },
@@ -13,6 +13,7 @@ const menuItems = [
   { text: "Accounts", icon: <People />, path: "/accounts" },
   { text: "Harvesters", icon: <Layers />, path: "/harvesters" },
   { text: "Account Gen", icon: <Bolt />, path: "/account-generator" },
+  { text: "Tracking", icon: <LocalShipping />, path: "/tracking" },
   { text: "Settings", icon: <Settings />, path: "/settings" },
 ];
 
