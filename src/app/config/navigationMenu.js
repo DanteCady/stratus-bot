@@ -10,7 +10,6 @@ import {
 	Settings,
 	Cloud,
 } from '@mui/icons-material';
-import { LogoutIcon } from '@mui/icons-material';
 
 export const navigationMenuItems = [
 	{ text: 'Dashboard', icon: Dashboard, path: '/dashboard' },
@@ -30,10 +29,5 @@ export const bottomMenuItems = [
 		icon: Cloud,
 		path: '/#',
 		action: true,
-		// onClick: async (logout, authType) => {
-		// 	if (logout) {
-		// 		await logout();
-		// 	}
-		// },
 	},
 ];
