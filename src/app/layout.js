@@ -1,6 +1,6 @@
 'use client';
+import { useEffect, useState } from 'react';
 import { ThemeProvider, CssBaseline, Box, IconButton, Typography, AppBar, Toolbar } from '@mui/material';
-import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { lightTheme, darkTheme } from '@/theme';
 import Sidebar from '@/components/global/sidebar';
@@ -8,16 +8,29 @@ import { DarkMode, LightMode } from '@mui/icons-material';
 import { navigationMenuItems } from '@/app/config/navigationMenu';
 
 export default function RootLayout({ children }) {
-	const [isDarkMode, setIsDarkMode] = useState(false);
-	const toggleTheme = () => setIsDarkMode(!isDarkMode);
-
-	// Get the current page name from pathname
 	const pathname = usePathname();
 	const pageName = pathname.split('/').pop().toUpperCase();
-
-	// Find the corresponding icon
 	const currentPage = navigationMenuItems.find(item => item.path === pathname);
 	const PageIcon = currentPage ? currentPage.icon : null;
+
+	// Default to `undefined` to prevent hydration mismatch
+	const [isDarkMode, setIsDarkMode] = useState(undefined);
+
+	// Set theme mode once the component is mounted (client-side)
+	useEffect(() => {
+		const storedTheme = localStorage.getItem('theme') === 'dark';
+		setIsDarkMode(storedTheme);
+	}, []);
+
+	// Handle theme toggle
+	const toggleTheme = () => {
+		const newTheme = !isDarkMode;
+		setIsDarkMode(newTheme);
+		localStorage.setItem('stratus-theme', newTheme ? 'dark' : 'light');
+	};
+
+	// Ensure no rendering until `useEffect` sets the theme
+	if (isDarkMode === undefined) return null;
 
 	return (
 		<html lang="en" style={{ height: '100%', overflow: 'hidden' }}>
@@ -25,13 +38,8 @@ export default function RootLayout({ children }) {
 				<ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
 					<CssBaseline />
 					<Box sx={{ display: 'flex', height: '100vh', width: '100vw', overflow: 'hidden' }}>
-						{/* Sidebar */}
 						<Sidebar />
-
-						{/* Main Content Area */}
 						<Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
-							
-							{/* Header / Page Title Section */}
 							<AppBar
 								position="static"
 								color="transparent"
@@ -44,24 +52,18 @@ export default function RootLayout({ children }) {
 								}}
 							>
 								<Toolbar sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-									{/* Page Icon and Name */}
 									<Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-										<Typography variant="h6" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+										<Typography variant="h6" sx={{ fontWeight: 'bold', color: 'theme.palette.primary.main' }}>
 											{pageName}
 										</Typography>
-										{PageIcon && (
-											<PageIcon sx={{ fontSize: 28, color: 'primary.main' }} />
-										)}
+										{PageIcon && <PageIcon sx={{ fontSize: 28, color: 'theme.palette.primary.main' }} />}
 									</Box>
-
-									{/* Theme Toggle Button */}
-									<IconButton onClick={toggleTheme} sx={{ color: 'primary.main' }}>
+									<IconButton onClick={toggleTheme} sx={{ color: 'theme.palette.primary.main' }}>
 										{isDarkMode ? <LightMode /> : <DarkMode />}
 									</IconButton>
 								</Toolbar>
 							</AppBar>
 
-							{/* Main Content Box (No Scroll) */}
 							<Box
 								sx={{
 									flexGrow: 1,
@@ -69,10 +71,10 @@ export default function RootLayout({ children }) {
 									borderRadius: 2,
 									p: 3,
 									boxShadow: 2,
-									overflow: 'hidden', // Prevent scrolling inside content
+									overflow: 'hidden',
 									display: 'flex',
 									flexDirection: 'column',
-									height: '100%', // Ensure it takes full height
+									height: '100%',
 								}}
 							>
 								{children}
