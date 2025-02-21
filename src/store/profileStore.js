@@ -70,6 +70,32 @@ const useProfileStore = create((set) => ({
 			localStorage.setItem('selectedGroup', JSON.stringify(group));
 			return { selectedGroup: group };
 		}),
+
+        // Function to duplicate a profile
+duplicateProfile: (profileId) =>
+    set((state) => {
+        const profileToCopy = state.profiles.find(profile => profile.id === profileId);
+        if (!profileToCopy) return state;
+
+        // Generate a new unique ID for the duplicate
+        const newId = Date.now();
+        
+        // Find existing copies to determine the number
+        const baseName = profileToCopy.profileName.replace(/\(\d+\)$/, "").trim();
+        const existingCopies = state.profiles.filter(p => p.profileName.startsWith(baseName));
+        const copyNumber = existingCopies.length + 1;
+
+        const duplicatedProfile = {
+            ...profileToCopy,
+            id: newId,
+            profileName: `${baseName} (${copyNumber})`, // Append copy number
+        };
+
+        const updatedProfiles = [...state.profiles, duplicatedProfile];
+        localStorage.setItem("profiles", JSON.stringify(updatedProfiles));
+        return { profiles: updatedProfiles };
+    }),
+
 }));
 
 export default useProfileStore;

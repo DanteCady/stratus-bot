@@ -9,13 +9,15 @@ import {
 	Paper,
 	IconButton,
 	Checkbox,
+	Tooltip,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { useState } from 'react';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import useProfileStore from '@/store/profileStore';
 
-// Function to get the card brand (VISA, MASTERCARD, AMEX)
 // Function to determine card brand (VISA, MASTERCARD, AMEX)
 const getCardBrand = (cardNumber) => {
 	if (!cardNumber) return '';
@@ -41,6 +43,7 @@ export default function GlobalTable({
 	onStart,
 }) {
 	const [selectedRows, setSelectedRows] = useState([]);
+	const { duplicateProfile } = useProfileStore();
 
 	// Toggle selection
 	const handleSelect = (id) => {
@@ -114,16 +117,27 @@ export default function GlobalTable({
 							{actions && (
 								<TableCell>
 									{onStart && (
-										<IconButton onClick={() => onStart(row.id)} color="primary">
-											<PlayArrowIcon />
-										</IconButton>
+										<Tooltip title="Start">
+											<IconButton onClick={() => onStart(row.id)} color="primary">
+												<PlayArrowIcon />
+											</IconButton>
+										</Tooltip>
 									)}
-									<IconButton onClick={() => onEdit(row)} color="secondary">
-										<EditIcon />
-									</IconButton>
-									<IconButton onClick={() => onDelete(row.id)} color="error">
-										<DeleteIcon />
-									</IconButton>
+									<Tooltip title="Edit">
+										<IconButton onClick={() => onEdit(row)} color="secondary">
+											<EditIcon />
+										</IconButton>
+									</Tooltip>
+									<Tooltip title="Delete">
+										<IconButton onClick={() => onDelete(row.id)} color="error">
+											<DeleteIcon />
+										</IconButton>
+									</Tooltip>
+									<Tooltip title="Duplicate Profile">
+										<IconButton onClick={() => duplicateProfile(row.id)} color="primary">
+											<ContentCopyIcon />
+										</IconButton>
+									</Tooltip>
 								</TableCell>
 							)}
 						</TableRow>
