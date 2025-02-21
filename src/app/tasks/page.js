@@ -12,11 +12,11 @@ export default function Tasks() {
       <Typography variant="h4" sx={{ mb: 2 }}>Tasks</Typography>
       <Grid container spacing={2}>
         {/* Task Controls and Summary */}
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={12}>
           <TaskControls />
         </Grid>
         <Grid item xs={12} md={8}>
-          <TaskSummary />
+          {/* <TaskSummary /> */}
         </Grid>
 
         {/* Task Filters */}
