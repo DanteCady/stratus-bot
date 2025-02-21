@@ -1,115 +1,91 @@
-import { useState, useEffect } from 'react';
-import { Box, Typography, Button, List, ListItem, ListItemText, IconButton } from '@mui/material';
-import { Add, Edit, Delete } from '@mui/icons-material';
+'use client';
+import { useEffect, useState } from 'react';
+import {
+    Box,
+    Typography,
+    List,
+    ListItem,
+    ListItemText,
+    Button,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    TextField
+} from '@mui/material';
+import useTaskStore from '@/store/taskStore';
 
-export default function TaskSidebar({ selectedGroup, setSelectedGroup }) {
-	// Load task groups from local storage or set default
-	const [taskGroups, setTaskGroups] = useState(() => {
-		if (typeof window !== 'undefined') {
-			const savedGroups = localStorage.getItem('taskGroups');
-			return savedGroups ? JSON.parse(savedGroups) : [{ id: 1, name: 'Default Group', isDefault: true }];
-		}
-		return [{ id: 1, name: 'Default Group', isDefault: true }];
-	});
+export default function TaskSidebar() {
+    const { taskGroups, selectedTaskGroup, setSelectedTaskGroup, addTaskGroup, initializeStore } = useTaskStore();
 
-	// Load selected group from local storage or default to the first group
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const savedSelectedGroup = localStorage.getItem('selectedGroup');
-			if (savedSelectedGroup) {
-				const parsedGroup = JSON.parse(savedSelectedGroup);
-				const exists = taskGroups.some(group => group.id === parsedGroup.id);
-				if (exists) setSelectedGroup(parsedGroup);
-				else setSelectedGroup(taskGroups[0]);
-			} else {
-				setSelectedGroup(taskGroups[0]);
-			}
-		}
-	}, [taskGroups]);
+    // Modal State for New Group
+    const [modalOpen, setModalOpen] = useState(false);
+    const [newGroupName, setNewGroupName] = useState('');
 
-	// Save task groups to local storage when they change
-	useEffect(() => {
-		localStorage.setItem('taskGroups', JSON.stringify(taskGroups));
-	}, [taskGroups]);
+    // Ensure Store Loads on Mount
+    useEffect(() => {
+        initializeStore();
+    }, []);
 
-	// Save selected group to local storage when it changes
-	useEffect(() => {
-		if (selectedGroup) {
-			localStorage.setItem('selectedGroup', JSON.stringify(selectedGroup));
-		}
-	}, [selectedGroup]);
+    const handleCreateGroup = () => {
+        if (newGroupName.trim() !== '') {
+            addTaskGroup({ id: Date.now(), name: newGroupName.trim() });
+            setNewGroupName('');
+            setModalOpen(false);
+        }
+    };
 
-	// Add a new group
-	const addTaskGroup = () => {
-		const newGroup = { id: Date.now(), name: `New Group`, isDefault: false };
-		setTaskGroups(prevGroups => [...prevGroups, newGroup]);
-	};
+    return (
+        <Box sx={{ width: 250, p: 2, borderRight: '1px solid grey' }}>
+            <Typography variant="h6">Task Groups</Typography>
 
-	// Rename a group
-	const renameTaskGroup = (id) => {
-		const newName = prompt('Rename Group:', taskGroups.find(group => group.id === id)?.name);
-		if (newName) {
-			setTaskGroups(taskGroups.map(group => (group.id === id ? { ...group, name: newName } : group)));
-		}
-	};
+            {/* Open Modal for Naming New Group */}
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={() => setModalOpen(true)}
+                sx={{ mt: 2, mb: 2 }}
+            >
+                + New Group
+            </Button>
 
-	// Delete a group (except default)
-	const deleteTaskGroup = (id) => {
-		const updatedGroups = taskGroups.filter(group => group.id !== id);
-		setTaskGroups(updatedGroups);
-		
-		// If the deleted group was selected, reset to default
-		if (selectedGroup.id === id) {
-			setSelectedGroup(updatedGroups[0] || { id: 1, name: 'Default Group', isDefault: true });
-		}
-	};
+            {/* Task Groups List */}
+            <List>
+                {taskGroups.map((group) => (
+                    <ListItem
+                        key={group.id}
+                        button
+                        selected={selectedTaskGroup?.id === group.id}
+                        onClick={() => setSelectedTaskGroup(group)}
+                    >
+                        <ListItemText primary={group.name} />
+                    </ListItem>
+                ))}
+            </List>
 
-	return (
-		<Box
-			sx={{
-				width: 240,
-				bgcolor: 'background.default',
-				borderRight: '1px solid',
-				borderColor: 'divider',
-				p: 2,
-                
-			}}
-		>
-			<Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>
-				Task Groups
-			</Typography>
-			<Button variant="contained" fullWidth onClick={addTaskGroup} startIcon={<Add />} sx={{ mb: 2 }}>
-				New Group
-			</Button>
-
-			{/* List of Task Groups */}
-			<List>
-				{taskGroups.map(group => (
-					<ListItem
-						key={group.id}
-						button
-						selected={selectedGroup?.id === group.id}
-						onClick={() => setSelectedGroup(group)}
-						sx={{
-							'&.Mui-selected': { bgcolor: 'primary.light', color: 'primary.main' },
-							'&:hover': { bgcolor: 'action.hover' },
-						}}
-					>
-						<ListItemText primary={group.name} />
-						{/* Rename & Delete Buttons */}
-						{!group.isDefault && (
-							<>
-								<IconButton size="small" onClick={() => renameTaskGroup(group.id)}>
-									<Edit fontSize="small" />
-								</IconButton>
-								<IconButton size="small" onClick={() => deleteTaskGroup(group.id)}>
-									<Delete fontSize="small" />
-								</IconButton>
-							</>
-						)}
-					</ListItem>
-				))}
-			</List>
-		</Box>
-	);
+            {/* New Group Modal */}
+            <Dialog open={modalOpen} onClose={() => setModalOpen(false)}>
+                <DialogTitle>Create New Task Group</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        label="Group Name"
+                        type="text"
+                        fullWidth
+                        value={newGroupName}
+                        onChange={(e) => setNewGroupName(e.target.value)}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setModalOpen(false)} color="secondary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleCreateGroup} color="primary" variant="contained">
+                        Create
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </Box>
+    );
 }
