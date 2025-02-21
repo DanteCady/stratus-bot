@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Box, useTheme, TextField, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import ControlButton from '@/components/tasks/controlButton';
+import ControlButton from '@/components/global/controlButton';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import StopIcon from '@mui/icons-material/Stop';
 import EditIcon from '@mui/icons-material/Edit';
