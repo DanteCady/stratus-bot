@@ -8,14 +8,15 @@ import useProfileStore from '@/store/profileStore';
 import GlobalTable from '@/components/global/globalTable';
 
 export default function Profiles() {
-	const { profiles, loadProfiles, deleteProfile } = useProfileStore();
+	const { getProfilesForSelectedGroup, deleteProfile, selectedGroup } = useProfileStore();
 	const [openModal, setOpenModal] = useState(false);
 	const [selectedProfile, setSelectedProfile] = useState(null);
+	const [filteredProfiles, setFilteredProfiles] = useState([]);
 
-	// Load profiles from localStorage on mount
+	// Load profiles for selected group
 	useEffect(() => {
-		loadProfiles();
-	}, []);
+		setFilteredProfiles(getProfilesForSelectedGroup());
+	}, [selectedGroup]);
 
 	const handleEdit = (profile) => {
 		setSelectedProfile(profile); // Ensure correct data is passed to modal
@@ -37,10 +38,10 @@ export default function Profiles() {
 				{/* Profile Controls */}
 				<ProfileControls openModal={() => setOpenModal(true)} />
 
-				{/* Profiles Table */}
+				{/* Profiles Table (Filtered by Selected Group) */}
 				<GlobalTable
 					headers={['Profile Name', 'Email', 'Address', 'Card']}
-					data={profiles.map((profile) => ({
+					data={filteredProfiles.map((profile) => ({
 						...profile,
 						card: profile.cardNumber ? `**** ${profile.cardNumber.slice(-4)}` : '****',
 					}))}
