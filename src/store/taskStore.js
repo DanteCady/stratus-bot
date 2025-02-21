@@ -1,31 +1,34 @@
 import { create } from 'zustand';
 
-// Function to safely get tasks from localStorage
-const getStoredTasks = () => {
-    if (typeof window !== 'undefined') {
-        return JSON.parse(localStorage.getItem('tasks')) || [];
-    }
-    return []; // Return empty array if running on the server
-};
-
 const useTaskStore = create((set) => ({
-    tasks: getStoredTasks(),
+    tasks: JSON.parse(typeof window !== 'undefined' ? localStorage.getItem('tasks') : '[]') || [],
 
     // Add Task
     addTask: (task) => set((state) => {
         const updatedTasks = [...state.tasks, task];
-        if (typeof window !== 'undefined') {
-            localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-        }
+        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
         return { tasks: updatedTasks };
     }),
 
-    // Delete Task
+    // Delete Single Task
     deleteTask: (taskId) => set((state) => {
         const updatedTasks = state.tasks.filter((task) => task.id !== taskId);
-        if (typeof window !== 'undefined') {
-            localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-        }
+        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+        return { tasks: updatedTasks };
+    }),
+
+    // Delete All Tasks
+    deleteAllTasks: () => set(() => {
+        localStorage.removeItem('tasks'); // Clear storage
+        return { tasks: [] };
+    }),
+
+    // Edit Task
+    editTask: (updatedTask) => set((state) => {
+        const updatedTasks = state.tasks.map(task => 
+            task.id === updatedTask.id ? { ...updatedTask } : task
+        );
+        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
         return { tasks: updatedTasks };
     }),
 
@@ -34,16 +37,17 @@ const useTaskStore = create((set) => ({
         const updatedTasks = state.tasks.map(task =>
             task.id === taskId ? { ...task, status } : task
         );
-        if (typeof window !== 'undefined') {
-            localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-        }
+        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
         return { tasks: updatedTasks };
     }),
 
-    // Load Tasks (Client-Side Only)
-    loadTasks: () => set(() => ({
-        tasks: getStoredTasks(),
-    })),
+    // Load Tasks from LocalStorage (Client-Side Only)
+    loadTasks: () => {
+        if (typeof window !== 'undefined') {
+            const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            set({ tasks: storedTasks });
+        }
+    },
 }));
 
 export default useTaskStore;

@@ -8,26 +8,37 @@ import useTaskStore from '@/store/taskStore';
 
 export default function Tasks() {
     const [modalOpen, setModalOpen] = useState(false);
+    const [editingTask, setEditingTask] = useState(null);
     const addTask = useTaskStore((state) => state.addTask);
+    const editTask = useTaskStore((state) => state.editTask);
     const loadTasks = useTaskStore((state) => state.loadTasks);
 
-    // Load stored tasks when page loads
     useEffect(() => {
         loadTasks();
     }, [loadTasks]);
+
+    const handleOpenModal = (task = null) => {
+        setEditingTask(task);
+        setModalOpen(true);
+    };
 
     return (
         <Box sx={{ p: 3 }}>
             <Typography variant="h4" sx={{ mb: 2 }}>Tasks</Typography>
 
             {/* Task Controls */}
-            <TaskControls openModal={() => setModalOpen(true)} />
+            <TaskControls openModal={() => handleOpenModal()} />
 
             {/* Task List */}
-            <TaskList />
+            <TaskList openEditModal={handleOpenModal} />
 
             {/* Task Modal */}
-            <DynamicModal open={modalOpen} handleClose={() => setModalOpen(false)} saveTask={addTask} />
+            <DynamicModal
+                open={modalOpen}
+                handleClose={() => setModalOpen(false)}
+                saveTask={editingTask ? editTask : addTask}
+                editingTask={editingTask}
+            />
         </Box>
     );
 }
