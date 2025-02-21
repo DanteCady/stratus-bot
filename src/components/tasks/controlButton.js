@@ -2,13 +2,14 @@
 import { Box, Button, Tooltip, useTheme } from '@mui/material';
 import { Icon } from '@mui/material';
 
-export default function ControlButton({ icon, text, color }) {
+export default function ControlButton({ icon, text, color, onClick }) {
 	const theme = useTheme();
 
 	return (
 		<Tooltip title={text || ''}>
 			<Button
 				variant="contained"
+				onClick={onClick}
 				sx={{
 					backgroundColor: 'transparent',
 					border: `1px solid ${theme.palette[color].main}`,

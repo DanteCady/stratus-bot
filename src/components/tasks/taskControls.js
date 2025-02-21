@@ -8,8 +8,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BoltIcon from '@mui/icons-material/Bolt';
 import AddIcon from '@mui/icons-material/Add';
+import useTaskStore from '@/store/taskStore';
 
-export default function TaskControls() {
+export default function TaskControls({ openModal }) {
 	const theme = useTheme();
 	const stopButtonColor = theme.palette.mode === 'light' ? 'red' : 'secondary';
 
@@ -24,7 +25,7 @@ export default function TaskControls() {
 				gap: 2,
 			}}
 		>
-			{/* Search Bar - Takes Remaining Space */}
+			{/* Search Bar */}
 			<TextField 
 				label="Search Tasks" 
 				variant="outlined" 
@@ -39,9 +40,12 @@ export default function TaskControls() {
 				}}
 			/>
 
-			{/* Actions - Right Aligned */}
+			{/* Actions */}
 			<Box sx={{ display: 'flex', gap: 1 }}>
-				<ControlButton icon={<AddIcon />} text="New Task" color="success" />
+				<ControlButton icon={<AddIcon />} text="New Task" color="success"
+            onClick={() => {
+                openModal();
+            }}/>
 				<ControlButton icon={<PlayArrowIcon />} text="Start All" color="primary" />
 				<ControlButton icon={<StopIcon />} text="Stop All" color={stopButtonColor} />
 				<ControlButton icon={<EditIcon />} text="Edit All" color="accent" />
