@@ -20,16 +20,16 @@ export default function RootLayout({ children }) {
 	const PageIcon = currentPage ? currentPage.icon : null;
 
 	return (
-		<html lang="en">
-			<body>
+		<html lang="en" style={{ height: '100%', overflow: 'hidden' }}>
+			<body style={{ height: '100%', margin: 0, overflow: 'hidden' }}>
 				<ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
 					<CssBaseline />
-					<Box sx={{ display: 'flex', height: '100vh' }}>
+					<Box sx={{ display: 'flex', height: '100vh', width: '100vw', overflow: 'hidden' }}>
 						{/* Sidebar */}
 						<Sidebar />
 
 						{/* Main Content Area */}
-						<Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', p: 2 }}>
+						<Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
 							
 							{/* Header / Page Title Section */}
 							<AppBar
@@ -40,7 +40,6 @@ export default function RootLayout({ children }) {
 									display: 'flex',
 									justifyContent: 'space-between',
 									alignItems: 'center',
-									mb: 2,
 									boxShadow: 0,
 								}}
 							>
@@ -62,17 +61,22 @@ export default function RootLayout({ children }) {
 								</Toolbar>
 							</AppBar>
 
-							{/* Main Content Box */}
-							<Box sx={{
-								flexGrow: 1,
-								bgcolor: 'background.default',
-								borderRadius: 2,
-								p: 3,
-								boxShadow: 2
-							}}>
+							{/* Main Content Box (No Scroll) */}
+							<Box
+								sx={{
+									flexGrow: 1,
+									bgcolor: 'background.default',
+									borderRadius: 2,
+									p: 3,
+									boxShadow: 2,
+									overflow: 'hidden', // Prevent scrolling inside content
+									display: 'flex',
+									flexDirection: 'column',
+									height: '100%', // Ensure it takes full height
+								}}
+							>
 								{children}
 							</Box>
-
 						</Box>
 					</Box>
 				</ThemeProvider>
