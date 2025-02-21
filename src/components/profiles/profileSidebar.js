@@ -28,7 +28,7 @@ export default function ProfileSidebar() {
                         onClick={() => selectProfileGroup(group)}
                         sx={{
                             backgroundColor: selectedGroup?.id === group.id ? 'primary.light' : 'transparent',
-                            '&:hover': { backgroundColor: 'primary.dark' },
+                            // '&:hover': { backgroundColor: 'primary.dark' },
                         }}
                     >
                         <ListItemText primary={group.name} />
