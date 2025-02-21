@@ -18,10 +18,16 @@ export default function ControlButton({ icon, text, color }) {
 					height: '40px',
 					width: '40px',
 					minWidth: '40px',
-					transition: 'background-color 0.3s ease',
+					transition: 'background-color 0.3s ease, color 0.3s ease',
 					display: 'flex',
 					alignItems: 'center',
 					justifyContent: 'center',
+					'&:hover': {
+						backgroundColor: theme.palette[color].main,
+						'& .MuiSvgIcon-root': {
+							color: '#FFFFFF',
+						},
+					},
 				}}
 			>
 				<Icon

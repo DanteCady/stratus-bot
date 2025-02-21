@@ -6,6 +6,7 @@ import StopIcon from '@mui/icons-material/Stop';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BoltIcon from '@mui/icons-material/Bolt';
+import AddIcon from '@mui/icons-material/Add';
 
 export default function TaskControls() {
 	const theme = useTheme();
@@ -20,8 +21,11 @@ export default function TaskControls() {
 				justifyContent: 'flex-end',
 				gap: 2,
 				width: '100%',
+				border: `1px solid ${theme.palette.primary.main}`,
+				padding: '10px',
 			}}
 		>
+			<ControlButton icon={<AddIcon />} text="New Task" color="success" />
 			<ControlButton
 				icon={<PlayArrowIcon />}
 				text="Start All Tasks"
