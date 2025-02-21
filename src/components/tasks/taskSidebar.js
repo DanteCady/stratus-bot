@@ -72,6 +72,7 @@ export default function TaskSidebar({ selectedGroup, setSelectedGroup }) {
 				borderRight: '1px solid',
 				borderColor: 'divider',
 				p: 2,
+                
 			}}
 		>
 			<Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>

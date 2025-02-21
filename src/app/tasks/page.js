@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import TaskSidebar from '@/components/tasks/taskSidebar';
 import TaskControls from '@/components/tasks/taskControls';
-import TaskFilters from '@/components/tasks/taskFilters';
 import TaskList from '@/components/tasks/taskList';
 
 export default function Tasks() {
@@ -29,9 +28,6 @@ export default function Tasks() {
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
 						<TaskControls />
-					</Grid>
-					<Grid item xs={12}>
-						<TaskFilters />
 					</Grid>
 					<Grid item xs={12}>
 						<TaskList />
