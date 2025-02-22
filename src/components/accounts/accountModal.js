@@ -1,78 +1,98 @@
 'use client';
-import { useState } from 'react';
-import { 
-    Dialog, DialogTitle, DialogContent, DialogActions, 
-    Button, TextField, MenuItem, Select, FormControl, InputLabel 
+import { useEffect, useState } from 'react';
+import {
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    Button,
+    TextField,
 } from '@mui/material';
 import useAccountStore from '@/store/accountStore';
 
-export default function AccountModal({ open, handleClose }) {
-    const { addAccounts } = useAccountStore();
-    const [selectedSite, setSelectedSite] = useState('');
-    const [accountInput, setAccountInput] = useState('');
+export default function AccountModal({ open, handleClose, accountToEdit }) {
+    const { updateAccount, addAccounts } = useAccountStore();
+    const [accountData, setAccountData] = useState({
+        site: '',
+        username: '',
+        password: '',
+        proxy: '',
+    });
 
-    const supportedSites = ['Nike', 'Adidas', 'SNKRS', 'Shopify', 'Supreme']; // List of sites
+    // Load account data when editing
+    useEffect(() => {
+        if (accountToEdit) {
+            setAccountData(accountToEdit);
+        } else {
+            setAccountData({ site: '', username: '', password: '', proxy: '' });
+        }
+    }, [accountToEdit]);
 
-    // Function to parse accounts from textarea
-    const handleSaveAccounts = () => {
-        if (!selectedSite || accountInput.trim() === '') return;
+    // Handle input changes
+    const handleChange = (e) => {
+        setAccountData({ ...accountData, [e.target.name]: e.target.value });
+    };
 
-        const accountLines = accountInput
-            .split('\n')
-            .map(line => line.trim())
-            .filter(line => line.length > 0); // Remove empty lines
+    // Handle save
+    const handleSave = () => {
+        if (!accountData.username || !accountData.password) {
+            alert('Username and Password are required!');
+            return;
+        }
 
-        const parsedAccounts = accountLines.map(line => {
-            const parts = line.split(':::'); // Format: email:::password:::proxy (optional)
-            return {
-                id: Date.now() + Math.random(),
-                site: selectedSite,
-                username: parts[0] || '',
-                password: parts[1] || '',
-                proxy: parts[2] || 'N/A',
-                status: 'Unchecked',
-            };
-        });
-
-        addAccounts(parsedAccounts);
-        setAccountInput('');
-        setSelectedSite('');
+        if (accountToEdit) {
+            updateAccount(accountData);
+        } else {
+            addAccounts([`${accountData.site}:::${accountData.username}:::${accountData.password}:::${accountData.proxy}`]);
+        }
         handleClose();
     };
 
     return (
         <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
-            <DialogTitle>Add Accounts</DialogTitle>
+            <DialogTitle>{accountToEdit ? 'Edit Account' : 'Add Account'}</DialogTitle>
             <DialogContent>
-                <FormControl fullWidth margin="normal">
-                    <InputLabel>Select a Site</InputLabel>
-                    <Select
-                        value={selectedSite}
-                        onChange={(e) => setSelectedSite(e.target.value)}
-                        label="Select a Site"
-                    >
-                        {supportedSites.map((site) => (
-                            <MenuItem key={site} value={site}>
-                                {site}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-
                 <TextField
-                    label="Account List"
-                    multiline
-                    rows={10}
+                    label="Site"
                     fullWidth
-                    value={accountInput}
-                    onChange={(e) => setAccountInput(e.target.value)}
-                    placeholder="Format: Email:::Password:::Proxy (optional)"
-                    margin="normal"
+                    name="site"
+                    value={accountData.site}
+                    onChange={handleChange}
+                    sx={{ mb: 2 }}
+                />
+                <TextField
+                    label="Username"
+                    fullWidth
+                    name="username"
+                    value={accountData.username}
+                    onChange={handleChange}
+                    sx={{ mb: 2 }}
+                />
+                <TextField
+                    label="Password"
+                    fullWidth
+                    type="password"
+                    name="password"
+                    value={accountData.password}
+                    onChange={handleChange}
+                    sx={{ mb: 2 }}
+                />
+                <TextField
+                    label="Proxy (Optional)"
+                    fullWidth
+                    name="proxy"
+                    value={accountData.proxy}
+                    onChange={handleChange}
+                    sx={{ mb: 2 }}
                 />
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose} color="secondary">Cancel</Button>
-                <Button onClick={handleSaveAccounts} color="primary" variant="contained">+ Add Accounts</Button>
+                <Button onClick={handleClose} color="secondary">
+                    Cancel
+                </Button>
+                <Button onClick={handleSave} color="primary" variant="contained">
+                    {accountToEdit ? 'Save' : 'Add'}
+                </Button>
             </DialogActions>
         </Dialog>
     );
