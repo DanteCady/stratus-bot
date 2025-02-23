@@ -4,7 +4,7 @@ import { queryDatabase } from '@/utils/db';
 import { v4 as uuidv4 } from 'uuid';
 
 export const authOptions = {
-    providers: [discordProvider], 
+    providers: [discordProvider],
     session: {
         strategy: 'jwt',
         maxAge: 30 * 24 * 60 * 60, // 30 days
@@ -12,7 +12,6 @@ export const authOptions = {
     callbacks: {
         async signIn({ user, account }) {
             try {
-                // Check if the user exists by email
                 const existingUser = await queryDatabase(
                     'SELECT id, provider FROM users WHERE email = ? LIMIT 1',
                     [user.email]
@@ -22,14 +21,12 @@ export const authOptions = {
                     const { id, provider } = existingUser[0];
 
                     if (provider !== account.provider) {
-                        // Update provider & provider_id if they sign in with a different provider
                         await queryDatabase(
                             'UPDATE users SET provider = ?, provider_id = ? WHERE id = ?',
                             [account.provider, user.id, id]
                         );
                     }
                 } else {
-                    // Create a new user if they don't exist
                     const newUserId = uuidv4();
                     await queryDatabase(
                         `INSERT INTO users (id, email, provider, provider_id, created_at)
@@ -42,20 +39,29 @@ export const authOptions = {
                 return true;
             } catch (error) {
                 console.error('❌ Error during sign-in:', error);
-                return `/auth/error?message=${encodeURIComponent(error.message)}`; // Redirect to error page
+                return `/auth/error?message=${encodeURIComponent(error.message)}`;
             }
         },
+        async jwt({ token, user }) {
+            if (user) {
+                token.sub = user.id;
+            }
+            return token;
+        },
         async session({ session, token }) {
-            session.user.id = token.sub;
+            session.user.id = token.sub ?? null;
             return session;
         },
         async redirect({ url, baseUrl }) {
-            return url.startsWith(baseUrl) ? url : `${baseUrl}/dashboard`;
-        },
+          console.log("🔄 Redirect callback fired:", { url, baseUrl });
+      
+          if (url.startsWith('/')) return `${baseUrl}${url}`;
+          return `${baseUrl}/dashboard`; 
+      }      
     },
     pages: {
         signIn: '/',
-        error: '/auth/error', // Custom error page
+        error: '/auth/error',
     },
 };
 
