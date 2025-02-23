@@ -3,6 +3,10 @@ import { discordProvider } from '../../../providers/discordProvider';
 
 export const authOptions = {
   providers: [discordProvider], // Keep GitHub but focus on Discord for now
+  session: {
+    strategy: 'jwt', // Uses JWT for session management
+    maxAge: 30 * 24 * 60 * 60, // 30 days before requiring login again
+  },
   callbacks: {
     async session({ session, token }) {
       session.user.id = token.sub; // Store user ID in session
