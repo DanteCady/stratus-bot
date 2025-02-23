@@ -17,10 +17,10 @@ export const navigationMenuItems = [
 	{ text: 'Profiles', icon: Person, path: '/profiles' },
 	{ text: 'Proxies', icon: Dns, path: '/proxies' },
 	{ text: 'Accounts', icon: People, path: '/accounts' },
-	{ text: 'Harvesters', icon: Layers, path: '/harvesters' },
-	{ text: 'Account Gen', icon: Bolt, path: '/account-generator' },
-	{ text: 'Tracking', icon: LocalShipping, path: '/tracking' },
-	{ text: 'Settings', icon: Settings, path: '/settings' },
+	// { text: 'Harvesters', icon: Layers, path: '/harvesters' },
+	// { text: 'Account Gen', icon: Bolt, path: '/account-generator' },
+	// { text: 'Tracking', icon: LocalShipping, path: '/tracking' },
+	// { text: 'Settings', icon: Settings, path: '/settings' },
 ];
 
 export const bottomMenuItems = [
