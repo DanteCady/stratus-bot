@@ -1,0 +1,4 @@
+[2025-02-23T04:50:15.274Z] [ERROR] Access denied for user 'root'@'localhost' (using password: YES) | Query: SELECT * FROM users LIMIT 1 | Params: []
+[2025-02-23T04:52:51.069Z] [ERROR] Access denied for user 'root'@'localhost' (using password: YES) | Query: SELECT * FROM users LIMIT 1 | Params: []
+[2025-02-23T04:53:03.168Z] [ERROR] Access denied for user 'root'@'localhost' (using password: YES) | Query: SELECT * FROM users LIMIT 1 | Params: []
+[2025-02-23T04:53:04.578Z] [ERROR] Access denied for user 'root'@'localhost' (using password: YES) | Query: SELECT * FROM users LIMIT 1 | Params: []
