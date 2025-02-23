@@ -11,9 +11,10 @@ import {
 	IconButton,
 	Tooltip,
 } from '@mui/material';
-import { ChevronLeft, ChevronRight } from '@mui/icons-material';
+import { ChevronLeft, ChevronRight, Logout } from '@mui/icons-material';
 import { navigationMenuItems, bottomMenuItems } from '@/app/config/navigationMenu';
 import { useRouter, usePathname } from 'next/navigation';
+import { signOut } from 'next-auth/react';
 
 const DRAWER_WIDTH = 240;
 const COLLAPSED_WIDTH = 65;
@@ -166,7 +167,29 @@ const Sidebar = () => {
 			<Box sx={{ flexGrow: 1 }} />
 			<Divider />
 
-			<List>{bottomMenuItems.map(renderMenuItem)}</List>
+			{/* Bottom Section: Backend Status & Logout */}
+			<Box
+				sx={{
+					display: 'flex',
+					flexDirection: isCollapsed ? 'column' : 'row', // Stack vertically if collapsed
+					alignItems: 'center',
+					justifyContent: isCollapsed ? 'center' : 'space-between',
+					p: 1,
+				}}
+			>
+				{/* Backend Status Icon */}
+				{bottomMenuItems.map((item) => renderMenuItem(item))}
+
+				{/* Vertical Divider (Hidden when collapsed) */}
+				{!isCollapsed && <Divider orientation="vertical" flexItem sx={{ mx: 1, height: '80px', bgcolor: 'gray' }} />}
+
+				{/* Sign Out Button */}
+				<Tooltip title="Sign Out">
+					<IconButton onClick={() => signOut()} sx={{ color: 'error.main' }}>
+						<Logout />
+					</IconButton>
+				</Tooltip>
+			</Box>
 		</Drawer>
 	);
 };
