@@ -12,18 +12,29 @@ export const authOptions = {
     callbacks: {
         async signIn({ user, account }) {
             try {
-                const userId = uuidv4();
-
+                // Check if the user exists by email
                 const existingUser = await queryDatabase(
-                    'SELECT id FROM users WHERE provider_id = ? LIMIT 1',
-                    [user.id]
+                    'SELECT id, provider FROM users WHERE email = ? LIMIT 1',
+                    [user.email]
                 );
 
-                if (!existingUser.length) {
+                if (existingUser.length) {
+                    const { id, provider } = existingUser[0];
+
+                    if (provider !== account.provider) {
+                        // Update provider & provider_id if they sign in with a different provider
+                        await queryDatabase(
+                            'UPDATE users SET provider = ?, provider_id = ? WHERE id = ?',
+                            [account.provider, user.id, id]
+                        );
+                    }
+                } else {
+                    // Create a new user if they don't exist
+                    const newUserId = uuidv4();
                     await queryDatabase(
                         `INSERT INTO users (id, email, provider, provider_id, created_at)
                          VALUES (?, ?, ?, ?, NOW())`,
-                        [userId, user.email, account.provider, user.id]
+                        [newUserId, user.email, account.provider, user.id]
                     );
                 }
 
