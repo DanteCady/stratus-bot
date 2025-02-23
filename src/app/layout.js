@@ -91,8 +91,6 @@ export default function RootLayout({ children }) {
 											display: 'flex',
 											flexDirection: 'column',
 											height: '100%',
-											justifyContent: isLoginPage ? 'center' : 'flex-start',
-											alignItems: isLoginPage ? 'center' : 'flex-start',
 										}}
 									>
 										{children}
