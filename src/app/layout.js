@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
 	const currentPage = navigationMenuItems.find((item) => item.path === pathname);
 	const PageIcon = currentPage ? currentPage.icon : null;
 
-	// ✅ Default dark mode enabled
+	// Default dark mode enabled
 	const [isDarkMode, setIsDarkMode] = useState(true);
 
 	useEffect(() => {
@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
 		if (storedTheme) {
 			setIsDarkMode(storedTheme === 'dark');
 		} else {
-			// ✅ If no stored value, ensure dark mode is saved as default
+			// If no stored value, ensure dark mode is saved as default
 			localStorage.setItem('stratus-theme', 'dark');
 		}
 	}, []);
