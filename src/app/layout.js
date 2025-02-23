@@ -1,17 +1,28 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { ThemeProvider, CssBaseline, Box, IconButton, Typography, AppBar, Toolbar } from '@mui/material';
+import {
+	ThemeProvider,
+	CssBaseline,
+	Box,
+	IconButton,
+	Typography,
+	AppBar,
+	Toolbar,
+} from '@mui/material';
 import { usePathname } from 'next/navigation';
 import { SessionProvider } from 'next-auth/react';
 import { lightTheme, darkTheme } from '@/theme';
 import Sidebar from '@/components/global/sidebar';
 import { DarkMode, LightMode } from '@mui/icons-material';
 import { navigationMenuItems } from '@/app/config/navigationMenu';
+import { DropdownDataProvider } from '@/context/dropdownData';
 
 export default function RootLayout({ children }) {
 	const pathname = usePathname();
 	const pageName = pathname.split('/').pop().toUpperCase();
-	const currentPage = navigationMenuItems.find(item => item.path === pathname);
+	const currentPage = navigationMenuItems.find(
+		(item) => item.path === pathname
+	);
 	const PageIcon = currentPage ? currentPage.icon : null;
 
 	const [isDarkMode, setIsDarkMode] = useState(undefined);
