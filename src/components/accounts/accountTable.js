@@ -32,7 +32,8 @@ export default function AccountTable({ onEdit }) {
 	};
 
 	// Truncate proxy for display
-	const truncateProxy = (proxy) => (proxy && proxy.length > 30 ? `${proxy.slice(0, 30)}...` : proxy || 'N/A');
+	const truncateProxy = (proxy) =>
+		proxy && proxy.length > 30 ? `${proxy.slice(0, 30)}...` : proxy || 'N/A';
 
 	return (
 		<Paper sx={{ mt: 2, overflow: 'hidden' }}>
@@ -43,10 +44,15 @@ export default function AccountTable({ onEdit }) {
 						<TableRow>
 							<TableCell padding="checkbox">
 								<Checkbox
-									checked={selectedAccounts.length === accounts.length && accounts.length > 0}
+									checked={
+										selectedAccounts.length === accounts.length &&
+										accounts.length > 0
+									}
 									onChange={() =>
 										setSelectedAccounts(
-											selectedAccounts.length === accounts.length ? [] : accounts.map((acc) => acc.id)
+											selectedAccounts.length === accounts.length
+												? []
+												: accounts.map((acc) => acc.id)
 										)
 									}
 								/>
@@ -85,12 +91,18 @@ export default function AccountTable({ onEdit }) {
 											</IconButton>
 										</Tooltip>
 										<Tooltip title="Edit">
-											<IconButton color="primary" onClick={() => onEdit(account)}>
+											<IconButton
+												color="primary"
+												onClick={() => onEdit(account)}
+											>
 												<EditIcon />
 											</IconButton>
 										</Tooltip>
 										<Tooltip title="Delete">
-											<IconButton color="error" onClick={() => deleteAccount(account.id)}>
+											<IconButton
+												color="error"
+												onClick={() => deleteAccount(account.id)}
+											>
 												<DeleteIcon />
 											</IconButton>
 										</Tooltip>
@@ -109,7 +121,14 @@ export default function AccountTable({ onEdit }) {
 			</TableContainer>
 
 			{/* Footer showing total accounts */}
-			<Box sx={{ display: 'flex', justifyContent: 'space-between', p: 2, backgroundColor: 'background.default' }}>
+			<Box
+				sx={{
+					display: 'flex',
+					justifyContent: 'space-between',
+					p: 2,
+					backgroundColor: 'background.default',
+				}}
+			>
 				<Typography variant="body1" sx={{ fontWeight: 'bold' }}>
 					Total Accounts: {accounts.length}
 				</Typography>

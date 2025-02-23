@@ -5,16 +5,22 @@ import AccountSidebar from '@/components/accounts/accountSidebar';
 import AccountControls from '@/components/accounts/accountControls';
 import AccountTable from '@/components/accounts/accountTable';
 import AccountModal from '@/components/accounts/accountModal';
+import EditAccountModal from '@/components/accounts/accountEditModal';
 import useAccountStore from '@/store/accountStore';
 
 export default function Accounts() {
     const { selectedGroup } = useAccountStore();
     const [openModal, setOpenModal] = useState(false);
-    const [editAccount, setEditAccount] = useState(null);
+    const [openEditModal, setOpenEditModal] = useState(false);
+    const [accountToEdit, setAccountToEdit] = useState(null);
 
-    const handleOpenModal = (account = null) => {
-        setEditAccount(account);
-        setOpenModal(true);
+    const handleCloseModal = () => setOpenModal(false);
+    const handleCloseEditModal = () => setOpenEditModal(false);
+
+    // ** Handle opening the edit modal and passing data **
+    const handleEdit = (account) => {
+        setAccountToEdit(account);
+        setOpenEditModal(true);
     };
 
     return (
@@ -30,13 +36,16 @@ export default function Accounts() {
                 </Typography>
 
                 {/* Account Controls */}
-                <AccountControls openModal={() => handleOpenModal()} />
+                <AccountControls openModal={() => setOpenModal(true)} />
 
                 {/* Accounts Table */}
-                <AccountTable onEdit={handleOpenModal} />
+                <AccountTable onEdit={handleEdit} /> {/* Pass handleEdit */}
 
-                {/* Account Modal */}
-                <AccountModal open={openModal} handleClose={() => setOpenModal(false)} accountToEdit={editAccount} />
+                {/* Add Account Modal */}
+                <AccountModal open={openModal} handleClose={handleCloseModal} />
+
+                {/* Edit Account Modal */}
+                <EditAccountModal open={openEditModal} handleClose={handleCloseEditModal} accountToEdit={accountToEdit} />
             </Box>
         </Box>
     );
