@@ -57,6 +57,10 @@ export default function TaskSidebar() {
                         button
                         selected={selectedTaskGroup?.id === group.id}
                         onClick={() => setSelectedTaskGroup(group)}
+                        sx={{
+                            backgroundColor: selectedTaskGroup?.id === group.id ? 'primary.light' : 'transparent',
+                            '&:hover': { backgroundColor: 'primary.dark' },
+                        }}
                     >
                         <ListItemText primary={group.name} />
                     </ListItem>
