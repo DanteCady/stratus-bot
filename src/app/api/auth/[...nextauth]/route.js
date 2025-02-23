@@ -1,33 +1,13 @@
-import NextAuth from "next-auth";
-import GithubProvider from "next-auth/providers/github";
+import NextAuth from 'next-auth';
+import { discordProvider } from '@/providers/discordProvider';
 
 export const authOptions = {
-  providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    }),
-  ],
+  providers: [discordProvider], // Keep GitHub but focus on Discord for now
   callbacks: {
-    async signIn({ user, account, profile }) {
-      return true; // Allow sign-in
-    },
     async session({ session, token }) {
-      if (session.user) {
-        session.user.id = token.sub; // Assign user ID from provider
-      }
+      session.user.id = token.sub; // Store user ID in session
       return session;
     },
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-      }
-      return token;
-    },
-  },
-  secret: process.env.NEXTAUTH_SECRET, // Secure the auth process
-  pages: {
-    signIn: "/", // Redirect to custom login page
   },
 };
 
