@@ -1,21 +1,30 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { signIn, getProviders } from 'next-auth/react';
+import { signIn, getProviders, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { Box, Button, Typography, CircularProgress } from '@mui/material';
 import CloudIcon from '@mui/icons-material/Cloud';
 import Image from 'next/image';
 import github from '../assets/providers/github.svg';
 import discord from '../assets/providers/discord_white.svg';
 
-
 export default function Login() {
 	const [providers, setProviders] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const { data: session, status } = useSession();
+	const router = useRouter();
 
+	// Redirect authenticated users to the dashboard
 	useEffect(() => {
-		// Fetch available providers
+		if (status === 'authenticated') {
+			router.push('/dashboard');
+		}
+	}, [status, router]);
+
+	// Fetch available providers
+	useEffect(() => {
 		getProviders()
-			.then((res) => setProviders(res))
+			.then((res) => setProviders(res || {})) // Ensure we always get an object
 			.finally(() => setLoading(false));
 	}, []);
 
@@ -42,7 +51,7 @@ export default function Login() {
 			{/* Show loading spinner while fetching providers */}
 			{loading ? (
 				<CircularProgress />
-			) : providers ? (
+			) : Object.keys(providers).length > 0 ? (
 				// Dynamically render login buttons with provider logos from assets
 				Object.values(providers).map((provider) => (
 					<Button
