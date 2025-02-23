@@ -16,6 +16,7 @@ import Sidebar from '@/components/global/sidebar';
 import { DarkMode, LightMode } from '@mui/icons-material';
 import { navigationMenuItems } from '@/app/config/navigationMenu';
 import { DropdownDataProvider } from '@/context/dropdownData';
+import { SnackbarProvider } from '@/context/snackbar';
 
 export default function RootLayout({ children }) {
 	const pathname = usePathname();
@@ -47,9 +48,10 @@ export default function RootLayout({ children }) {
 				<SessionProvider>
 					<ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
 						<CssBaseline />
-						<DropdownDataProvider>
-							<Box sx={{ display: 'flex', height: '100vh', width: '100vw', overflow: 'hidden' }}>
-								{/* Hide Sidebar on Login Page */}
+						<SnackbarProvider>
+							<DropdownDataProvider>
+								<Box sx={{ display: 'flex', height: '100vh', width: '100vw', overflow: 'hidden' }}>
+									{/* Hide Sidebar on Login Page */}
 								{!isLoginPage && <Sidebar />}
 								<Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
 									{/* Hide AppBar on Login Page */}
@@ -97,7 +99,8 @@ export default function RootLayout({ children }) {
 									</Box>
 								</Box>
 							</Box>
-						</DropdownDataProvider>
+							</DropdownDataProvider>
+						</SnackbarProvider>
 					</ThemeProvider>
 				</SessionProvider>
 			</body>
