@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth';
-import { discordProvider } from '@/providers/discordProvider';
+import { discordProvider } from '../../../providers/discordProvider';
+
 
 export const authOptions = {
   providers: [discordProvider], // Keep GitHub but focus on Discord for now
