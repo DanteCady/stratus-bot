@@ -3,6 +3,10 @@ import { useState, useEffect } from 'react';
 import { signIn, getProviders } from 'next-auth/react';
 import { Box, Button, Typography, CircularProgress } from '@mui/material';
 import CloudIcon from '@mui/icons-material/Cloud';
+import Image from 'next/image';
+import github from '../assets/providers/github.svg';
+import discord from '../assets/providers/discord_white.svg';
+
 
 export default function Login() {
 	const [providers, setProviders] = useState(null);
@@ -39,16 +43,29 @@ export default function Login() {
 			{loading ? (
 				<CircularProgress />
 			) : providers ? (
-				// Dynamically render login buttons
+				// Dynamically render login buttons with provider logos from assets
 				Object.values(providers).map((provider) => (
 					<Button
 						key={provider.id}
 						variant="contained"
 						color="primary"
-						startIcon={<CloudIcon />}
 						onClick={() => signIn(provider.id)}
-						sx={{ mt: 2, width: '250px' }}
+						sx={{
+							mt: 2,
+							width: '250px',
+							textTransform: 'none',
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'center',
+							gap: 1.5,
+						}}
 					>
+						<Image
+							src={provider.id === 'discord' ? discord : github}
+							alt={`${provider.name} logo`}
+							width={24}
+							height={24}
+						/>
 						Sign in with {provider.name}
 					</Button>
 				))
