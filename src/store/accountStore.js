@@ -13,39 +13,16 @@ const useAccountStore = create((set) => ({
 	},
 
 	// ** Add Accounts - Fix Parsing Issue **
-	addAccounts: (accountList) =>
-		set((state) => {
-			const newAccounts = accountList
-				.filter(
-					(account) => typeof account === 'string' && account.includes(':::')
-				) // Ensure valid format
-				.map((account) => {
-					const parts = account.trim().split(':::');
-
-					if (parts.length < 3) return null; // Skip invalid entries
-
-					return {
-						id: Date.now() + Math.random(),
-						site: parts[0] || 'Unknown',
-						username: parts[1] || '',
-						password: parts[2] || '',
-						proxy: parts[3] || 'N/A',
-						status: 'Unchecked',
-					};
-				})
-				.filter(Boolean); // Remove null values
-
-			const updatedAccounts = {
-				...state.accountsByGroup,
-				[state.selectedGroup.id]: [
-					...(state.accountsByGroup[state.selectedGroup.id] || []),
-					...newAccounts,
-				],
-			};
-
-			localStorage.setItem('accountsByGroup', JSON.stringify(updatedAccounts));
-			return { accountsByGroup: updatedAccounts };
-		}),
+		// ** Add Multiple Accounts to Selected Group **
+        addAccounts: (groupId, accountList) =>
+            set((state) => {
+                const updatedAccounts = {
+                    ...state.accountsByGroup,
+                    [groupId]: [...(state.accountsByGroup[groupId] || []), ...accountList],
+                };
+                localStorage.setItem('accountsByGroup', JSON.stringify(updatedAccounts));
+                return { accountsByGroup: updatedAccounts };
+            }),
 
 	// ** Update Account **
 	updateAccount: (updatedAccount) =>
