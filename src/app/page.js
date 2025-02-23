@@ -93,7 +93,7 @@ export default function Login() {
 					Object.values(providers).map((provider) => (
 						<Button
 							key={provider.id}
-							variant="contained"
+							variant="outlined"
 							color="primary"
 							onClick={() => handleSignIn(provider.id)} // ✅ Use our custom function
 							sx={{
