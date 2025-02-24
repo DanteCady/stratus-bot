@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-const useTaskStore = create((set) => ({
+const useTaskStore = create((set, get) => ({
     taskGroups: [],
     selectedTaskGroup: null,
     tasks: [],
@@ -91,34 +91,39 @@ const useTaskStore = create((set) => ({
     
 
     // Delete a task group (Default Group Cannot Be Deleted)
+ 
     deleteTaskGroup: async (groupId) => {
-        const { taskGroups, selectedTaskGroup } = get();
-
+        const { taskGroups, selectedTaskGroup } = get(); // Ensure `get()` is properly called
+    
         if (taskGroups.find(group => group.id === groupId)?.name === 'Default') {
             console.warn('🚨 Default Group cannot be deleted.');
             return;
         }
-
+    
         try {
             const response = await fetch(`/api/task-groups/${groupId}`, {
                 method: 'DELETE',
             });
-
+    
             if (!response.ok) throw new Error('Failed to delete task group');
-
-            set((state) => ({
-                taskGroups: state.taskGroups.filter((group) => group.id !== groupId),
-                selectedTaskGroup:
-                    selectedTaskGroup.id === groupId
-                        ? state.taskGroups.length > 1
-                            ? state.taskGroups[0]
-                            : null
-                        : selectedTaskGroup,
-            }));
+    
+            set((state) => {
+                const updatedGroups = state.taskGroups.filter((group) => group.id !== groupId);
+                return {
+                    taskGroups: updatedGroups,
+                    selectedTaskGroup:
+                        selectedTaskGroup?.id === groupId
+                            ? updatedGroups.length > 0
+                                ? updatedGroups[0]
+                                : null
+                            : selectedTaskGroup,
+                };
+            });
         } catch (error) {
             console.error('Error deleting task group:', error);
         }
     },
+    
 }));
 
 export default useTaskStore;
