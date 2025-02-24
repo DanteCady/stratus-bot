@@ -2,3 +2,7 @@
 [2025-02-23T04:52:51.069Z] [ERROR] Access denied for user 'root'@'localhost' (using password: YES) | Query: SELECT * FROM users LIMIT 1 | Params: []
 [2025-02-23T04:53:03.168Z] [ERROR] Access denied for user 'root'@'localhost' (using password: YES) | Query: SELECT * FROM users LIMIT 1 | Params: []
 [2025-02-23T04:53:04.578Z] [ERROR] Access denied for user 'root'@'localhost' (using password: YES) | Query: SELECT * FROM users LIMIT 1 | Params: []
+[2025-02-24T04:43:50.814Z] [ERROR] Column count doesn't match value count at row 1 | Query: INSERT INTO tasks (id, user_id, proxy_id, site_id, product, monitor_delay, error_delay, mode_id, status, created_at)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) | Params: ["a7c7fb07-dd6b-4d00-80a0-03bb7ddf2a2d","292444939412045825",null,"ae7f80a5-f19c-11ef-a4f8-d8bbc191788f"," HV8563-600",3500,3500,"Draw (Browser)","pending"]
+[2025-02-24T04:44:49.580Z] [ERROR] Column count doesn't match value count at row 1 | Query: INSERT INTO tasks (id, user_id, proxy_id, site_id, product, monitor_delay, error_delay, mode_id, status, created_at)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) | Params: ["de9d6fc4-bae7-4114-b6b2-c23c59eb1822","292444939412045825",null,"ae7f80a5-f19c-11ef-a4f8-d8bbc191788f"," HV8563-600",3500,3500,"Draw (Browser)","pending"]

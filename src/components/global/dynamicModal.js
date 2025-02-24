@@ -14,6 +14,7 @@ import {
 	Box,
 	Typography,
 	IconButton,
+	Divider,
 	useTheme,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
@@ -24,7 +25,7 @@ import { useSnackbar } from '@/context/snackbar';
 export default function DynamicModal({ open, handleClose, saveTask, editingTask }) {
 	const theme = useTheme();
 	const { dropdownData, loading } = useDropdownData();
-	const { showSnackbar } = useSnackbar();
+	const { showSnackbar } = useSnackbar(); 
 
 	const [site, setSite] = useState('');
 	const [product, setProduct] = useState('');
@@ -34,7 +35,6 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 	const [monitorDelay, setMonitorDelay] = useState(3500);
 	const [errorDelay, setErrorDelay] = useState(3500);
 	const [taskAmount, setTaskAmount] = useState(1);
-	const [showConfig, setShowConfig] = useState(false);
 	const [isSaving, setIsSaving] = useState(false);
 
 	// Load editing task data
@@ -43,12 +43,11 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 			setSite(editingTask.site);
 			setProduct(editingTask.product);
 			setMode(editingTask.mode);
-			setProxyList(editingTask.proxy || '');
-			setProfile(editingTask.profile || '');
+			setProxyList(editingTask.proxy);
+			setProfile(editingTask.profile);
 			setMonitorDelay(editingTask.monitorDelay);
 			setErrorDelay(editingTask.errorDelay);
 			setTaskAmount(editingTask.taskAmount);
-			setShowConfig(true);
 		} else if (!open) {
 			// Reset form when modal is closed
 			setSite('');
@@ -59,57 +58,81 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 			setMonitorDelay(3500);
 			setErrorDelay(3500);
 			setTaskAmount(1);
-			setShowConfig(false);
 		}
 	}, [open, editingTask]);
 
 	// Handle site selection
 	const handleSiteSelection = (value) => {
 		setSite(value);
-		setShowConfig(true);
-		setMode('');
 	};
 
-	// Handle API request to create tasks
+	// Save task
 	const handleSaveTask = async () => {
 		if (!site || !product || !mode || taskAmount < 1) {
 			showSnackbar('Please fill in all required fields.', 'error');
 			return;
 		}
-
+	
+		if (!dropdownData?.sites) {
+			showSnackbar('Dropdown data not available. Try again later.', 'error');
+			console.error('Dropdown data missing:', dropdownData);
+			return;
+		}
+	
+		const selectedSite = dropdownData.sites.find((s) => s.name === site);
+		if (!selectedSite) {
+			showSnackbar('Selected site not found.', 'error');
+			console.error('Error: Selected site not found in dropdownData.sites', dropdownData);
+			return;
+		}
+	
+		console.log("📤 Sending Task Data:", {
+			siteId: selectedSite.id,
+			product,
+			modeId: mode,
+			proxyId: proxyList || null,
+			profileId: profile || null,
+			monitorDelay,
+			errorDelay,
+			taskAmount
+		});
+	
 		setIsSaving(true);
-
+	
 		try {
 			const response = await fetch('/api/tasks', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
-					siteId: site,
+					siteId: selectedSite.id,
 					product,
 					modeId: mode,
-					proxyId: proxyList || null, // Optional
-					profileId: profile || null, // Optional
+					proxyId: proxyList || null,
+					profileId: profile || null,
 					monitorDelay,
 					errorDelay,
-					taskAmount,
+					taskAmount
 				}),
 			});
-
-			const result = await response.json();
-
-			if (response.ok) {
-				showSnackbar(`${taskAmount} task(s) successfully created!`, 'success');
-				handleClose();
-			} else {
-				showSnackbar(result.error || 'Failed to create task.', 'error');
+	
+			if (!response.ok) {
+				const errorText = await response.text();
+				console.error(`❌ Server Error (${response.status}):`, errorText);
+				showSnackbar(`Failed to create task: ${errorText}`, 'error');
+				return;
 			}
+	
+			const result = await response.json();
+			showSnackbar(`${taskAmount} task(s) successfully created!`, 'success');
+			handleClose();
 		} catch (error) {
 			showSnackbar('Server error. Try again later.', 'error');
+			console.error('Task creation failed:', error);
 		} finally {
 			setIsSaving(false);
 		}
 	};
-
+	
 	return (
 		<Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
 			<DialogTitle
@@ -135,66 +158,57 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 					</Select>
 				</FormControl>
 
-				{/* Step 2: Show Additional Configurations */}
-				{showConfig && (
-					<Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-						<Typography variant="h6" sx={{ color: theme.palette.text.primary }}>
-							Site: {site}
-						</Typography>
+				{/* Product Input */}
+				<TextField
+					label="Product (SKU, Variant, URL, Keywords)"
+					placeholder="+jordan -td"
+					fullWidth
+					value={product}
+					onChange={(e) => setProduct(e.target.value)}
+					sx={{ mb: 2 }}
+				/>
 
-						{/* Product Input */}
-						<TextField
-							label="Product (SKU, Variant, URL, Keywords)"
-							placeholder="+jordan -td"
-							fullWidth
-							value={product}
-							onChange={(e) => setProduct(e.target.value)}
-						/>
+				{/* Mode Selection */}
+				<FormControl fullWidth sx={{ mb: 2 }}>
+					<InputLabel>Mode</InputLabel>
+					<Select value={mode} onChange={(e) => setMode(e.target.value)} disabled={!site}>
+						{dropdownData?.modes?.map((option) => (
+							<MenuItem key={option.id} value={option.name}>
+								{option.name}
+							</MenuItem>
+						))}
+					</Select>
+				</FormControl>
 
-						{/* Mode Selection */}
-						<FormControl fullWidth>
-							<InputLabel>Mode</InputLabel>
-							<Select value={mode} onChange={(e) => setMode(e.target.value)} disabled={!site}>
-								{dropdownData?.modes?.map((option) => (
-									<MenuItem key={option.id} value={option.name}>
-										{option.name}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
+				{/* Proxy List Selection */}
+				<FormControl fullWidth sx={{ mb: 2 }}>
+					<InputLabel>Proxy List (Optional)</InputLabel>
+					<Select value={proxyList} onChange={(e) => setProxyList(e.target.value)}>
+						<MenuItem value="">None (Defaults to localhost)</MenuItem>
+						{dropdownData?.proxyLists?.map((proxy, index) => (
+							<MenuItem key={index} value={proxy}>
+								{proxy}
+							</MenuItem>
+						))}
+					</Select>
+				</FormControl>
 
-						{/* Proxy List Selection (Optional) */}
-						<FormControl fullWidth>
-							<InputLabel>Proxy List (Optional)</InputLabel>
-							<Select value={proxyList} onChange={(e) => setProxyList(e.target.value)}>
-								<MenuItem value="">None (Defaults to localhost)</MenuItem>
-								{dropdownData?.proxyLists?.map((proxy, index) => (
-									<MenuItem key={index} value={proxy}>
-										{proxy}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
-
-						{/* Profile Selection (Optional) */}
-						<FormControl fullWidth>
-							<InputLabel>Billing Profile (Optional)</InputLabel>
-							<Select value={profile} onChange={(e) => setProfile(e.target.value)}>
-								<MenuItem value="">None</MenuItem>
-								{dropdownData?.billingProfiles?.map((option, index) => (
-									<MenuItem key={index} value={option}>
-										{option}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
-					</Box>
-				)}
+				{/* Profile Selection */}
+				<FormControl fullWidth sx={{ mb: 2 }}>
+					<InputLabel>Billing Profile (Optional)</InputLabel>
+					<Select value={profile} onChange={(e) => setProfile(e.target.value)}>
+						{dropdownData?.billingProfiles?.map((option, index) => (
+							<MenuItem key={index} value={option}>
+								{option}
+							</MenuItem>
+						))}
+					</Select>
+				</FormControl>
 			</DialogContent>
 
 			{/* Buttons (Task Amount + Add Task) */}
 			<DialogActions sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', px: 3 }}>
-				{/* Task Amount Counter (Left Side) */}
+				{/* Task Amount Counter */}
 				<Box sx={{ display: 'flex', alignItems: 'center' }}>
 					<IconButton onClick={() => setTaskAmount(Math.max(1, taskAmount - 1))}>
 						<RemoveIcon />
@@ -204,7 +218,8 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 						<AddIcon />
 					</IconButton>
 				</Box>
-				{/* Action Buttons (Right Side) */}
+
+				{/* Action Buttons */}
 				<Box>
 					<Button onClick={handleClose}>Cancel</Button>
 					<Button onClick={handleSaveTask} variant="contained" disabled={isSaving || !site || !product || !mode}>
