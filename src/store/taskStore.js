@@ -58,6 +58,13 @@ const useTaskStore = create((set) => ({
 
     // Rename a task group
     renameTaskGroup: async (groupId, newName) => {
+        if (!groupId) {
+            console.error("❌ Error: groupId is undefined. Cannot rename.");
+            return;
+        }
+    
+        console.log("Renaming Task Group:", groupId, "New Name:", newName);
+    
         try {
             const response = await fetch(`/api/task-groups/${groupId}`, {
                 method: 'PUT',
@@ -65,15 +72,20 @@ const useTaskStore = create((set) => ({
                 body: JSON.stringify({ name: newName }),
             });
     
-            if (!response.ok) throw new Error('Failed to rename task group');
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Failed to rename task group');
+            }
     
             set((state) => ({
                 taskGroups: state.taskGroups.map((group) =>
                     group.id === groupId ? { ...group, name: newName } : group
                 ),
             }));
+    
+            console.log("✅ Task group renamed successfully:", newName);
         } catch (error) {
-            console.error('Error renaming task group:', error);
+            console.error('❌ Error renaming task group:', error);
         }
     },
     
