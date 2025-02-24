@@ -18,7 +18,7 @@ export async function POST(req) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
         }
 
-        // 🆕 Generate unique task ID
+        // Generate unique task ID
         const taskId = uuidv4();
 
         // Insert task into database

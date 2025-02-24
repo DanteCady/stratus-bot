@@ -14,20 +14,17 @@ import {
 	Box,
 	Typography,
 	IconButton,
-	Divider,
 	useTheme,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useDropdownData } from '@/context/dropdownData';
-export default function DynamicModal({
-	open,
-	handleClose,
-	saveTask,
-	editingTask,
-}) {
+import { useSnackbar } from '@/context/snackbar';
+
+export default function DynamicModal({ open, handleClose, saveTask, editingTask }) {
 	const theme = useTheme();
 	const { dropdownData, loading } = useDropdownData();
+	const { showSnackbar } = useSnackbar();
 
 	const [site, setSite] = useState('');
 	const [product, setProduct] = useState('');
@@ -38,6 +35,7 @@ export default function DynamicModal({
 	const [errorDelay, setErrorDelay] = useState(3500);
 	const [taskAmount, setTaskAmount] = useState(1);
 	const [showConfig, setShowConfig] = useState(false);
+	const [isSaving, setIsSaving] = useState(false);
 
 	// Load editing task data
 	useEffect(() => {
@@ -45,8 +43,8 @@ export default function DynamicModal({
 			setSite(editingTask.site);
 			setProduct(editingTask.product);
 			setMode(editingTask.mode);
-			setProxyList(editingTask.proxy);
-			setProfile(editingTask.profile);
+			setProxyList(editingTask.proxy || '');
+			setProfile(editingTask.profile || '');
 			setMonitorDelay(editingTask.monitorDelay);
 			setErrorDelay(editingTask.errorDelay);
 			setTaskAmount(editingTask.taskAmount);
@@ -72,23 +70,44 @@ export default function DynamicModal({
 		setMode('');
 	};
 
-	// Handle saving task
-	const handleSaveTask = () => {
-		const newTask = {
-			id: editingTask ? editingTask.id : Date.now(),
-			site,
-			product,
-			mode,
-			proxy: proxyList || 'localhost',
-			profile,
-			monitorDelay,
-			errorDelay,
-			taskAmount,
-			status: editingTask ? editingTask.status : 'Idle',
-		};
+	// Handle API request to create tasks
+	const handleSaveTask = async () => {
+		if (!site || !product || !mode || taskAmount < 1) {
+			showSnackbar('Please fill in all required fields.', 'error');
+			return;
+		}
 
-		saveTask(newTask);
-		handleClose();
+		setIsSaving(true);
+
+		try {
+			const response = await fetch('/api/tasks', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					siteId: site,
+					product,
+					modeId: mode,
+					proxyId: proxyList || null, // Optional
+					profileId: profile || null, // Optional
+					monitorDelay,
+					errorDelay,
+					taskAmount,
+				}),
+			});
+
+			const result = await response.json();
+
+			if (response.ok) {
+				showSnackbar(`${taskAmount} task(s) successfully created!`, 'success');
+				handleClose();
+			} else {
+				showSnackbar(result.error || 'Failed to create task.', 'error');
+			}
+		} catch (error) {
+			showSnackbar('Server error. Try again later.', 'error');
+		} finally {
+			setIsSaving(false);
+		}
 	};
 
 	return (
@@ -103,30 +122,16 @@ export default function DynamicModal({
 			>
 				{editingTask ? 'Edit Task' : 'Create Task'}
 			</DialogTitle>
-			<DialogContent
-				sx={{ backgroundColor: theme.palette.background.default, p: 3 }}
-			>
+			<DialogContent sx={{ backgroundColor: theme.palette.background.default, p: 3 }}>
 				{/* Step 1: Select Site */}
 				<FormControl fullWidth sx={{ mb: 2 }}>
 					<InputLabel>Select a Site</InputLabel>
-					<Select
-						value={site}
-						onChange={(e) => handleSiteSelection(e.target.value)}
-						disabled={loading}
-					>
-						{dropdownData?.shops?.map((shop) => {
-							const isEnabled =
-								shop.is_enabled === 'true' || shop.is_enabled === 1; // Convert string to boolean
-							return (
-								<MenuItem
-									key={shop.id}
-									value={shop.name}
-									disabled={!isEnabled} // Disable if not enabled
-								>
-									{shop.name} {!isEnabled ? '(Locked)' : ''}
-								</MenuItem>
-							);
-						})}
+					<Select value={site} onChange={(e) => handleSiteSelection(e.target.value)} disabled={loading}>
+						{dropdownData?.shops?.map((shop) => (
+							<MenuItem key={shop.id} value={shop.name} disabled={!shop.is_enabled}>
+								{shop.name} {!shop.is_enabled ? '(Locked)' : ''}
+							</MenuItem>
+						))}
 					</Select>
 				</FormControl>
 
@@ -146,40 +151,22 @@ export default function DynamicModal({
 							onChange={(e) => setProduct(e.target.value)}
 						/>
 
-						{/* Mode Selection (Changes Based on Site) */}
+						{/* Mode Selection */}
 						<FormControl fullWidth>
 							<InputLabel>Mode</InputLabel>
-							<Select
-								value={mode}
-								onChange={(e) => setMode(e.target.value)}
-								disabled={!site}
-							>
-								{dropdownData?.modes
-									.filter((mode) => {
-										// Find the selected site's shop_id
-										const selectedSite = dropdownData.sites.find(
-											(s) => s.name === site
-										);
-										return (
-											selectedSite &&
-											selectedSite.shop_id === dropdownData.shops[0]?.id
-										);
-									})
-									.map((option) => (
-										<MenuItem key={option.id} value={option.name}>
-											{option.name}
-										</MenuItem>
-									))}
+							<Select value={mode} onChange={(e) => setMode(e.target.value)} disabled={!site}>
+								{dropdownData?.modes?.map((option) => (
+									<MenuItem key={option.id} value={option.name}>
+										{option.name}
+									</MenuItem>
+								))}
 							</Select>
 						</FormControl>
 
-						{/* Proxy List Selection */}
+						{/* Proxy List Selection (Optional) */}
 						<FormControl fullWidth>
 							<InputLabel>Proxy List (Optional)</InputLabel>
-							<Select
-								value={proxyList}
-								onChange={(e) => setProxyList(e.target.value)}
-							>
+							<Select value={proxyList} onChange={(e) => setProxyList(e.target.value)}>
 								<MenuItem value="">None (Defaults to localhost)</MenuItem>
 								{dropdownData?.proxyLists?.map((proxy, index) => (
 									<MenuItem key={index} value={proxy}>
@@ -189,13 +176,11 @@ export default function DynamicModal({
 							</Select>
 						</FormControl>
 
-						{/* Profile Selection */}
+						{/* Profile Selection (Optional) */}
 						<FormControl fullWidth>
-							<InputLabel>Billing Profile</InputLabel>
-							<Select
-								value={profile}
-								onChange={(e) => setProfile(e.target.value)}
-							>
+							<InputLabel>Billing Profile (Optional)</InputLabel>
+							<Select value={profile} onChange={(e) => setProfile(e.target.value)}>
+								<MenuItem value="">None</MenuItem>
 								{dropdownData?.billingProfiles?.map((option, index) => (
 									<MenuItem key={index} value={option}>
 										{option}
@@ -203,84 +188,29 @@ export default function DynamicModal({
 								))}
 							</Select>
 						</FormControl>
-
-						{/* Monitor & Error Delays */}
-						<Box
-							sx={{
-								display: 'flex',
-								justifyContent: 'center',
-								alignItems: 'center',
-								gap: 4,
-								mt: 2,
-							}}
-						>
-							<Box sx={{ textAlign: 'center' }}>
-								<Typography sx={{ color: theme.palette.primary.main }}>
-									Monitor Delay (ms)
-								</Typography>
-								<Box
-									sx={{
-										display: 'flex',
-										alignItems: 'center',
-										justifyContent: 'center',
-									}}
-								>
-									<IconButton
-										onClick={() => setMonitorDelay(monitorDelay - 500)}
-										disabled={monitorDelay <= 500}
-									>
-										<RemoveIcon />
-									</IconButton>
-									<Typography sx={{ mx: 2, fontWeight: 'bold' }}>
-										{monitorDelay}
-									</Typography>
-									<IconButton
-										onClick={() => setMonitorDelay(monitorDelay + 500)}
-									>
-										<AddIcon />
-									</IconButton>
-								</Box>
-							</Box>
-							<Box sx={{ textAlign: 'center' }}>
-								<Typography sx={{ color: theme.palette.primary.main }}>
-									Error Delay (ms)
-								</Typography>
-								<Box
-									sx={{
-										display: 'flex',
-										alignItems: 'center',
-										justifyContent: 'center',
-									}}
-								>
-									<IconButton
-										onClick={() => setErrorDelay(errorDelay - 500)}
-										disabled={errorDelay <= 500}
-									>
-										<RemoveIcon />
-									</IconButton>
-									<Typography sx={{ mx: 2, fontWeight: 'bold' }}>
-										{errorDelay}
-									</Typography>
-									<IconButton onClick={() => setErrorDelay(errorDelay + 500)}>
-										<AddIcon />
-									</IconButton>
-								</Box>
-							</Box>
-						</Box>
 					</Box>
 				)}
 			</DialogContent>
 
-			{/* Buttons */}
-			<DialogActions>
-				<Button onClick={handleClose}>Cancel</Button>
-				<Button
-					onClick={handleSaveTask}
-					variant="contained"
-					disabled={!site || !product || !mode || !profile}
-				>
-					{editingTask ? 'Save Changes' : '+ Add Task'}
-				</Button>
+			{/* Buttons (Task Amount + Add Task) */}
+			<DialogActions sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', px: 3 }}>
+				{/* Task Amount Counter (Left Side) */}
+				<Box sx={{ display: 'flex', alignItems: 'center' }}>
+					<IconButton onClick={() => setTaskAmount(Math.max(1, taskAmount - 1))}>
+						<RemoveIcon />
+					</IconButton>
+					<Typography sx={{ mx: 1, fontWeight: 'bold' }}>{taskAmount}</Typography>
+					<IconButton onClick={() => setTaskAmount(taskAmount + 1)}>
+						<AddIcon />
+					</IconButton>
+				</Box>
+				{/* Action Buttons (Right Side) */}
+				<Box>
+					<Button onClick={handleClose}>Cancel</Button>
+					<Button onClick={handleSaveTask} variant="contained" disabled={isSaving || !site || !product || !mode}>
+						+ Add Task
+					</Button>
+				</Box>
 			</DialogActions>
 		</Dialog>
 	);
