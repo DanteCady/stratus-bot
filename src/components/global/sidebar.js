@@ -12,9 +12,13 @@ import {
 	Tooltip,
 } from '@mui/material';
 import { ChevronLeft, ChevronRight, Logout } from '@mui/icons-material';
-import { navigationMenuItems, bottomMenuItems } from '@/app/config/navigationMenu';
+import {
+	navigationMenuItems,
+	bottomMenuItems,
+} from '@/app/config/navigationMenu';
 import { useRouter, usePathname } from 'next/navigation';
 import { signOut } from 'next-auth/react';
+import React from 'react';
 
 const DRAWER_WIDTH = 240;
 const COLLAPSED_WIDTH = 65;
@@ -50,7 +54,6 @@ const Sidebar = () => {
 		await signOut({ callbackUrl: '/' }); // Redirects to login page after signing out
 	};
 
-
 	// Fetch connection status on mount & refresh every 30 seconds
 	useEffect(() => {
 		fetchConnectionStatus();
@@ -75,12 +78,14 @@ const Sidebar = () => {
 						connectionStatus === 'ok'
 							? 'All Systems Operational'
 							: connectionStatus === 'partial'
-							? `Partial Outage: ${dbStatus !== 'ok' ? 'DB Down' : ''} ${goServerStatus !== 'ok' ? 'Go Server Down' : ''}`
+							? `Partial Outage: ${dbStatus !== 'ok' ? 'DB Down' : ''} ${
+									goServerStatus !== 'ok' ? 'Go Server Down' : ''
+							  }`
 							: 'System Down'
 					}
 					placement="right"
 					arrow
-					key={item.title}
+					key={item.id}
 				>
 					<ListItem
 						sx={{
@@ -110,10 +115,14 @@ const Sidebar = () => {
 
 		// Render normal menu items
 		return (
-			<Tooltip title={isCollapsed ? item.text || item.title : ''} placement="right" arrow>
+			<Tooltip
+				title={isCollapsed ? item.text || item.title : ''}
+				placement="right"
+				arrow
+			>
 				<ListItem
 					button
-					key={item.text || item.title}
+					key={item.id}
 					onClick={() => handleMenuClick(item)}
 					selected={isSelected}
 					sx={{
@@ -123,7 +132,9 @@ const Sidebar = () => {
 						py: 1.5,
 					}}
 				>
-					<ListItemIcon sx={{ color: 'primary.main', minWidth: isCollapsed ? 'auto' : 48 }}>
+					<ListItemIcon
+						sx={{ color: 'primary.main', minWidth: isCollapsed ? 'auto' : 48 }}
+					>
 						{IconComponent && <IconComponent />}
 					</ListItemIcon>
 					{!isCollapsed && <ListItemText primary={item.text || item.title} />}
@@ -162,13 +173,20 @@ const Sidebar = () => {
 					</Typography>
 				)}
 				<Tooltip title={isCollapsed ? 'Expand' : 'Collapse'}>
-					<IconButton onClick={() => setIsCollapsed(!isCollapsed)} sx={{ color: 'text.secondary' }}>
+					<IconButton
+						onClick={() => setIsCollapsed(!isCollapsed)}
+						sx={{ color: 'text.secondary' }}
+					>
 						{isCollapsed ? <ChevronRight /> : <ChevronLeft />}
 					</IconButton>
 				</Tooltip>
 			</Box>
 
-			<List>{navigationMenuItems.map(renderMenuItem)}</List>
+			<List>
+				{navigationMenuItems.map((item) => (
+					<React.Fragment key={item.id}>{renderMenuItem(item)}</React.Fragment>
+				))}
+			</List>
 
 			<Box sx={{ flexGrow: 1 }} />
 			<Divider />
@@ -184,10 +202,18 @@ const Sidebar = () => {
 				}}
 			>
 				{/* Backend Status Icon */}
-				{bottomMenuItems.map((item) => renderMenuItem(item))}
+				{bottomMenuItems.map((item) => (
+					<React.Fragment key={item.id}>{renderMenuItem(item)}</React.Fragment>
+				))}
 
 				{/* Vertical Divider (Hidden when collapsed) */}
-				{!isCollapsed && <Divider orientation="vertical" flexItem sx={{ mx: 1, height: '80px', bgcolor: 'gray' }} />}
+				{!isCollapsed && (
+					<Divider
+						orientation="vertical"
+						flexItem
+						sx={{ mx: 1, height: '80px', bgcolor: 'gray' }}
+					/>
+				)}
 
 				{/* Sign Out Button */}
 				<Tooltip title="Sign Out">
