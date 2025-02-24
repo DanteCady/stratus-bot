@@ -1,85 +1,111 @@
 import { create } from 'zustand';
 
-const DEFAULT_GROUP = { id: 1, name: "Default Group" };
-
 const useTaskStore = create((set) => ({
-    // ** Load from localStorage or set defaults **
-    taskGroups: JSON.parse(localStorage.getItem('taskGroups')) || [DEFAULT_GROUP],
-    selectedTaskGroup: JSON.parse(localStorage.getItem('selectedTaskGroup')) || DEFAULT_GROUP,
-    tasks: JSON.parse(localStorage.getItem('tasks')) || [],
+    taskGroups: [],
+    selectedTaskGroup: null,
+    tasks: [],
 
-    // ** Initialize Store on Load **
-    initializeStore: () => {
-        if (typeof window !== 'undefined') {
-            const storedGroups = JSON.parse(localStorage.getItem('taskGroups')) || [DEFAULT_GROUP];
-            const storedSelectedGroup = JSON.parse(localStorage.getItem('selectedTaskGroup')) || DEFAULT_GROUP;
-            const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-
-            set({
-                taskGroups: storedGroups,
-                selectedTaskGroup: storedSelectedGroup,
-                tasks: storedTasks,
+    // Fetch Task Groups from API
+    fetchTaskGroups: async () => {
+        try {
+            const response = await fetch('/api/task-groups');
+            if (!response.ok) throw new Error('Failed to fetch task groups.');
+    
+            let { taskGroups } = await response.json();
+    
+            //  Remove any duplicate "Default" groups
+            const seen = new Set();
+            taskGroups = taskGroups.filter((group) => {
+                const isDuplicate = seen.has(group.name);
+                seen.add(group.name);
+                return !isDuplicate;
             });
+    
+            set({ taskGroups });
+    
+            // Ensure we only have one "Default" group and select it
+            const defaultGroup = taskGroups.find(group => group.name === 'Default') || taskGroups[0];
+            set({ selectedTaskGroup: defaultGroup });
+    
+        } catch (error) {
+            console.error('Error fetching task groups:', error);
+        }
+    },
+    
+
+    // Select a Task Group
+    setSelectedTaskGroup: (group) => set({ selectedTaskGroup: group }),
+
+    // Add a new task group
+    addTaskGroup: async (name) => {
+        try {
+            const response = await fetch('/api/task-groups', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name }),
+            });
+
+            if (!response.ok) throw new Error('Failed to create task group');
+
+            const { taskGroupId } = await response.json();
+            set((state) => ({
+                taskGroups: [...state.taskGroups, { id: taskGroupId, name }],
+            }));
+        } catch (error) {
+            console.error('Error creating task group:', error);
         }
     },
 
-    // ** Add Task Group (Ensuring Uniqueness) **
-    addTaskGroup: (group) => set((state) => {
-        const updatedGroups = [...state.taskGroups, group];
-        localStorage.setItem('taskGroups', JSON.stringify(updatedGroups));
-        return { taskGroups: updatedGroups };
-    }),
+    // Rename a task group
+    renameTaskGroup: async (groupId, newName) => {
+        try {
+            const response = await fetch(`/api/task-groups/${groupId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: newName }),
+            });
 
-    // ** Select Task Group (Ensure Persistence) **
-    setSelectedTaskGroup: (group) => set(() => {
-        localStorage.setItem('selectedTaskGroup', JSON.stringify(group));
-        return { selectedTaskGroup: group };
-    }),
+            if (!response.ok) throw new Error('Failed to rename task group');
 
-    // ** Rename Task Group (Only Allowed for Non-Default) **
-    renameTaskGroup: (groupId, newName) => set((state) => {
-        const updatedGroups = state.taskGroups.map((group) =>
-            group.id === groupId ? { ...group, name: newName } : group
-        );
-        localStorage.setItem('taskGroups', JSON.stringify(updatedGroups));
-        return { taskGroups: updatedGroups };
-    }),
+            set((state) => ({
+                taskGroups: state.taskGroups.map((group) =>
+                    group.id === groupId ? { ...group, name: newName } : group
+                ),
+            }));
+        } catch (error) {
+            console.error('Error renaming task group:', error);
+        }
+    },
 
-    // ** Delete Task Group (Cannot Delete Default) **
-    deleteTaskGroup: (groupId) => set((state) => {
-        if (groupId === DEFAULT_GROUP.id) return state; // Prevent deletion of default
-        const updatedGroups = state.taskGroups.filter(group => group.id !== groupId);
-        const newSelectedGroup = updatedGroups.length > 0 ? updatedGroups[0] : DEFAULT_GROUP;
+    // Delete a task group (Default Group Cannot Be Deleted)
+    deleteTaskGroup: async (groupId) => {
+        const { taskGroups, selectedTaskGroup } = get();
 
-        localStorage.setItem('taskGroups', JSON.stringify(updatedGroups));
-        localStorage.setItem('selectedTaskGroup', JSON.stringify(newSelectedGroup));
+        if (taskGroups.find(group => group.id === groupId)?.name === 'Default') {
+            console.warn('🚨 Default Group cannot be deleted.');
+            return;
+        }
 
-        return { taskGroups: updatedGroups, selectedTaskGroup: newSelectedGroup };
-    }),
+        try {
+            const response = await fetch(`/api/task-groups/${groupId}`, {
+                method: 'DELETE',
+            });
 
-    // ** Add Task to Selected Group **
-    addTask: (task) => set((state) => {
-        const updatedTasks = [...state.tasks, { ...task, groupId: state.selectedTaskGroup.id }];
-        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-        return { tasks: updatedTasks };
-    }),
+            if (!response.ok) throw new Error('Failed to delete task group');
 
-    // ** Delete Task **
-    deleteTask: (taskId) => set((state) => {
-        const updatedTasks = state.tasks.filter((task) => task.id !== taskId);
-        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-        return { tasks: updatedTasks };
-    }),
-
-    // ** Edit Task **
-    editTask: (updatedTask) => set((state) => {
-        const updatedTasks = state.tasks.map(task =>
-            task.id === updatedTask.id ? { ...updatedTask } : task
-        );
-        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-        return { tasks: updatedTasks };
-    }),
-
+            set((state) => ({
+                taskGroups: state.taskGroups.filter((group) => group.id !== groupId),
+                selectedTaskGroup:
+                    selectedTaskGroup.id === groupId
+                        ? state.taskGroups.length > 1
+                            ? state.taskGroups[0]
+                            : null
+                        : selectedTaskGroup,
+            }));
+        } catch (error) {
+            console.error('Error deleting task group:', error);
+        }
+    },
 }));
 
 export default useTaskStore;

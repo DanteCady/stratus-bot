@@ -20,11 +20,13 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useDropdownData } from '@/context/dropdownData';
 import { useSnackbar } from '@/context/snackbar';
+import useTaskStore from '@/store/taskStore'; // Import Task Store for selected group
 
 export default function DynamicModal({ open, handleClose, saveTask, editingTask }) {
 	const theme = useTheme();
 	const { dropdownData, loading } = useDropdownData();
-	const { showSnackbar } = useSnackbar(); 
+	const { showSnackbar } = useSnackbar();
+	const { selectedTaskGroup } = useTaskStore(); // Get selected task group
 
 	const [site, setSite] = useState('');
 	const [product, setProduct] = useState('');
@@ -35,7 +37,7 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 	const [errorDelay, setErrorDelay] = useState(3500);
 	const [taskAmount, setTaskAmount] = useState(1);
 	const [isSaving, setIsSaving] = useState(false);
-	const [showFields, setShowFields] = useState(false); // Controls when additional fields are displayed
+	const [showFields, setShowFields] = useState(false);
 
 	// Load editing task data
 	useEffect(() => {
@@ -66,7 +68,7 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 	// Handle site selection
 	const handleSiteSelection = (value) => {
 		setSite(value);
-		setShowFields(true); // Only show fields after site selection
+		setShowFields(true);
 	};
 
 	// Save task
@@ -75,20 +77,20 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 			showSnackbar('Please fill in all required fields.', 'error');
 			return;
 		}
-	
+
 		if (!dropdownData?.sites) {
 			showSnackbar('Dropdown data not available. Try again later.', 'error');
 			console.error('Dropdown data missing:', dropdownData);
 			return;
 		}
-	
+
 		const selectedSite = dropdownData.sites.find((s) => s.name === site);
 		if (!selectedSite) {
 			showSnackbar('Selected site not found.', 'error');
 			console.error('Error: Selected site not found in dropdownData.sites', dropdownData);
 			return;
 		}
-	
+
 		console.log("📤 Sending Task Data:", {
 			siteId: selectedSite.id,
 			product,
@@ -97,11 +99,12 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 			profileId: profile || null,
 			monitorDelay,
 			errorDelay,
-			taskAmount
+			taskAmount,
+			taskGroupId: selectedTaskGroup.id, // Pass selected task group
 		});
-	
+
 		setIsSaving(true);
-	
+
 		try {
 			const response = await fetch('/api/tasks', {
 				method: 'POST',
@@ -114,17 +117,18 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 					profileId: profile || null,
 					monitorDelay,
 					errorDelay,
-					taskAmount
+					taskAmount,
+					taskGroupId: selectedTaskGroup.id, // Pass selected task group
 				}),
 			});
-	
+
 			if (!response.ok) {
 				const errorText = await response.text();
 				console.error(`❌ Server Error (${response.status}):`, errorText);
 				showSnackbar(`Failed to create task: ${errorText}`, 'error');
 				return;
 			}
-	
+
 			const result = await response.json();
 			showSnackbar(`${taskAmount} task(s) successfully created!`, 'success');
 			handleClose();
@@ -135,7 +139,7 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 			setIsSaving(false);
 		}
 	};
-	
+
 	return (
 		<Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
 			<DialogTitle
@@ -161,7 +165,6 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 					</Select>
 				</FormControl>
 
-				{/* Show remaining fields only after site selection */}
 				{showFields && (
 					<>
 						{/* Product Input */}

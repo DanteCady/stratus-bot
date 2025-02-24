@@ -27,12 +27,30 @@ export default function Login() {
 		console.log("🔄 Sign-in result:", result);
 	
 		if (result?.ok) {
-			console.log("✅ Sign-in successful! Redirecting to dashboard...");
-			router.push('/dashboard'); // ✅ Ensure manual redirection
+			console.log("✅ Sign-in successful! Checking for Default Task Group...");
+	
+			try {
+				// Call API to ensure the Default Task Group exists
+				const response = await fetch('/api/task-groups', { method: 'GET' });
+	
+				if (!response.ok) {
+					throw new Error('Failed to fetch task groups.');
+				}
+	
+				const { taskGroups } = await response.json();
+				console.log("📌 Retrieved Task Groups:", taskGroups);
+	
+			} catch (error) {
+				console.error("❌ Error ensuring Default Task Group:", error);
+			}
+	
+			console.log("🚀 Redirecting to dashboard...");
+			router.push('/dashboard'); // Redirect after login
 		} else {
 			console.error("❌ Login failed:", result?.error);
 		}
 	};
+	
 	
 
 	return (

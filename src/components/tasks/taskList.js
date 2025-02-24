@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
     Table,
     TableBody,
@@ -17,13 +17,18 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import useTaskStore from '@/store/taskStore';
 
 export default function TaskList({ openEditModal }) {
-    const tasks = useTaskStore((state) => state.tasks);
-    const deleteTask = useTaskStore((state) => state.deleteTask);
-    const deleteMultipleTasks = useTaskStore((state) => state.deleteMultipleTasks);
+const { tasks, fetchTasks, selectedTaskGroup } = useTaskStore();
 
     const [selectedTasks, setSelectedTasks] = useState([]);
 
-    // Toggle selection for a single task
+    // Fetch tasks whenever the selected task group changes
+    useEffect(() => {
+        if (fetchTasks) {
+            fetchTasks();
+        }
+    }, []);
+    
+    // Handle task selection
     const handleSelectTask = (taskId) => {
         setSelectedTasks((prevSelected) =>
             prevSelected.includes(taskId)
@@ -34,7 +39,7 @@ export default function TaskList({ openEditModal }) {
 
     // Select / Deselect All Tasks
     const handleSelectAll = () => {
-        if (selectedTasks.length === tasks.length) {
+        if (selectedTasks.length === tasks?.length) {
             setSelectedTasks([]); // Unselect all
         } else {
             setSelectedTasks(tasks.map((task) => task.id)); // Select all
@@ -49,7 +54,7 @@ export default function TaskList({ openEditModal }) {
                     <TableRow>
                         <TableCell padding="checkbox">
                             <Checkbox
-                                checked={selectedTasks.length === tasks.length && tasks.length > 0}
+                                checked={selectedTasks.length === tasks?.length && tasks?.length > 0}
                                 onChange={handleSelectAll}
                             />
                         </TableCell>
@@ -64,29 +69,37 @@ export default function TaskList({ openEditModal }) {
 
                 {/* Table Body */}
                 <TableBody>
-                    {tasks.map((task) => (
-                        <TableRow key={task.id} selected={selectedTasks.includes(task.id)}>
-                            <TableCell padding="checkbox">
-                                <Checkbox
-                                    checked={selectedTasks.includes(task.id)}
-                                    onChange={() => handleSelectTask(task.id)}
-                                />
-                            </TableCell>
-                            <TableCell>{task.site}</TableCell>
-                            <TableCell>{task.product}</TableCell>
-                            <TableCell>{task.proxy}</TableCell>
-                            <TableCell>{task.solver}</TableCell>
-                            <TableCell>{task.status}</TableCell>
-                            <TableCell>
-                                <IconButton onClick={() => openEditModal(task)} color="secondary">
-                                    <EditIcon />
-                                </IconButton>
-                                <IconButton onClick={() => deleteTask(task.id)} color="error">
-                                    <DeleteIcon />
-                                </IconButton>
+                    {tasks?.length > 0 ? (
+                        tasks.map((task) => (
+                            <TableRow key={task.id} selected={selectedTasks.includes(task.id)}>
+                                <TableCell padding="checkbox">
+                                    <Checkbox
+                                        checked={selectedTasks.includes(task.id)}
+                                        onChange={() => handleSelectTask(task.id)}
+                                    />
+                                </TableCell>
+                                <TableCell>{task.site}</TableCell>
+                                <TableCell>{task.product}</TableCell>
+                                <TableCell>{task.proxy || 'None'}</TableCell>
+                                <TableCell>{task.solver || 'N/A'}</TableCell>
+                                <TableCell>{task.status}</TableCell>
+                                <TableCell>
+                                    <IconButton onClick={() => openEditModal(task)} color="secondary">
+                                        <EditIcon />
+                                    </IconButton>
+                                    <IconButton onClick={() => deleteTask(task.id)} color="error">
+                                        <DeleteIcon />
+                                    </IconButton>
+                                </TableCell>
+                            </TableRow>
+                        ))
+                    ) : (
+                        <TableRow>
+                            <TableCell colSpan={7} align="center">
+                                No tasks found in {selectedTaskGroup?.name || 'this group'}.
                             </TableCell>
                         </TableRow>
-                    ))}
+                    )}
                 </TableBody>
             </Table>
         </TableContainer>

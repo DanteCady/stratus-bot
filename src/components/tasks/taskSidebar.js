@@ -16,20 +16,20 @@ import {
 import useTaskStore from '@/store/taskStore';
 
 export default function TaskSidebar() {
-    const { taskGroups, selectedTaskGroup, setSelectedTaskGroup, addTaskGroup, initializeStore } = useTaskStore();
+    const { taskGroups, selectedTaskGroup, setSelectedTaskGroup, addTaskGroup, fetchTaskGroups } = useTaskStore();
 
     // Modal State for New Group
     const [modalOpen, setModalOpen] = useState(false);
     const [newGroupName, setNewGroupName] = useState('');
 
-    // Ensure Store Loads on Mount
+    // Load Task Groups on Mount
     useEffect(() => {
-        initializeStore();
+        fetchTaskGroups();
     }, []);
 
-    const handleCreateGroup = () => {
+    const handleCreateGroup = async () => {
         if (newGroupName.trim() !== '') {
-            addTaskGroup({ id: Date.now(), name: newGroupName.trim() });
+            await addTaskGroup(newGroupName.trim()); // Ensure it persists in the DB
             setNewGroupName('');
             setModalOpen(false);
         }

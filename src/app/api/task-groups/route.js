@@ -49,19 +49,33 @@ export async function POST(req) {
 
 export async function GET(req) {
     try {
-        // Authenticate user
         const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
         if (!token) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
-        // Get all task groups for user
-        const taskGroups = await queryDatabase(
-            `SELECT id, name, created_at FROM task_groups WHERE user_id = ?`,
-            [token.sub]
+        const userId = token.sub;
+
+        // Check if user already has task groups
+        const existingGroups = await queryDatabase(
+            `SELECT id, name FROM task_groups WHERE user_id = ?`,
+            [userId]
         );
 
-        return NextResponse.json({ taskGroups }, { status: 200 });
+        let defaultGroup = existingGroups.find(group => group.name === 'Default');
+
+        // If no Default group exists, create it automatically
+        if (!defaultGroup) {
+            const defaultGroupId = uuidv4();
+            await queryDatabase(
+                `INSERT INTO task_groups (id, user_id, name, created_at) VALUES (?, ?, 'Default', NOW())`,
+                [defaultGroupId, userId]
+            );
+
+            defaultGroup = { id: defaultGroupId, name: 'Default' };
+        }
+
+        return NextResponse.json({ taskGroups: [...existingGroups, defaultGroup] }, { status: 200 });
 
     } catch (error) {
         console.error('❌ [500] Fetching task groups error:', error);

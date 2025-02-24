@@ -10,19 +10,22 @@ import useTaskStore from '@/store/taskStore';
 export default function Tasks() {
     const [modalOpen, setModalOpen] = useState(false);
     const [editingTask, setEditingTask] = useState(null);
-    const { tasks, selectedTaskGroup, initializeStore, addTask, editTask } = useTaskStore();
+    const { tasks, selectedTaskGroup, fetchTaskGroups, addTask, editTask } = useTaskStore();
 
     // Load store data on mount
     useEffect(() => {
-        initializeStore();
+        if (fetchTaskGroups) {
+            fetchTaskGroups();
+        }
     }, []);
+    
 
     const handleOpenModal = (task = null) => {
         setEditingTask(task);
         setModalOpen(true);
     };
 
-    // ✅ Filter tasks based on selected group
+    // Filter tasks based on selected group
     const filteredTasks = selectedTaskGroup
         ? tasks.filter((task) => task.groupId === selectedTaskGroup.id)
         : [];
