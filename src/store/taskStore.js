@@ -64,9 +64,9 @@ const useTaskStore = create((set) => ({
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name: newName }),
             });
-
+    
             if (!response.ok) throw new Error('Failed to rename task group');
-
+    
             set((state) => ({
                 taskGroups: state.taskGroups.map((group) =>
                     group.id === groupId ? { ...group, name: newName } : group
@@ -76,6 +76,7 @@ const useTaskStore = create((set) => ({
             console.error('Error renaming task group:', error);
         }
     },
+    
 
     // Delete a task group (Default Group Cannot Be Deleted)
     deleteTaskGroup: async (groupId) => {
