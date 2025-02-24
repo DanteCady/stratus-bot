@@ -1,30 +1,24 @@
 import { getToken } from 'next-auth/jwt';
-import { queryDatabase } from '@/utils/db';
 
 /**
- * Middleware-like function to verify authentication in API routes.
- * Supports optional admin access.
- *
+ * Validates if a user is authenticated.
  * @param {Request} req - Incoming API request
- * @returns {Promise<{ isAuthenticated: boolean, user: object }>}
+ * @returns {Promise<{ isAuthenticated: boolean, user: object | null }>}
  */
 export async function authenticateUser(req) {
-    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-
-    if (!token) {
-        return { isAuthenticated: false, user: null };
-    }
-
     try {
-        const user = await queryDatabase('SELECT * FROM users WHERE id = ?', [token.sub]);
+        const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
-        if (!user.length) {
+        console.log('Checking user session:', token); // Debugging log
+
+        if (!token) {
+            console.log('No session token found - Unauthorized');
             return { isAuthenticated: false, user: null };
         }
 
-        return { isAuthenticated: true, user: user[0] };
+        return { isAuthenticated: true, user: token };
     } catch (error) {
-        console.error('Auth validation failed:', error);
+        console.error('Error validating authentication:', error);
         return { isAuthenticated: false, user: null };
     }
 }
