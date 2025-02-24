@@ -45,6 +45,12 @@ const Sidebar = () => {
 		}
 	};
 
+	// Function to handle sign out
+	const handleSignOut = async () => {
+		await signOut({ callbackUrl: '/' }); // Redirects to login page after signing out
+	};
+
+
 	// Fetch connection status on mount & refresh every 30 seconds
 	useEffect(() => {
 		fetchConnectionStatus();
@@ -185,7 +191,7 @@ const Sidebar = () => {
 
 				{/* Sign Out Button */}
 				<Tooltip title="Sign Out">
-					<IconButton onClick={() => signOut()} sx={{ color: 'error.main' }}>
+					<IconButton onClick={handleSignOut} sx={{ color: 'error.main' }}>
 						<Logout />
 					</IconButton>
 				</Tooltip>
