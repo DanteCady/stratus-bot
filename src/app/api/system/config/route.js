@@ -1,30 +1,28 @@
-import { queryDatabase } from '@/utils/db';
 import { NextResponse } from 'next/server';
+import { queryDatabase } from '@/utils/db';
+import { authenticateUser } from '@/utils/auth'; 
+export async function GET(req) {
+    const { isAuthenticated, user } = await authenticateUser(req);
 
-export async function GET() {
+    if (!isAuthenticated) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     try {
-        // Fetch all dropdown data in parallel for performance optimization
-        const [shops, sites, regions, modes] = await Promise.all([
-            queryDatabase('SELECT id, name, is_enabled FROM shops ORDER BY name'),
-            queryDatabase('SELECT id, name, shop_id, region_id FROM sites ORDER BY name'),
-            queryDatabase('SELECT id, name FROM regions ORDER BY name'),
-            queryDatabase('SELECT id, name FROM nike_modes ORDER BY name')
-        ]);
+        // Fetch system configuration data
+        const shops = await queryDatabase('SELECT id, name, is_enabled FROM shops');
+        const sites = await queryDatabase('SELECT id, name, shop_id, region_id FROM sites');
+        const regions = await queryDatabase('SELECT id, name FROM regions');
+        const modes = await queryDatabase('SELECT id, name FROM nike_modes');
 
-        // Construct the response
-        const responseData = {
+        return NextResponse.json({
             shops,
             sites,
             regions,
-            modes
-        };
-
-        return NextResponse.json(responseData);
+            modes,
+        });
     } catch (error) {
-        console.error('❌ Error fetching dropdowns:', error.message);
-        return NextResponse.json(
-            { error: 'Failed to load dropdown data', details: error.message },
-            { status: 500 }
-        );
+        console.error('❌ Database query failed:', error);
+        return NextResponse.json({ error: 'Database query failed' }, { status: 500 });
     }
 }
