@@ -14,7 +14,6 @@ import {
 	Box,
 	Typography,
 	IconButton,
-	Divider,
 	useTheme,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
@@ -36,6 +35,7 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 	const [errorDelay, setErrorDelay] = useState(3500);
 	const [taskAmount, setTaskAmount] = useState(1);
 	const [isSaving, setIsSaving] = useState(false);
+	const [showFields, setShowFields] = useState(false); // Controls when additional fields are displayed
 
 	// Load editing task data
 	useEffect(() => {
@@ -48,6 +48,7 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 			setMonitorDelay(editingTask.monitorDelay);
 			setErrorDelay(editingTask.errorDelay);
 			setTaskAmount(editingTask.taskAmount);
+			setShowFields(true);
 		} else if (!open) {
 			// Reset form when modal is closed
 			setSite('');
@@ -58,12 +59,14 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 			setMonitorDelay(3500);
 			setErrorDelay(3500);
 			setTaskAmount(1);
+			setShowFields(false);
 		}
 	}, [open, editingTask]);
 
 	// Handle site selection
 	const handleSiteSelection = (value) => {
 		setSite(value);
+		setShowFields(true); // Only show fields after site selection
 	};
 
 	// Save task
@@ -158,52 +161,57 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 					</Select>
 				</FormControl>
 
-				{/* Product Input */}
-				<TextField
-					label="Product (SKU, Variant, URL, Keywords)"
-					placeholder="+jordan -td"
-					fullWidth
-					value={product}
-					onChange={(e) => setProduct(e.target.value)}
-					sx={{ mb: 2 }}
-				/>
+				{/* Show remaining fields only after site selection */}
+				{showFields && (
+					<>
+						{/* Product Input */}
+						<TextField
+							label="Product (SKU, Variant, URL, Keywords)"
+							placeholder="+jordan -td"
+							fullWidth
+							value={product}
+							onChange={(e) => setProduct(e.target.value)}
+							sx={{ mb: 2 }}
+						/>
 
-				{/* Mode Selection */}
-				<FormControl fullWidth sx={{ mb: 2 }}>
-					<InputLabel>Mode</InputLabel>
-					<Select value={mode} onChange={(e) => setMode(e.target.value)} disabled={!site}>
-						{dropdownData?.modes?.map((option) => (
-							<MenuItem key={option.id} value={option.name}>
-								{option.name}
-							</MenuItem>
-						))}
-					</Select>
-				</FormControl>
+						{/* Mode Selection */}
+						<FormControl fullWidth sx={{ mb: 2 }}>
+							<InputLabel>Mode</InputLabel>
+							<Select value={mode} onChange={(e) => setMode(e.target.value)} disabled={!site}>
+								{dropdownData?.modes?.map((option) => (
+									<MenuItem key={option.id} value={option.name}>
+										{option.name}
+									</MenuItem>
+								))}
+							</Select>
+						</FormControl>
 
-				{/* Proxy List Selection */}
-				<FormControl fullWidth sx={{ mb: 2 }}>
-					<InputLabel>Proxy List (Optional)</InputLabel>
-					<Select value={proxyList} onChange={(e) => setProxyList(e.target.value)}>
-						<MenuItem value="">None (Defaults to localhost)</MenuItem>
-						{dropdownData?.proxyLists?.map((proxy, index) => (
-							<MenuItem key={index} value={proxy}>
-								{proxy}
-							</MenuItem>
-						))}
-					</Select>
-				</FormControl>
+						{/* Proxy List Selection */}
+						<FormControl fullWidth sx={{ mb: 2 }}>
+							<InputLabel>Proxy List (Optional)</InputLabel>
+							<Select value={proxyList} onChange={(e) => setProxyList(e.target.value)}>
+								<MenuItem value="">None (Defaults to localhost)</MenuItem>
+								{dropdownData?.proxyLists?.map((proxy, index) => (
+									<MenuItem key={index} value={proxy}>
+										{proxy}
+									</MenuItem>
+								))}
+							</Select>
+						</FormControl>
 
-				{/* Profile Selection */}
-				<FormControl fullWidth sx={{ mb: 2 }}>
-					<InputLabel>Billing Profile (Optional)</InputLabel>
-					<Select value={profile} onChange={(e) => setProfile(e.target.value)}>
-						{dropdownData?.billingProfiles?.map((option, index) => (
-							<MenuItem key={index} value={option}>
-								{option}
-							</MenuItem>
-						))}
-					</Select>
-				</FormControl>
+						{/* Profile Selection */}
+						<FormControl fullWidth sx={{ mb: 2 }}>
+							<InputLabel>Billing Profile (Optional)</InputLabel>
+							<Select value={profile} onChange={(e) => setProfile(e.target.value)}>
+								{dropdownData?.billingProfiles?.map((option, index) => (
+									<MenuItem key={index} value={option}>
+										{option}
+									</MenuItem>
+								))}
+							</Select>
+						</FormControl>
+					</>
+				)}
 			</DialogContent>
 
 			{/* Buttons (Task Amount + Add Task) */}
