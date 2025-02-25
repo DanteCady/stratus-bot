@@ -93,7 +93,7 @@ const useTaskStore = create((set, get) => ({
     // Delete a task group (Default Group Cannot Be Deleted)
  
     deleteTaskGroup: async (groupId) => {
-        const { taskGroups, selectedTaskGroup } = get(); // Ensure `get()` is properly called
+        const { taskGroups, selectedTaskGroup } = get(); 
     
         if (taskGroups.find(group => group.id === groupId)?.name === 'Default') {
             console.warn('🚨 Default Group cannot be deleted.');
@@ -123,6 +123,41 @@ const useTaskStore = create((set, get) => ({
             console.error('Error deleting task group:', error);
         }
     },
+
+    // Duplicate a task group
+    duplicateTaskGroup: async (groupId) => {
+        try {
+            const response = await fetch(`/api/task-groups/${groupId}/duplicate`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+            });
+    
+            if (!response.ok) throw new Error('Failed to duplicate task group');
+    
+            const { taskGroupId, newGroupName } = await response.json();
+    
+            console.log("✅ Task group duplicated successfully:", taskGroupId);
+    
+            // Fetch latest task groups and update state
+            const updatedResponse = await fetch('/api/task-groups');
+            if (!updatedResponse.ok) throw new Error('Failed to fetch updated task groups.');
+    
+            const { taskGroups } = await updatedResponse.json();
+    
+            set({ taskGroups });
+    
+            // Select the newly duplicated group
+            const duplicatedGroup = taskGroups.find(group => group.id === taskGroupId);
+            if (duplicatedGroup) {
+                set({ selectedTaskGroup: duplicatedGroup });
+            }
+    
+        } catch (error) {
+            console.error('❌ Error duplicating task group:', error);
+        }
+    },
+    
+    
     
 }));
 

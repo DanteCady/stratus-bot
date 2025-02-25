@@ -25,6 +25,7 @@ import {
 } from '@mui/icons-material';
 import useTaskStore from '@/store/taskStore';
 import SidebarContextMenu from '@/components/global/sidebarContextMenu';
+import { useSnackbar } from '@/context/snackbar'; 
 
 export default function TaskSidebar() {
 	const {
@@ -35,7 +36,10 @@ export default function TaskSidebar() {
 		fetchTaskGroups,
 		deleteTaskGroup,
 		renameTaskGroup,
+		duplicateTaskGroup,
 	} = useTaskStore();
+
+	const { showSnackbar } = useSnackbar();
 
 	// Modal State
 	const [modalOpen, setModalOpen] = useState(false);
@@ -82,17 +86,12 @@ export default function TaskSidebar() {
 			{
 				label: 'Duplicate',
 				icon: <ContentCopy fontSize="small" />,
-				action: () => console.log('Duplicate', group),
+				action: () => handleDuplicateGroup(group),
 			},
 			{
 				label: 'Delete',
 				icon: <Delete fontSize="small" />,
-				action: () => {
-					if (group.name !== 'Default') {
-						deleteTaskGroup(group.id);
-						setMenuAnchor(null);
-					}
-				},
+				action: () => handleDeleteGroup(group),
 				disabled: group.name === 'Default',
 				style: { color: group.name === 'Default' ? 'gray' : 'error.main' },
 			},
@@ -109,26 +108,56 @@ export default function TaskSidebar() {
 		setModalOpen(true);
 	};
 
-    const handleSaveGroup = async () => {
-        if (!newGroupName.trim()) return;
-    
-        if (isRenaming && selectedGroup) {
-            try {
-                await renameTaskGroup(selectedGroup.id, newGroupName);
-                setModalOpen(false);
-            } catch (error) {
-                console.error('Error renaming group:', error);
-            }
-        } else {
-            try {
-                await addTaskGroup(newGroupName.trim());
-                setModalOpen(false);
-            } catch (error) {
-                console.error('Error creating group:', error);
-            }
-        }
-    };
-    
+	const handleSaveGroup = async () => {
+		if (!newGroupName.trim()) return;
+
+		if (isRenaming && selectedGroup) {
+			try {
+				await renameTaskGroup(selectedGroup.id, newGroupName);
+				showSnackbar('✅ Task group renamed successfully', 'success');
+				setModalOpen(false);
+			} catch (error) {
+				showSnackbar('❌ Error renaming task group', 'error');
+				console.error('Error renaming group:', error);
+			}
+		} else {
+			try {
+				await addTaskGroup(newGroupName.trim());
+				showSnackbar('✅ Task group created successfully', 'success'); 
+				setModalOpen(false);
+			} catch (error) {
+				showSnackbar('❌ Error creating task group', 'error');
+				console.error('Error creating group:', error);
+			}
+		}
+	};
+
+	const handleDuplicateGroup = async () => {
+		if (selectedGroup) {
+			try {
+				console.log("🔄 Duplicating group:", selectedGroup.id);
+				await duplicateTaskGroup(selectedGroup.id);
+				showSnackbar('✅ Task group duplicated successfully', 'success'); 
+				console.log("✅ Duplicate process completed!");
+			} catch (error) {
+				showSnackbar('❌ Error duplicating task group', 'error');
+				console.error("❌ Error duplicating group:", error);
+			}
+		}
+	};
+
+	const handleDeleteGroup = async (group) => {
+		if (group.name === 'Default') return; // Prevent deleting default group
+
+		try {
+			await deleteTaskGroup(group.id);
+			showSnackbar('✅ Task group deleted successfully', 'success'); 
+			setMenuAnchor(null);
+		} catch (error) {
+			showSnackbar('❌ Error deleting task group', 'error');
+			console.error("❌ Error deleting group:", error);
+		}
+	};
 
 	return (
 		<Box sx={{ width: 250, p: 2, borderRight: '1px solid grey' }}>
@@ -147,10 +176,10 @@ export default function TaskSidebar() {
 			{/* Task Groups List (Ensuring Default is Always First) */}
 			<List>
 				{taskGroups
-					.slice() // Copy to avoid modifying state directly
+					.slice() // Clone array to avoid modifying state directly
 					.sort((a, b) =>
 						a.name === 'Default' ? -1 : b.name === 'Default' ? 1 : 0
-					) // Ensure "Default" is first
+					) // Ensure "Default" stays first
 					.map((group) => (
 						<ListItem
 							key={group.id}
@@ -191,7 +220,9 @@ export default function TaskSidebar() {
 
 			{/* Rename/Create Group Modal */}
 			<Dialog open={modalOpen} onClose={() => setModalOpen(false)}>
-				<DialogTitle>{isRenaming ? 'Rename Task Group' : 'Create New Task Group'}</DialogTitle>
+				<DialogTitle>
+					{isRenaming ? 'Rename Task Group' : 'Create New Task Group'}
+				</DialogTitle>
 				<DialogContent>
 					<TextField
 						autoFocus
