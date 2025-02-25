@@ -22,7 +22,12 @@ import { useDropdownData } from '@/context/dropdownData';
 import { useSnackbar } from '@/context/snackbar';
 import useTaskStore from '@/store/taskStore'; // Import Task Store for selected group
 
-export default function DynamicModal({ open, handleClose, saveTask, editingTask }) {
+export default function DynamicModal({
+	open,
+	handleClose,
+	saveTask,
+	editingTask,
+}) {
 	const theme = useTheme();
 	const { dropdownData, loading } = useDropdownData();
 	const { showSnackbar } = useSnackbar();
@@ -87,39 +92,38 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 		const selectedSite = dropdownData.sites.find((s) => s.name === site);
 		if (!selectedSite) {
 			showSnackbar('Selected site not found.', 'error');
-			console.error('Error: Selected site not found in dropdownData.sites', dropdownData);
+			console.error(
+				'Error: Selected site not found in dropdownData.sites',
+				dropdownData
+			);
 			return;
 		}
 
-		console.log("📤 Sending Task Data:", {
-			siteId: selectedSite.id,
-			product,
-			modeId: mode,
-			proxyId: proxyList || null,
-			profileId: profile || null,
-			monitorDelay,
-			errorDelay,
-			taskAmount,
-			taskGroupId: selectedTaskGroup.id, // Pass selected task group
-		});
-
-		setIsSaving(true);
-
 		try {
+			// Find the mode ID from the dropdownData
+			const selectedMode = dropdownData.modes.find((m) => m.name === mode);
+			if (!selectedMode) {
+				showSnackbar('Invalid mode selected.', 'error');
+				return;
+			}
+
+			const taskData = {
+				task_group_id: selectedTaskGroup.id,
+				product: product,
+				monitor_delay: parseInt(monitorDelay),
+				error_delay: parseInt(errorDelay),
+				mode_id: selectedMode.id, // Keep as string (varchar in DB)
+				status: 'pending', // Use valid enum value
+				site_id: selectedSite?.id || null, // Add site_id
+				proxy_id: proxyList || null, // Add proxy_id
+			};
+
+			console.log('📤 Sending Task Data:', taskData);
+
 			const response = await fetch('/api/tasks', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					siteId: selectedSite.id,
-					product,
-					modeId: mode,
-					proxyId: proxyList || null,
-					profileId: profile || null,
-					monitorDelay,
-					errorDelay,
-					taskAmount,
-					taskGroupId: selectedTaskGroup.id, // Pass selected task group
-				}),
+				body: JSON.stringify(taskData),
 			});
 
 			if (!response.ok) {
@@ -152,13 +156,23 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 			>
 				{editingTask ? 'Edit Task' : 'Create Task'}
 			</DialogTitle>
-			<DialogContent sx={{ backgroundColor: theme.palette.background.default, p: 3 }}>
+			<DialogContent
+				sx={{ backgroundColor: theme.palette.background.default, p: 3 }}
+			>
 				{/* Step 1: Select Site */}
 				<FormControl fullWidth sx={{ mb: 2 }}>
 					<InputLabel>Select a Site</InputLabel>
-					<Select value={site} onChange={(e) => handleSiteSelection(e.target.value)} disabled={loading}>
+					<Select
+						value={site}
+						onChange={(e) => handleSiteSelection(e.target.value)}
+						disabled={loading}
+					>
 						{dropdownData?.shops?.map((shop) => (
-							<MenuItem key={shop.id} value={shop.name} disabled={!shop.is_enabled}>
+							<MenuItem
+								key={shop.id}
+								value={shop.name}
+								disabled={!shop.is_enabled}
+							>
 								{shop.name} {!shop.is_enabled ? '(Locked)' : ''}
 							</MenuItem>
 						))}
@@ -180,7 +194,11 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 						{/* Mode Selection */}
 						<FormControl fullWidth sx={{ mb: 2 }}>
 							<InputLabel>Mode</InputLabel>
-							<Select value={mode} onChange={(e) => setMode(e.target.value)} disabled={!site}>
+							<Select
+								value={mode}
+								onChange={(e) => setMode(e.target.value)}
+								disabled={!site}
+							>
 								{dropdownData?.modes?.map((option) => (
 									<MenuItem key={option.id} value={option.name}>
 										{option.name}
@@ -192,7 +210,10 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 						{/* Proxy List Selection */}
 						<FormControl fullWidth sx={{ mb: 2 }}>
 							<InputLabel>Proxy List (Optional)</InputLabel>
-							<Select value={proxyList} onChange={(e) => setProxyList(e.target.value)}>
+							<Select
+								value={proxyList}
+								onChange={(e) => setProxyList(e.target.value)}
+							>
 								<MenuItem value="">None (Defaults to localhost)</MenuItem>
 								{dropdownData?.proxyLists?.map((proxy, index) => (
 									<MenuItem key={index} value={proxy}>
@@ -205,7 +226,10 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 						{/* Profile Selection */}
 						<FormControl fullWidth sx={{ mb: 2 }}>
 							<InputLabel>Billing Profile (Optional)</InputLabel>
-							<Select value={profile} onChange={(e) => setProfile(e.target.value)}>
+							<Select
+								value={profile}
+								onChange={(e) => setProfile(e.target.value)}
+							>
 								{dropdownData?.billingProfiles?.map((option, index) => (
 									<MenuItem key={index} value={option}>
 										{option}
@@ -218,13 +242,24 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 			</DialogContent>
 
 			{/* Buttons (Task Amount + Add Task) */}
-			<DialogActions sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', px: 3 }}>
+			<DialogActions
+				sx={{
+					display: 'flex',
+					justifyContent: 'space-between',
+					alignItems: 'center',
+					px: 3,
+				}}
+			>
 				{/* Task Amount Counter */}
 				<Box sx={{ display: 'flex', alignItems: 'center' }}>
-					<IconButton onClick={() => setTaskAmount(Math.max(1, taskAmount - 1))}>
+					<IconButton
+						onClick={() => setTaskAmount(Math.max(1, taskAmount - 1))}
+					>
 						<RemoveIcon />
 					</IconButton>
-					<Typography sx={{ mx: 1, fontWeight: 'bold' }}>{taskAmount}</Typography>
+					<Typography sx={{ mx: 1, fontWeight: 'bold' }}>
+						{taskAmount}
+					</Typography>
 					<IconButton onClick={() => setTaskAmount(taskAmount + 1)}>
 						<AddIcon />
 					</IconButton>
@@ -233,7 +268,11 @@ export default function DynamicModal({ open, handleClose, saveTask, editingTask 
 				{/* Action Buttons */}
 				<Box>
 					<Button onClick={handleClose}>Cancel</Button>
-					<Button onClick={handleSaveTask} variant="contained" disabled={isSaving || !site || !product || !mode}>
+					<Button
+						onClick={handleSaveTask}
+						variant="contained"
+						disabled={isSaving || !site || !product || !mode}
+					>
 						+ Add Task
 					</Button>
 				</Box>

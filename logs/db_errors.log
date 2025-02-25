@@ -13,3 +13,42 @@
 [2025-02-24T23:05:22.802Z] [ERROR] Unknown column 'group_id' in 'where clause' | Query: SELECT * FROM tasks WHERE group_id = ? | Params: ["fefc54cd-dccf-4254-bd8a-9df79adcc9a5"]
 [2025-02-24T23:13:17.695Z] [ERROR] Unknown column 'group_id' in 'where clause' | Query: SELECT * FROM tasks WHERE group_id = ? | Params: ["fefc54cd-dccf-4254-bd8a-9df79adcc9a5"]
 [2025-02-25T00:59:02.523Z] [ERROR] Unknown column 'group_id' in 'where clause' | Query: SELECT * FROM tasks WHERE group_id = ? | Params: ["15a09c10-1e21-4f9c-89e1-f957af66418c"]
+[2025-02-25T03:49:41.626Z] [ERROR] Bind parameters must not contain undefined. To pass SQL NULL specify JS null | Query: INSERT INTO tasks (id, task_group_id, product, monitor_delay, error_delay, mode_id, status, created_at) 
+             VALUES (?, ?, ?, ?, ?, ?, ?, NOW()) | Params: ["5c0ea52c-1b96-491b-be01-defcc195dee0","15a09c10-1e21-4f9c-89e1-f957af66418c","HF3975-001",null,null,null,null]
+[2025-02-25T03:50:40.073Z] [ERROR] Data truncated for column 'status' at row 1 | Query: INSERT INTO tasks (id, task_group_id, product, monitor_delay, error_delay, mode_id, status, created_at) 
+             VALUES (?, ?, ?, ?, ?, ?, ?, NOW()) | Params: ["444b0aad-932c-4497-a421-69e3de4f6b5b","15a09c10-1e21-4f9c-89e1-f957af66418c","HF3975-001",3500,3500,"Draw (Browser)","Idle"]
+[2025-02-25T03:50:47.391Z] [ERROR] Data truncated for column 'status' at row 1 | Query: INSERT INTO tasks (id, task_group_id, product, monitor_delay, error_delay, mode_id, status, created_at) 
+             VALUES (?, ?, ?, ?, ?, ?, ?, NOW()) | Params: ["f69f52aa-d6e5-4328-9ab5-690b68f2498b","15a09c10-1e21-4f9c-89e1-f957af66418c","HF3975-001",3500,3500,"Draw (Browser)","Idle"]
+[2025-02-25T03:52:27.738Z] [ERROR] Data truncated for column 'status' at row 1 | Query: INSERT INTO tasks (id, task_group_id, product, monitor_delay, error_delay, mode_id, status, created_at) 
+             VALUES (?, ?, ?, ?, ?, ?, ?, NOW()) | Params: ["b62ae213-2e73-410d-98cc-22db761e73cc","15a09c10-1e21-4f9c-89e1-f957af66418c","HF3975-001",3500,3500,"Draw (Browser)","Idle"]
+[2025-02-25T03:53:21.592Z] [ERROR] Data truncated for column 'status' at row 1 | Query: INSERT INTO tasks (id, task_group_id, product, monitor_delay, error_delay, mode_id, status, created_at) 
+             VALUES (?, ?, ?, ?, ?, ?, ?, NOW()) | Params: ["d64a2edd-c3f6-4fee-9eb4-a2d0f19a7fb9","15a09c10-1e21-4f9c-89e1-f957af66418c","HF3975-001",3500,3500,"d2bccca1-f1fe-11ef-a4f8-d8bbc191788f","IDLE"]
+[2025-02-25T03:53:23.337Z] [ERROR] Data truncated for column 'status' at row 1 | Query: INSERT INTO tasks (id, task_group_id, product, monitor_delay, error_delay, mode_id, status, created_at) 
+             VALUES (?, ?, ?, ?, ?, ?, ?, NOW()) | Params: ["9135528b-b355-4868-beef-d3d006544926","15a09c10-1e21-4f9c-89e1-f957af66418c","HF3975-001",3500,3500,"d2bccca1-f1fe-11ef-a4f8-d8bbc191788f","IDLE"]
+[2025-02-25T03:53:33.279Z] [ERROR] Data truncated for column 'status' at row 1 | Query: INSERT INTO tasks (id, task_group_id, product, monitor_delay, error_delay, mode_id, status, created_at) 
+             VALUES (?, ?, ?, ?, ?, ?, ?, NOW()) | Params: ["23e2c413-578a-4308-80aa-9ba8ce7efe44","15a09c10-1e21-4f9c-89e1-f957af66418c","HF3975-001",3500,3500,"d2bccca1-f1fe-11ef-a4f8-d8bbc191788f","IDLE"]
+[2025-02-25T03:54:45.383Z] [ERROR] Field 'user_id' doesn't have a default value | Query: INSERT INTO tasks (
+                id, 
+                task_group_id, 
+                product, 
+                monitor_delay, 
+                error_delay, 
+                mode_id, 
+                status, 
+                site_id,
+                proxy_id,
+                created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW()) | Params: ["38f0dc2e-cbfa-495e-ab43-f21f9af9797e","15a09c10-1e21-4f9c-89e1-f957af66418c","HF3975-001",3500,3500,"d2bccca1-f1fe-11ef-a4f8-d8bbc191788f","pending","ae7f80a5-f19c-11ef-a4f8-d8bbc191788f",null]
+[2025-02-25T03:55:20.041Z] [ERROR] Field 'user_id' doesn't have a default value | Query: INSERT INTO tasks (
+                id, 
+                task_group_id, 
+                product, 
+                monitor_delay, 
+                error_delay, 
+                mode_id, 
+                status, 
+                site_id,
+                proxy_id,
+                created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW()) | Params: ["3424f90a-b0d8-4011-9ec3-3c6dc58f407c","15a09c10-1e21-4f9c-89e1-f957af66418c","HF3975-001",3500,3500,"d2bccca1-f1fe-11ef-a4f8-d8bbc191788f","pending","ae7f80a5-f19c-11ef-a4f8-d8bbc191788f",null]
+[2025-02-25T04:02:53.461Z] [ERROR] Unknown column 'group_id' in 'where clause' | Query: SELECT * FROM tasks WHERE group_id = ? | Params: ["15a09c10-1e21-4f9c-89e1-f957af66418c"]

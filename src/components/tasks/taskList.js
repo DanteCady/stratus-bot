@@ -78,7 +78,7 @@ const { tasks, fetchTasks, selectedTaskGroup } = useTaskStore();
                                         onChange={() => handleSelectTask(task.id)}
                                     />
                                 </TableCell>
-                                <TableCell>{task.site}</TableCell>
+                                <TableCell>{task.site_name}</TableCell>
                                 <TableCell>{task.product}</TableCell>
                                 <TableCell>{task.proxy || 'None'}</TableCell>
                                 <TableCell>{task.solver || 'N/A'}</TableCell>

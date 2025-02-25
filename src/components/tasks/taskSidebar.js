@@ -34,6 +34,7 @@ export default function TaskSidebar() {
 		setSelectedTaskGroup,
 		addTaskGroup,
 		fetchTaskGroups,
+		fetchTasks,
 		deleteTaskGroup,
 		renameTaskGroup,
 		duplicateTaskGroup,
@@ -55,6 +56,12 @@ export default function TaskSidebar() {
 	useEffect(() => {
 		fetchTaskGroups();
 	}, []);
+
+    // Handle Select Group
+    const handleSelectGroup = (group) => {
+        setSelectedTaskGroup(group);
+        fetchTasks(group.id);
+    };
 
 	const handleOpenMenu = (event, group) => {
 		setSelectedGroup(group);
@@ -185,7 +192,7 @@ export default function TaskSidebar() {
 							key={group.id}
 							button
 							selected={selectedTaskGroup?.id === group.id}
-							onClick={() => setSelectedTaskGroup(group)}
+							onClick={() => handleSelectGroup(group)}
 							sx={{
 								backgroundColor:
 									selectedTaskGroup?.id === group.id

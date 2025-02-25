@@ -49,39 +49,22 @@ export async function PUT(req, context) {
         });
     }
 }
-    
-export async function DELETE(req, context) {
+
+export async function DELETE(req, { params }) {
     try {
-        const { params } = context;
-        if (!params) {
-            return new Response(JSON.stringify({ error: "Missing parameters" }), {
-                status: 400,
-                headers: { "Content-Type": "application/json" }
-            });
-        }
-        const groupId = params.groupId;
+        const { groupId } = params;
 
         if (!groupId) {
-            return new Response(JSON.stringify({ error: "Invalid request data" }), {
+            return new Response(JSON.stringify({ error: "Invalid request" }), {
                 status: 400,
                 headers: { "Content-Type": "application/json" }
             });
         }
 
-        // Ensure task group exists before deleting
-        const existingGroup = await queryDatabase(
-            'SELECT id FROM task_groups WHERE id = ? LIMIT 1',
-            [groupId]
-        );
-        
-        if (!existingGroup.length) {
-            return new Response(JSON.stringify({ error: "Task group not found" }), {
-                status: 404,
-                headers: { "Content-Type": "application/json" }
-            });
-        }
+        // First, delete all tasks associated with this group
+        await queryDatabase('DELETE FROM tasks WHERE group_id = ?', [groupId]);
 
-        // Delete the task group
+        // Now, delete the task group
         await queryDatabase('DELETE FROM task_groups WHERE id = ?', [groupId]);
 
         return new Response(JSON.stringify({ success: true }), {
