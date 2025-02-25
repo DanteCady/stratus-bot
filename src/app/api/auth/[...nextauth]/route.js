@@ -84,15 +84,20 @@ const authOptions = {
 			return session;
 		},
 		async redirect({ url, baseUrl }) {
-			console.log('🔄 Redirect callback fired:', { url, baseUrl });
-
-			// Ensure the URL is correctly formatted
-			if (url.startsWith(baseUrl)) {
-				return url;
-			}
-
-			// Force redirect to dashboard after sign in
-			return `${baseUrl}/dashboard`;
+            console.log("🔄 Redirect callback fired:", { url, baseUrl });
+        
+            // Prevent login page from redirecting to itself
+            if (url === `${baseUrl}/auth/login`) {
+                console.log("🚫 Preventing infinite redirect loop to /auth/login.");
+                return `${baseUrl}/dashboard`;
+            }
+        
+            // Ensure proper redirect behavior
+            if (url.startsWith(baseUrl)) {
+                return url;
+            }
+        
+			return `${baseUrl}/dashboard`; // Default redirect after authentication
 		},
 	},
 	pages: {

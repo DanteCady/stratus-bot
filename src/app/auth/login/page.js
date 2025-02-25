@@ -24,43 +24,40 @@ export default function Login() {
         });
     }, []);
 
-		const handleSignIn = async (providerId) => {
-		console.log('🟢 Attempting sign-in with:', providerId);
-
-		try {
-			const result = await signIn(providerId, { redirect: false });
-
-			console.log('🔄 Sign-in result:', result);
-
-			if (result?.ok) {
-				console.log(
-					'✅ Sign-in successful! Checking for Default Task Group...'
-				);
-
-				try {
-					// Call API to ensure the Default Task Group exists
-					const response = await fetch('/api/task-groups', { method: 'GET' });
-
-					if (!response.ok) {
-						throw new Error('Failed to fetch task groups.');
-					}
-
-					const { taskGroups } = await response.json();
-					console.log('📌 Retrieved Task Groups:', taskGroups);
-				} catch (error) {
-					console.error('❌ Error ensuring Default Task Group:', error);
-				}
-
-				console.log('🚀 Redirecting to dashboard...');
-				router.push('/dashboard'); // Redirect after login
-			} else {
-				console.error('❌ Login failed:', result?.error);
-			}
-		} catch (error) {
-			console.error('❌ Error during sign-in process:', error);
-		}
-	};
-
+    const handleSignIn = async (providerId) => {
+        console.log('🟢 Attempting sign-in with:', providerId);
+    
+        try {
+            const result = await signIn(providerId, { redirect: false });
+    
+            console.log('🔄 Sign-in result:', result);
+    
+            if (result?.ok) {
+                console.log('✅ Sign-in successful! Waiting for session update...');
+    
+                let retries = 10; // Increased retries for session delay
+                while (retries > 0) {
+                    const session = await fetch('/api/auth/session').then((res) => res.json());
+                    console.log('🔍 Checking session:', session);
+                    if (session?.user) {
+                        console.log('🚀 Session detected! Redirecting to dashboard...');
+                        router.replace('/dashboard');
+                        return;
+                    }
+                    retries--;
+                    await new Promise((resolve) => setTimeout(resolve, 500)); // Wait 500ms before retrying
+                }
+    
+                console.error('❌ Session not detected after login. Redirecting to login...');
+                router.replace('/auth/login');
+            } else {
+                console.error('❌ Login failed:', result?.error);
+            }
+        } catch (error) {
+            console.error('❌ Error during sign-in process:', error);
+        }
+    };
+   
 	return (
 		<Box
 			sx={{
@@ -121,7 +118,7 @@ export default function Login() {
 							key={provider.id}
 							variant="outlined"
 							color="primary"
-							onClick={() => handleSignIn(provider.id)} // ✅ Use our custom function
+							onClick={() => handleSignIn(provider.id)} 
 							sx={{
 								mt: 2,
 								width: '250px',
