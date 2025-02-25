@@ -52,3 +52,8 @@
                 created_at
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW()) | Params: ["3424f90a-b0d8-4011-9ec3-3c6dc58f407c","15a09c10-1e21-4f9c-89e1-f957af66418c","HF3975-001",3500,3500,"d2bccca1-f1fe-11ef-a4f8-d8bbc191788f","pending","ae7f80a5-f19c-11ef-a4f8-d8bbc191788f",null]
 [2025-02-25T04:02:53.461Z] [ERROR] Unknown column 'group_id' in 'where clause' | Query: SELECT * FROM tasks WHERE group_id = ? | Params: ["15a09c10-1e21-4f9c-89e1-f957af66418c"]
+[2025-02-25T04:12:01.058Z] [ERROR] Unknown column 'group_id' in 'where clause' | Query: DELETE FROM tasks WHERE group_id = ? | Params: ["43a7e98a-9b84-4dc9-8506-c09f6a35897f"]
+[2025-02-25T04:12:12.113Z] [ERROR] Unknown column 'group_id' in 'where clause' | Query: DELETE FROM tasks WHERE group_id = ? | Params: ["43a7e98a-9b84-4dc9-8506-c09f6a35897f"]
+[2025-02-25T04:12:51.191Z] [ERROR] Unknown column 'group_id' in 'where clause' | Query: DELETE FROM tasks WHERE group_id = ? | Params: ["d0e11989-3050-4c55-9e58-7cbf1f9cd854"]
+[2025-02-25T04:12:53.068Z] [ERROR] Unknown column 'group_id' in 'where clause' | Query: DELETE FROM tasks WHERE group_id = ? | Params: ["43a7e98a-9b84-4dc9-8506-c09f6a35897f"]
+[2025-02-25T04:12:54.717Z] [ERROR] Unknown column 'group_id' in 'where clause' | Query: DELETE FROM tasks WHERE group_id = ? | Params: ["15a09c10-1e21-4f9c-89e1-f957af66418c"]
