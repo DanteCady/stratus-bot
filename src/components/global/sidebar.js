@@ -193,12 +193,6 @@ const Sidebar = () => {
 					Menu
 				</Typography>
 				<Divider sx={{ width: '100%', bgcolor: 'divider' }} />
-				<IconButton
-					onClick={() => setIsCollapsed(!isCollapsed)}
-					sx={{ color: 'text.secondary' }}
-				>
-					{isCollapsed ? <ChevronRight /> : <ChevronLeft />}
-				</IconButton>
 			</Box>
 
 			{/* Navigation Items */}
@@ -209,6 +203,21 @@ const Sidebar = () => {
 			</List>
 
 			<Box sx={{ flexGrow: 1 }} />
+
+			<IconButton
+				onClick={() => setIsCollapsed(!isCollapsed)}
+				sx={{ color: 'text.secondary', '&:hover': { color: 'text.primary' } }}
+				disableRipple
+			>
+				{isCollapsed ? (
+					<ChevronRight />
+				) : (
+					<>
+						<ChevronLeft sx={{ marginRight: '40px' }} />
+						<Typography>Collapse</Typography>
+					</>
+				)}
+			</IconButton>
 
 			{/* Bottom Section */}
 			<Box sx={{ p: 1 }}>
