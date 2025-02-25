@@ -19,6 +19,7 @@ import {
 import { useRouter, usePathname } from 'next/navigation';
 import { signOut } from 'next-auth/react';
 import React from 'react';
+import Image from 'next/image';
 
 const DRAWER_WIDTH = 240;
 const COLLAPSED_WIDTH = 65;
@@ -89,9 +90,9 @@ const Sidebar = () => {
 				>
 					<ListItem
 						sx={{
-							cursor: 'default', // Prevents clicking
-							justifyContent: isCollapsed ? 'center' : 'flex-start',
+							justifyContent: 'center',
 							py: 1.5,
+							minHeight: 48,
 						}}
 					>
 						<ListItemIcon
@@ -103,6 +104,7 @@ const Sidebar = () => {
 										? 'orange' // Partial failure
 										: 'red', // Everything is down
 								minWidth: isCollapsed ? 'auto' : 48,
+								justifyContent: 'center',
 							}}
 						>
 							<IconComponent />
@@ -122,18 +124,28 @@ const Sidebar = () => {
 			>
 				<ListItem
 					button
-					key={item.id}
 					onClick={() => handleMenuClick(item)}
 					selected={isSelected}
 					sx={{
-						'&.Mui-selected': { backgroundColor: 'primary.main', opacity: 0.1 },
-						'&:hover': { color: 'primary.main' },
-						justifyContent: isCollapsed ? 'center' : 'flex-start',
+						justifyContent: 'center',
 						py: 1.5,
+						minHeight: 48,
+						'&.Mui-selected': {
+							backgroundColor: 'primary.main',
+							opacity: 0.1,
+						},
+						'&:hover': {
+							color: 'primary.main',
+							backgroundColor: 'action.hover',
+						},
 					}}
 				>
 					<ListItemIcon
-						sx={{ color: 'primary.main', minWidth: isCollapsed ? 'auto' : 48 }}
+						sx={{
+							color: 'primary.main',
+							minWidth: isCollapsed ? 'auto' : 48,
+							justifyContent: 'center',
+						}}
 					>
 						{IconComponent && <IconComponent />}
 					</ListItemIcon>
@@ -156,71 +168,77 @@ const Sidebar = () => {
 					borderRight: '1px solid',
 					borderColor: 'divider',
 					transition: 'width 0.2s ease-in-out',
+					overflowX: 'hidden',
 				},
 			}}
 		>
+			{/* Logo and Collapse Button */}
 			<Box
 				sx={{
 					p: 2,
 					display: 'flex',
+					flexDirection: 'column',
 					alignItems: 'center',
-					justifyContent: isCollapsed ? 'center' : 'space-between',
+					gap: 1,
 				}}
 			>
-				{!isCollapsed && (
-					<Typography variant="h6" sx={{ color: 'primary.main' }}>
-						Logo
-					</Typography>
-				)}
-				<Tooltip title={isCollapsed ? 'Expand' : 'Collapse'}>
-					<IconButton
-						onClick={() => setIsCollapsed(!isCollapsed)}
-						sx={{ color: 'text.secondary' }}
-					>
-						{isCollapsed ? <ChevronRight /> : <ChevronLeft />}
-					</IconButton>
-				</Tooltip>
+				<Image
+					src="/assets/logos/stratus_logo_3.png"
+					alt="Stratus Logo"
+					width={isCollapsed ? 85 : 100}
+					height={isCollapsed ? 85 : 100}
+					style={{ transition: 'all 0.2s ease-in-out', marginRight: '10px' }}
+				/>
+				<Typography variant="h6" sx={{ color: 'text.secondary', fontWeight: 'bold', fontSize: '12px' }}>
+					Menu
+				</Typography>
+				<Divider sx={{ width: '100%', bgcolor: 'divider' }} />
+				<IconButton
+					onClick={() => setIsCollapsed(!isCollapsed)}
+					sx={{ color: 'text.secondary' }}
+				>
+					{isCollapsed ? <ChevronRight /> : <ChevronLeft />}
+				</IconButton>
 			</Box>
 
-			<List>
+			{/* Navigation Items */}
+			<List sx={{ px: 1 }}>
 				{navigationMenuItems.map((item) => (
 					<React.Fragment key={item.id}>{renderMenuItem(item)}</React.Fragment>
 				))}
 			</List>
 
 			<Box sx={{ flexGrow: 1 }} />
-			<Divider />
 
-			{/* Bottom Section: Backend Status & Logout */}
-			<Box
-				sx={{
-					display: 'flex',
-					flexDirection: isCollapsed ? 'column' : 'row', // Stack vertically if collapsed
-					alignItems: 'center',
-					justifyContent: isCollapsed ? 'center' : 'space-between',
-					p: 1,
-				}}
-			>
-				{/* Backend Status Icon */}
-				{bottomMenuItems.map((item) => (
-					<React.Fragment key={item.id}>{renderMenuItem(item)}</React.Fragment>
-				))}
-
-				{/* Vertical Divider (Hidden when collapsed) */}
-				{!isCollapsed && (
-					<Divider
-						orientation="vertical"
-						flexItem
-						sx={{ mx: 1, height: '80px', bgcolor: 'gray' }}
-					/>
-				)}
-
-				{/* Sign Out Button */}
-				<Tooltip title="Sign Out">
-					<IconButton onClick={handleSignOut} sx={{ color: 'error.main' }}>
+			{/* Bottom Section */}
+			<Box sx={{ p: 1 }}>
+				<Divider sx={{ mb: 1 }} />
+				<Box
+					sx={{
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+						gap: 1,
+					}}
+				>
+					{bottomMenuItems.map((item) => (
+						<React.Fragment key={item.id}>
+							{renderMenuItem(item)}
+						</React.Fragment>
+					))}
+					<IconButton
+						onClick={handleSignOut}
+						sx={{
+							color: 'error.main',
+							width: '100%',
+							justifyContent: isCollapsed ? 'center' : 'flex-start',
+							px: 2,
+						}}
+					>
 						<Logout />
+						{!isCollapsed && <Typography sx={{ ml: 2 }}>Sign Out</Typography>}
 					</IconButton>
-				</Tooltip>
+				</Box>
 			</Box>
 		</Drawer>
 	);

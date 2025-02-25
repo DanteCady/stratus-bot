@@ -14,50 +14,56 @@ export default function Login() {
 	const router = useRouter();
 
 	useEffect(() => {
-        getProviders().then((res) => {
-            console.log("🔍 Providers fetched:", res);
-            setProviders(res);
-            setLoading(false); // Ensure loading stops once providers are fetched
-        }).catch(err => {
-            console.error("❌ Error fetching providers:", err);
-            setLoading(false); // Ensure loading stops on error
-        });
-    }, []);
+		getProviders()
+			.then((res) => {
+				console.log('🔍 Providers fetched:', res);
+				setProviders(res);
+				setLoading(false); // Ensure loading stops once providers are fetched
+			})
+			.catch((err) => {
+				console.error('❌ Error fetching providers:', err);
+				setLoading(false); // Ensure loading stops on error
+			});
+	}, []);
 
-    const handleSignIn = async (providerId) => {
-        console.log('🟢 Attempting sign-in with:', providerId);
-    
-        try {
-            const result = await signIn(providerId, { redirect: false });
-    
-            console.log('🔄 Sign-in result:', result);
-    
-            if (result?.ok) {
-                console.log('✅ Sign-in successful! Waiting for session update...');
-    
-                let retries = 10; // Increased retries for session delay
-                while (retries > 0) {
-                    const session = await fetch('/api/auth/session').then((res) => res.json());
-                    console.log('🔍 Checking session:', session);
-                    if (session?.user) {
-                        console.log('🚀 Session detected! Redirecting to dashboard...');
-                        router.replace('/dashboard');
-                        return;
-                    }
-                    retries--;
-                    await new Promise((resolve) => setTimeout(resolve, 500)); // Wait 500ms before retrying
-                }
-    
-                console.error('❌ Session not detected after login. Redirecting to login...');
-                router.replace('/auth/login');
-            } else {
-                console.error('❌ Login failed:', result?.error);
-            }
-        } catch (error) {
-            console.error('❌ Error during sign-in process:', error);
-        }
-    };
-   
+	const handleSignIn = async (providerId) => {
+		console.log('🟢 Attempting sign-in with:', providerId);
+
+		try {
+			const result = await signIn(providerId, { redirect: false });
+
+			console.log('🔄 Sign-in result:', result);
+
+			if (result?.ok) {
+				console.log('✅ Sign-in successful! Waiting for session update...');
+
+				let retries = 10; // Increased retries for session delay
+				while (retries > 0) {
+					const session = await fetch('/api/auth/session').then((res) =>
+						res.json()
+					);
+					console.log('🔍 Checking session:', session);
+					if (session?.user) {
+						console.log('🚀 Session detected! Redirecting to dashboard...');
+						router.replace('/dashboard');
+						return;
+					}
+					retries--;
+					await new Promise((resolve) => setTimeout(resolve, 500)); // Wait 500ms before retrying
+				}
+
+				console.error(
+					'❌ Session not detected after login. Redirecting to login...'
+				);
+				router.replace('/auth/login');
+			} else {
+				console.error('❌ Login failed:', result?.error);
+			}
+		} catch (error) {
+			console.error('❌ Error during sign-in process:', error);
+		}
+	};
+
 	return (
 		<Box
 			sx={{
@@ -97,18 +103,25 @@ export default function Login() {
 					flexDirection: 'column',
 					alignItems: 'center',
 					justifyContent: 'center',
-					gap: 2,
+					// gap: 2,
 					zIndex: 2,
 				}}
 			>
-				<CloudIcon sx={{ fontSize: 64, color: 'primary.main' }} />
+				{/* <CloudIcon sx={{ fontSize: 64, color: 'primary.main' }} /> */}
+				<Image
+					src="/assets/logos/stratus_logo_3.png"
+					alt="Stratus Logo"
+					width={150}
+					height={150}
+				/>
+				<Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
 				<Typography variant="h4" fontWeight="bold" sx={{ color: 'white' }}>
 					Welcome to Stratus
 				</Typography>
 				<Typography variant="subtitle1" sx={{ color: 'white', opacity: 0.9 }}>
 					Next-Gen Botting, Powered by the Cloud
 				</Typography>
-
+				</Box>
 				{/* Auth Buttons */}
 				{loading ? (
 					<CircularProgress sx={{ color: 'white' }} />
@@ -118,7 +131,7 @@ export default function Login() {
 							key={provider.id}
 							variant="outlined"
 							color="primary"
-							onClick={() => handleSignIn(provider.id)} 
+							onClick={() => handleSignIn(provider.id)}
 							sx={{
 								mt: 2,
 								width: '250px',
