@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
 		localStorage.setItem('stratus-theme', newTheme ? 'dark' : 'light');
 	};
 
-	const isLoginPage = pathname === '/';
+	const isLoginOrErrorPage = pathname === '/auth/login' || pathname === '/auth/error';
 
 	return (
 		<html lang="en" style={{ height: '100%', overflow: 'hidden' }}>
@@ -55,10 +55,10 @@ export default function RootLayout({ children }) {
 							<DropdownDataProvider>
 								<Box sx={{ display: 'flex', height: '100vh', width: '100vw', overflow: 'hidden' }}>
 									{/* Hide Sidebar on Login Page */}
-									{!isLoginPage && <Sidebar />}
+									{!isLoginOrErrorPage && <Sidebar />}
 									<Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
 										{/* Hide AppBar on Login Page */}
-										{!isLoginPage && (
+										{!isLoginOrErrorPage && (
 											<AppBar
 												position="static"
 												color="transparent"

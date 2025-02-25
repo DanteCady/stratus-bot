@@ -2,29 +2,34 @@ import { NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 
 export async function middleware(req) {
-	const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+    const token = await getToken({ req });
+    const { pathname } = req.nextUrl;
 
-	console.log('🔍 Middleware Executed for:', req.nextUrl.pathname);
-	console.log('🟢 Session Found:', session ? 'Yes' : 'No');
+    console.log(`🔍 Middleware Executed for: ${pathname}`);
+    console.log(`🟢 Session Found:`, token ? "Yes" : "No");
 
-	// Allow access to root ("/") and authentication pages
-	if (req.nextUrl.pathname === '/') {
-		console.log('✅ Allowing Access to Root');
-		return NextResponse.next();
-	}
+    // Allow access to login page without redirecting
+    if (pathname.startsWith('/auth/login') || pathname.startsWith('/api/auth')) {
+        return NextResponse.next();
+    }
 
-	// Redirect unauthenticated users to login
-	if (!session) {
-		console.log('🔴 No Session Found - Redirecting to Login');
-		return NextResponse.redirect(new URL('/', req.url));
-	}
+    // Allow access to public pages (if needed)
+    if (pathname.startsWith('/public')) {
+        return NextResponse.next();
+    }
 
-	console.log('✅ User Authenticated - Allowing Access');
-	return NextResponse.next();
+    // If user is logged in, allow access
+    if (token) {
+        console.log("✅ User is authenticated - Allowing access");
+        return NextResponse.next();
+    }
+
+    // ❌ If user is NOT logged in, redirect to login
+    console.log("🔴 No Session Found - Redirecting to Login");
+    return NextResponse.redirect(new URL('/auth/login', req.url));
 }
 
-// Apply middleware to **all** routes except the root "/" and static files
+// Apply middleware only to protected routes
 export const config = {
-	matcher:
-		'/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:mp4|webm|ogg)).*)',
+    matcher: ['/dashboard/:path*', '/admin/:path*'], // Define which routes require authentication
 };

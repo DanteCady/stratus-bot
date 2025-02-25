@@ -1,13 +1,23 @@
-'use client';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'; 
 
-export default function Home() {
-	const router = useRouter();
+export default async function Home() {
+    console.log("🔄 Attempting to fetch session...");
 
-	useEffect(() => {
-		router.push('/auth/login'); // Redirect to login page
-	}, []);
+    let session;
+    try {
+        session = await getServerSession(authOptions);
+        console.log("✅ Session fetched:", session);
+    } catch (error) {
+        console.error("❌ Error fetching session:", error);
+    }
 
-	return null; // No need to render anything
+    if (session) {
+        console.log("✅ User is authenticated, redirecting to /dashboard");
+        return redirect('/dashboard'); 
+    } else {
+        console.log("🚀 User NOT logged in, redirecting to /auth/login");
+        return redirect('/auth/login'); 
+    }
 }

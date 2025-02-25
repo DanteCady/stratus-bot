@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation';
 import { Box, Button, Typography, CircularProgress } from '@mui/material';
 import CloudIcon from '@mui/icons-material/Cloud';
 import Image from 'next/image';
-import github from '../assets/providers/github.svg';
-import discord from '../assets/providers/discord_white.svg';
+import github from '../../../assets/providers/github.svg';
+import discord from '../../../assets/providers/discord_white.svg';
 
 export default function Login() {
 	const [providers, setProviders] = useState(null);
@@ -14,12 +14,17 @@ export default function Login() {
 	const router = useRouter();
 
 	useEffect(() => {
-		getProviders()
-			.then((res) => setProviders(res))
-			.finally(() => setLoading(false));
-	}, []);
+        getProviders().then((res) => {
+            console.log("🔍 Providers fetched:", res);
+            setProviders(res);
+            setLoading(false); // Ensure loading stops once providers are fetched
+        }).catch(err => {
+            console.error("❌ Error fetching providers:", err);
+            setLoading(false); // Ensure loading stops on error
+        });
+    }, []);
 
-	const handleSignIn = async (providerId) => {
+		const handleSignIn = async (providerId) => {
 		console.log('🟢 Attempting sign-in with:', providerId);
 
 		try {
