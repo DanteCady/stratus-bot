@@ -15,15 +15,15 @@ const authOptions = {
 				console.log('🔄 Sign-in triggered for', user.email);
 
 				const existingUser = await queryDatabase(
-					'SELECT id, provider, is_first_login FROM users WHERE email = ? LIMIT 1',
+					'SELECT id, provider, is_first_login, provider_id FROM users WHERE email = ? LIMIT 1',
 					[user.email]
 				);
 
 				let userId;
 
 				if (existingUser.length) {
-					const { id, provider, is_first_login } = existingUser[0];
-					userId = id;
+					const { id, provider, is_first_login, provider_id } = existingUser[0];
+					userId = provider_id;
 
 					if (provider !== account.provider) {
 						await queryDatabase(
@@ -86,6 +86,7 @@ const authOptions = {
 		async jwt({ token, user }) {
 			if (user) {
 				token.sub = user.id;
+				token.provider_id = user.provider_id;
 			}
 			return token;
 		},
@@ -106,7 +107,7 @@ const authOptions = {
             if (url.startsWith(baseUrl)) {
                 return url;
             }
-        
+			
 			return `${baseUrl}/dashboard`; // Default redirect after authentication
 		},
 	},

@@ -1,48 +1,92 @@
+import { NextResponse } from 'next/server';
+import { getToken } from 'next-auth/jwt';
 import { queryDatabase } from '@/utils/db';
+import { v4 as uuidv4 } from 'uuid';
 
-export async function GET(req) {
+/**
+ * @desc Create a new profile group or ensure the Default group exists
+ * @route POST /api/profile-groups
+ */
+export async function POST(req) {
     try {
-        const userId = req.headers.get("user_id"); // Get user_id from headers or auth session
+        // Authenticate user
+        const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+        if (!token) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
 
-        const profileGroups = await queryDatabase(
-            "SELECT * FROM profile_groups WHERE user_id = ? ORDER BY is_default DESC, created_at ASC",
-            [userId]
+        const { name } = await req.json();
+        if (!name) {
+            return NextResponse.json({ error: 'Profile group name is required' }, { status: 400 });
+        }
+
+        // Check if user already has a "Default" group
+        const existingDefaultGroup = await queryDatabase(
+            `SELECT id FROM profile_groups WHERE user_id = ? AND name = 'Default'`,
+            [token.sub]
         );
 
-        return new Response(JSON.stringify({ profileGroups }), {
-            status: 200,
-            headers: { "Content-Type": "application/json" },
-        });
+        if (!existingDefaultGroup.length && name === 'Default') {
+            // Create default group if missing
+            const defaultGroupId = uuidv4();
+            await queryDatabase(
+                `INSERT INTO profile_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, ?, 1, NOW())`,
+                [defaultGroupId, token.sub, 'Default']
+            );
+            return NextResponse.json({ message: 'Default profile group created', profileGroupId: defaultGroupId }, { status: 201 });
+        }
+
+        // Create new profile group
+        const profileGroupId = uuidv4();
+        await queryDatabase(
+            `INSERT INTO profile_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, ?, 0, NOW())`,
+            [profileGroupId, token.sub, name]
+        );
+
+        return NextResponse.json({ message: 'Profile group created successfully', profileGroupId }, { status: 201 });
+
     } catch (error) {
-        console.error("❌ Error fetching profile groups:", error);
-        return new Response(JSON.stringify({ error: "Internal server error" }), { status: 500 });
+        console.error('❌ [500] Profile group creation error:', error);
+        return NextResponse.json({ error: 'Server error' }, { status: 500 });
     }
 }
 
-export async function POST(req) {
+/**
+ * @desc Fetch all profile groups for the user, ensuring Default group exists
+ * @route GET /api/profile-groups
+ */
+export async function GET(req) {
     try {
-        const { name, isDefault = false, userId } = await req.json();
-
-        if (!name || !userId) {
-            return new Response(JSON.stringify({ error: "Missing required fields" }), { status: 400 });
+        const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+        if (!token) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
-        // Ensure only ONE default profile group exists per user
-        if (isDefault) {
-            await queryDatabase(
-                "UPDATE profile_groups SET is_default = FALSE WHERE user_id = ?",
-                [userId]
-            );
-        }
+        const userId = token.sub;
 
-        const result = await queryDatabase(
-            "INSERT INTO profile_groups (id, user_id, name, is_default) VALUES (UUID(), ?, ?, ?)",
-            [userId, name, isDefault]
+        // Check if user already has profile groups
+        const existingGroups = await queryDatabase(
+            `SELECT id, name FROM profile_groups WHERE user_id = ?`,
+            [userId]
         );
 
-        return new Response(JSON.stringify({ profileGroupId: result.insertId }), { status: 201 });
+        let defaultGroup = existingGroups.find(group => group.name === 'Default');
+
+        // If no Default group exists, create it automatically
+        if (!defaultGroup) {
+            const defaultGroupId = uuidv4();
+            await queryDatabase(
+                `INSERT INTO profile_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, 'Default', 1, NOW())`,
+                [defaultGroupId, userId]
+            );
+
+            defaultGroup = { id: defaultGroupId, name: 'Default' };
+        }
+
+        return NextResponse.json({ profileGroups: [...existingGroups, defaultGroup] }, { status: 200 });
+
     } catch (error) {
-        console.error("❌ Error creating profile group:", error);
-        return new Response(JSON.stringify({ error: "Internal server error" }), { status: 500 });
+        console.error('❌ [500] Fetching profile groups error:', error);
+        return NextResponse.json({ error: 'Server error' }, { status: 500 });
     }
 }

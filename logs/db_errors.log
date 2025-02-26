@@ -85,3 +85,5 @@
 [2025-02-25T20:15:19.081Z] [ERROR] Access denied for user 'root'@'localhost' (using password: YES) | Query: SELECT 1 | Params: []
 [2025-02-25T20:15:47.329Z] [ERROR] Access denied for user 'root'@'localhost' (using password: YES) | Query: SELECT 1 | Params: []
 [2025-02-25T20:17:14.331Z] [ERROR] Access denied for user 'root'@'localhost' (using password: YES) | Query: SELECT id, provider, is_first_login FROM users WHERE email = ? LIMIT 1 | Params: ["dantecady@gmail.com"]
+[2025-02-26T02:47:55.219Z] [ERROR] Duplicate entry 'dantecady@gmail.com' for key 'users.email' | Query: INSERT INTO users (id, email, provider, provider_id, is_first_login, created_at)
+                         VALUES (?, ?, ?, ?, 1, NOW()) | Params: ["292444939412045825","dantecady@gmail.com","discord","292444939412045825"]
