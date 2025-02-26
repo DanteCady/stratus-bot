@@ -43,6 +43,11 @@ const authOptions = {
 						);
 
 						await queryDatabase(
+							`INSERT INTO profile_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, 'Default', 1, NOW())`,
+							[uuidv4(), userId]
+						);
+
+						await queryDatabase(
 							`UPDATE users SET is_first_login = 0 WHERE id = ?`,
 							[userId]
 						);
@@ -57,6 +62,11 @@ const authOptions = {
 
 					await queryDatabase(
 						`INSERT INTO task_groups (id, user_id, name, created_at) VALUES (?, ?, 'Default', NOW())`,
+						[uuidv4(), userId]
+					);
+
+					await queryDatabase(
+						`INSERT INTO profile_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, 'Default', 1, NOW())`,
 						[uuidv4(), userId]
 					);
 

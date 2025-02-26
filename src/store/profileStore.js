@@ -1,106 +1,190 @@
 import { create } from 'zustand';
 
-const useProfileStore = create((set) => ({
-    // Load from localStorage or set default values
-    profiles: JSON.parse(localStorage.getItem('profiles')) || [],
-    profileGroups: JSON.parse(localStorage.getItem('profileGroups')) || [{ id: 1, name: "Default Group" }],
-    selectedGroup: JSON.parse(localStorage.getItem('selectedGroup')) || { id: 1, name: "Default Group" },
+const useProfileStore = create((set, get) => ({
+    profileGroups: [],
+    selectedProfileGroup: null,
+    profiles: [],
 
-    // Modal State
-    openModal: false,
-    selectedProfile: null,
+    // Fetch Profile Groups & Ensure "Default" Exists
+    fetchProfileGroups: async () => {
+        try {
+            const response = await fetch('/api/profile-groups');
+            if (!response.ok) throw new Error('Failed to fetch profile groups.');
 
-    // Open Modal (for New or Edit)
-    openProfileModal: (profile = null) =>
-        set({ openModal: true, selectedProfile: profile }),
+            let { profileGroups } = await response.json();
 
-    // Close Modal
-    closeProfileModal: () => set({ openModal: false, selectedProfile: null }),
-
-    // ** Add Profile (Now assigns it to the selected group) **
-    addProfile: (profile) =>
-        set((state) => {
-            const updatedProfiles = [...state.profiles, { ...profile, groupId: state.selectedGroup.id }];
-            localStorage.setItem('profiles', JSON.stringify(updatedProfiles));
-            return { profiles: updatedProfiles };
-        }),
-
-    // ** Delete Profile **
-    deleteProfile: (profileId) =>
-        set((state) => {
-            const updatedProfiles = state.profiles.filter(profile => profile.id !== profileId);
-            localStorage.setItem('profiles', JSON.stringify(updatedProfiles));
-            return { profiles: updatedProfiles };
-        }),
-
-    // ** Update Profile **
-    updateProfile: (updatedProfile) =>
-        set((state) => {
-            const updatedProfiles = state.profiles.map((profile) =>
-                profile.id === updatedProfile.id ? updatedProfile : profile
+            // Ensure "Default" group stays first
+            profileGroups = profileGroups.sort((a, b) => 
+                a.is_default ? -1 : b.is_default ? 1 : 0
             );
-            localStorage.setItem('profiles', JSON.stringify(updatedProfiles));
-            return { profiles: updatedProfiles };
-        }),
 
-    // ** Load Profiles (when app starts) **
-    loadProfiles: () =>
-        set(() => ({
-            profiles: JSON.parse(localStorage.getItem('profiles')) || [],
-        })),
+            set({ profileGroups });
 
-    // ** Profile Group Management **
-    addProfileGroup: (group) =>
-        set((state) => {
-            const updatedGroups = [...state.profileGroups, group];
-            localStorage.setItem('profileGroups', JSON.stringify(updatedGroups));
-            return { profileGroups: updatedGroups };
-        }),
+            // Set selected profile group to "Default" if available
+            const defaultGroup = profileGroups.find(group => group.is_default) || profileGroups[0];
+            set({ selectedProfileGroup: defaultGroup });
+        } catch (error) {
+            console.error('❌ Error fetching profile groups:', error);
+        }
+    },
 
-    deleteProfileGroup: (groupId) =>
-        set((state) => {
-            const updatedGroups = state.profileGroups.filter(group => group.id !== groupId);
-            localStorage.setItem('profileGroups', JSON.stringify(updatedGroups));
-            return { profileGroups: updatedGroups };
-        }),
+    // Fetch Profiles for Selected Group
+    fetchProfiles: async (groupId) => {
+        try {
+            if (!groupId) return;
+            const response = await fetch(`/api/profiles?groupId=${groupId}`);
+            if (!response.ok) throw new Error('Failed to fetch profiles.');
 
-    // ** Select a Profile Group (Filters Profiles) **
-    selectProfileGroup: (group) =>
-        set((state) => {
-            localStorage.setItem('selectedGroup', JSON.stringify(group));
-            return { selectedGroup: group };
-        }),
+            const { profiles } = await response.json();
+            set({ profiles });
+        } catch (error) {
+            console.error('❌ Error fetching profiles:', error);
+        }
+    },
 
-    // ** Get Profiles for Selected Group (Filtering Logic) **
-    getProfilesForSelectedGroup: () =>
-        JSON.parse(localStorage.getItem('profiles'))?.filter(profile => profile.groupId === JSON.parse(localStorage.getItem('selectedGroup'))?.id) || [],
+    // Select a Profile Group
+    setSelectedProfileGroup: (group) => {
+        set({ selectedProfileGroup: group });
+        get().fetchProfiles(group.id);
+    },
 
-    // ** Duplicate a Profile (Keeps It in the Same Group) **
-    duplicateProfile: (profileId) =>
-        set((state) => {
-            const profileToCopy = state.profiles.find(profile => profile.id === profileId);
-            if (!profileToCopy) return state;
+    // Create a New Profile Group
+    addProfileGroup: async (name) => {
+        try {
+            const response = await fetch('/api/profile-groups', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name }),
+            });
 
-            // Generate a new unique ID for the duplicate
-            const newId = Date.now();
+            if (!response.ok) throw new Error('Failed to create profile group');
 
-            // Find existing copies to determine the number
-            const baseName = profileToCopy.profileName.replace(/\(\d+\)$/, "").trim();
-            const existingCopies = state.profiles.filter(p => p.profileName.startsWith(baseName));
-            const copyNumber = existingCopies.length + 1;
+            const { profileGroupId } = await response.json();
+            set((state) => ({
+                profileGroups: [...state.profileGroups, { id: profileGroupId, name }],
+            }));
+        } catch (error) {
+            console.error('❌ Error creating profile group:', error);
+        }
+    },
 
-            const duplicatedProfile = {
-                ...profileToCopy,
-                id: newId,
-                profileName: `${baseName} (${copyNumber})`, // Append copy number
-                groupId: profileToCopy.groupId, // Maintain the group
-            };
+    // Rename a Profile Group
+    renameProfileGroup: async (groupId, newName) => {
+        try {
+            const response = await fetch(`/api/profile-groups/${groupId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: newName }),
+            });
 
-            const updatedProfiles = [...state.profiles, duplicatedProfile];
-            localStorage.setItem("profiles", JSON.stringify(updatedProfiles));
-            return { profiles: updatedProfiles };
-        }),
+            if (!response.ok) throw new Error('Failed to rename profile group');
 
+            set((state) => ({
+                profileGroups: state.profileGroups.map((group) =>
+                    group.id === groupId ? { ...group, name: newName } : group
+                ),
+            }));
+        } catch (error) {
+            console.error('❌ Error renaming profile group:', error);
+        }
+    },
+
+    // Delete a Profile Group (Default Cannot Be Deleted)
+    deleteProfileGroup: async (groupId) => {
+        const { profileGroups, selectedProfileGroup } = get();
+
+        if (profileGroups.find(group => group.id === groupId)?.is_default) {
+            console.warn('🚨 Default Profile Group cannot be deleted.');
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/profile-groups/${groupId}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) throw new Error('Failed to delete profile group');
+
+            set((state) => {
+                const updatedGroups = state.profileGroups.filter((group) => group.id !== groupId);
+                return {
+                    profileGroups: updatedGroups,
+                    selectedProfileGroup:
+                        selectedProfileGroup.id === groupId
+                            ? updatedGroups.length > 0
+                                ? updatedGroups[0]
+                                : null
+                            : selectedProfileGroup,
+                };
+            });
+        } catch (error) {
+            console.error('❌ Error deleting profile group:', error);
+        }
+    },
+
+    // Duplicate a Profile Group (Including Profiles)
+    duplicateProfileGroup: async (groupId) => {
+        try {
+            const response = await fetch(`/api/profile-groups/${groupId}/duplicate`, {
+                method: 'POST',
+            });
+
+            if (!response.ok) throw new Error('Failed to duplicate profile group');
+
+            await get().fetchProfileGroups(); // Ensure UI updates
+        } catch (error) {
+            console.error('❌ Error duplicating profile group:', error);
+        }
+    },
+
+    // Create a New Profile
+    addProfile: async (profileData) => {
+        try {
+            const response = await fetch('/api/profiles', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(profileData),
+            });
+
+            if (!response.ok) throw new Error('Failed to create profile');
+
+            await get().fetchProfiles(profileData.profileGroupId);
+        } catch (error) {
+            console.error('❌ Error creating profile:', error);
+        }
+    },
+
+    // Update an Existing Profile
+    updateProfile: async (profileId, updatedData) => {
+        try {
+            const response = await fetch(`/api/profiles/${profileId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedData),
+            });
+
+            if (!response.ok) throw new Error('Failed to update profile');
+
+            await get().fetchProfiles(updatedData.profileGroupId);
+        } catch (error) {
+            console.error('❌ Error updating profile:', error);
+        }
+    },
+
+    // Delete a Profile
+    deleteProfile: async (profileId, profileGroupId) => {
+        try {
+            const response = await fetch(`/api/profiles/${profileId}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) throw new Error('Failed to delete profile');
+
+            await get().fetchProfiles(profileGroupId);
+        } catch (error) {
+            console.error('❌ Error deleting profile:', error);
+        }
+    },
 }));
 
 export default useProfileStore;

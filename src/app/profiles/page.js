@@ -6,17 +6,26 @@ import ProfileModal from '@/components/profiles/profileModal';
 import ProfileControls from '@/components/profiles/profileControls';
 import useProfileStore from '@/store/profileStore';
 import GlobalTable from '@/components/global/globalTable';
+import { useSnackbar } from '@/context/snackbar';
 
 export default function Profiles() {
-	const { getProfilesForSelectedGroup, deleteProfile, selectedGroup } = useProfileStore();
+	const { 
+		profiles, 
+		selectedProfileGroup, 
+		fetchProfiles, 
+		deleteProfile 
+	} = useProfileStore();
+	const { showSnackbar } = useSnackbar();
+
 	const [openModal, setOpenModal] = useState(false);
 	const [selectedProfile, setSelectedProfile] = useState(null);
-	const [filteredProfiles, setFilteredProfiles] = useState([]);
 
-	// Load profiles for selected group
+	// Load profiles for the selected group
 	useEffect(() => {
-		setFilteredProfiles(getProfilesForSelectedGroup());
-	}, [selectedGroup]);
+		if (selectedProfileGroup) {
+			fetchProfiles(selectedProfileGroup.id);
+		}
+	}, [selectedProfileGroup, fetchProfiles]);
 
 	const handleEdit = (profile) => {
 		setSelectedProfile(profile); // Ensure correct data is passed to modal
@@ -26,6 +35,16 @@ export default function Profiles() {
 	const handleCloseModal = () => {
 		setSelectedProfile(null); // Reset profile selection on close
 		setOpenModal(false);
+	};
+
+	const handleDelete = async (profileId) => {
+		try {
+			await deleteProfile(profileId, selectedProfileGroup.id);
+			showSnackbar('✅ Profile deleted successfully', 'success');
+		} catch (error) {
+			showSnackbar('❌ Error deleting profile', 'error');
+			console.error('Error deleting profile:', error);
+		}
 	};
 
 	return (
@@ -41,14 +60,14 @@ export default function Profiles() {
 				{/* Profiles Table (Filtered by Selected Group) */}
 				<GlobalTable
 					headers={['Profile Name', 'Email', 'Address', 'Card']}
-					data={filteredProfiles.map((profile) => ({
+					data={profiles.map((profile) => ({
 						...profile,
 						card: profile.cardNumber ? `**** ${profile.cardNumber.slice(-4)}` : '****',
 					}))}
 					selectable={true}
 					actions={true}
 					onEdit={handleEdit}
-					onDelete={deleteProfile}
+					onDelete={handleDelete}
 				/>
 
 				{/* Profile Modal */}
