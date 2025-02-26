@@ -64,9 +64,9 @@ export async function GET(req) {
 
         const userId = token.sub;
 
-        // Check if user already has profile groups
+        // Fetch existing profile groups
         const existingGroups = await queryDatabase(
-            `SELECT id, name FROM profile_groups WHERE user_id = ?`,
+            `SELECT id, name, is_default FROM profile_groups WHERE user_id = ?`,
             [userId]
         );
 
@@ -80,13 +80,20 @@ export async function GET(req) {
                 [defaultGroupId, userId]
             );
 
-            defaultGroup = { id: defaultGroupId, name: 'Default' };
+            // Re-fetch the updated list from the database
+            const updatedGroups = await queryDatabase(
+                `SELECT id, name, is_default FROM profile_groups WHERE user_id = ?`,
+                [userId]
+            );
+
+            return NextResponse.json({ profileGroups: updatedGroups }, { status: 200 });
         }
 
-        return NextResponse.json({ profileGroups: [...existingGroups, defaultGroup] }, { status: 200 });
+        return NextResponse.json({ profileGroups: existingGroups }, { status: 200 });
 
     } catch (error) {
         console.error('❌ [500] Fetching profile groups error:', error);
         return NextResponse.json({ error: 'Server error' }, { status: 500 });
     }
 }
+
