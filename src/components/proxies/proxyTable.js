@@ -1,4 +1,5 @@
 'use client';
+import { useEffect } from 'react';
 import {
 	Table,
 	TableBody,
@@ -16,12 +17,28 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
 import useProxyStore from '@/store/proxyStore';
+import { useSnackbar } from '@/context/snackbar';
 
 export default function ProxyTable() {
-	const { proxiesByGroup, selectedGroup, deleteProxy } = useProxyStore();
+	const { proxies, selectedProxyGroup, fetchProxies, deleteProxy } =
+		useProxyStore();
+	const { showSnackbar } = useSnackbar();
 	const [selectedProxies, setSelectedProxies] = useState([]);
 
-	const proxies = proxiesByGroup[selectedGroup.id] || []; // Get proxies for selected group
+	useEffect(() => {
+		if (selectedProxyGroup) {
+			fetchProxies(selectedProxyGroup.id);
+		}
+	}, [selectedProxyGroup, fetchProxies]);
+
+	const handleDelete = async (proxyId) => {
+		try {
+			await deleteProxy(proxyId);
+			showSnackbar('✅ Proxy deleted successfully', 'success');
+		} catch (error) {
+			showSnackbar('❌ Error deleting proxy', 'error');
+		}
+	};
 
 	// Function to truncate long proxy strings
 	const truncateProxy = (proxy) => {
@@ -39,7 +56,9 @@ export default function ProxyTable() {
 	// Select all proxies
 	const handleSelectAll = () => {
 		setSelectedProxies(
-			selectedProxies.length === proxies.length ? [] : proxies.map((proxy) => proxy.id)
+			selectedProxies.length === proxies.length
+				? []
+				: proxies.map((proxy) => proxy.id)
 		);
 	};
 
@@ -55,7 +74,10 @@ export default function ProxyTable() {
 						<TableRow>
 							<TableCell padding="checkbox">
 								<Checkbox
-									checked={selectedProxies.length === proxies.length && proxies.length > 0}
+									checked={
+										selectedProxies.length === proxies.length &&
+										proxies.length > 0
+									}
 									onChange={handleSelectAll}
 								/>
 							</TableCell>
@@ -67,7 +89,10 @@ export default function ProxyTable() {
 					<TableBody>
 						{proxies.length > 0 ? (
 							proxies.map((proxy) => (
-								<TableRow key={proxy.id} selected={selectedProxies.includes(proxy.id)}>
+								<TableRow
+									key={proxy.id}
+									selected={selectedProxies.includes(proxy.id)}
+								>
 									<TableCell padding="checkbox">
 										<Checkbox
 											checked={selectedProxies.includes(proxy.id)}
@@ -81,7 +106,10 @@ export default function ProxyTable() {
 									</TableCell>
 									<TableCell>{proxy.status || 'Untested'}</TableCell>
 									<TableCell>
-										<IconButton onClick={() => deleteProxy(proxy.id)} color="error">
+										<IconButton
+											onClick={() => handleDelete(proxy.id)}
+											color="error"
+										>
 											<DeleteIcon />
 										</IconButton>
 									</TableCell>

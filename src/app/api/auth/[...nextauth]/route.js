@@ -55,6 +55,19 @@ const authOptions = {
 							);
 						}
 
+						// Check if default proxy group exists before creating
+						const existingProxyGroup = await queryDatabase(
+							'SELECT id FROM proxy_groups WHERE user_id = ? AND is_default = 1 LIMIT 1',
+							[userId]
+						);
+
+						if (!existingProxyGroup.length) {
+							await queryDatabase(
+								`INSERT INTO proxy_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, 'Default', 1, NOW())`,
+								[uuidv4(), userId]
+							);
+						}
+
 						await queryDatabase(
 							`UPDATE users SET is_first_login = 0 WHERE id = ?`,
 							[userId]
@@ -75,6 +88,11 @@ const authOptions = {
 
 					await queryDatabase(
 						`INSERT INTO profile_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, 'Default', 1, NOW())`,
+						[uuidv4(), userId]
+					);
+
+					await queryDatabase(
+						`INSERT INTO proxy_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, 'Default', 1, NOW())`,
 						[uuidv4(), userId]
 					);
 

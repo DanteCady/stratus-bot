@@ -1,112 +1,174 @@
 import { create } from 'zustand';
 
 const useProxyStore = create((set, get) => ({
-	proxyGroups: JSON.parse(localStorage.getItem('proxyGroups')) || [{ id: 1, name: "Default Group" }],
-	selectedGroup: JSON.parse(localStorage.getItem('selectedProxyGroup')) || { id: 1, name: "Default Group" },
-	proxiesByGroup: JSON.parse(localStorage.getItem('proxiesByGroup')) || { 1: [] }, // Store proxies per group
+	proxyGroups: [],
+	selectedProxyGroup: null,
+	proxies: [],
+	openModal: false,
+	selectedProxy: null,
 
-	// ** Add Proxies to Selected Group **
-	addProxies: (proxyList) =>
-		set((state) => {
-			const { selectedGroup, proxiesByGroup } = state;
-			const groupId = selectedGroup.id;
+	// Open Modal (for New or Edit)
+	openProxyModal: (proxy = null) =>
+		set({ openModal: true, selectedProxy: proxy }),
 
-			const newProxies = proxyList
-				.filter((proxy) => typeof proxy === 'string' && proxy.includes(':')) // Ensure valid format
-				.map((proxy) => {
-					const parts = proxy.trim().split(':');
-					const ip = parts[0];
-					const port = parts[1] || '';
+	// Close Modal
+	closeProxyModal: () => set({ openModal: false, selectedProxy: null }),
 
-					return {
-						id: Date.now() + Math.random(),
-						address: `${ip}:${port}`,
-						status: 'Untested',
-					};
-				});
+	// Add Proxies
+	addProxies: async (proxyList) => {
+		try {
+			const selectedGroup = get().selectedProxyGroup;
+			if (!selectedGroup) {
+				throw new Error('No proxy group selected');
+			}
 
-			const updatedProxiesByGroup = {
-				...proxiesByGroup,
-				[groupId]: [...(proxiesByGroup[groupId] || []), ...newProxies],
-			};
+			const response = await fetch('/api/proxies', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					proxyGroupId: selectedGroup.id,
+					proxies: proxyList,
+				}),
+			});
 
-			localStorage.setItem('proxiesByGroup', JSON.stringify(updatedProxiesByGroup));
-			return { proxiesByGroup: updatedProxiesByGroup };
-		}),
+			const data = await response.json();
 
-	// ** Delete Single Proxy from Selected Group **
-	deleteProxy: (proxyId) =>
-		set((state) => {
-			const { selectedGroup, proxiesByGroup } = state;
-			const groupId = selectedGroup.id;
+			if (!response.ok) {
+				throw new Error(data.error || 'Failed to add proxies');
+			}
 
-			const updatedProxies = (proxiesByGroup[groupId] || []).filter((proxy) => proxy.id !== proxyId);
-			const updatedProxiesByGroup = { ...proxiesByGroup, [groupId]: updatedProxies };
+			// Refresh proxies list
+			await get().fetchProxies(selectedGroup.id);
+			return data;
+		} catch (error) {
+			console.error('❌ Error adding proxies:', error);
+			throw new Error(`Failed to add proxies: ${error.message}`);
+		}
+	},
 
-			localStorage.setItem('proxiesByGroup', JSON.stringify(updatedProxiesByGroup));
-			return { proxiesByGroup: updatedProxiesByGroup };
-		}),
+	// Fetch Proxies for Group
+	fetchProxies: async (groupId) => {
+		try {
+			const response = await fetch(`/api/proxies?groupId=${groupId}`);
+			if (!response.ok) throw new Error('Failed to fetch proxies');
 
-	// ** Delete All Proxies in Selected Group **
-	deleteAllProxies: () =>
-		set((state) => {
-			const { selectedGroup, proxiesByGroup } = state;
-			const groupId = selectedGroup.id;
+			const { proxies } = await response.json();
+			set({ proxies });
+		} catch (error) {
+			console.error('❌ Error fetching proxies:', error);
+		}
+	},
 
-			const updatedProxiesByGroup = { ...proxiesByGroup, [groupId]: [] };
-			localStorage.setItem('proxiesByGroup', JSON.stringify(updatedProxiesByGroup));
-			return { proxiesByGroup: updatedProxiesByGroup };
-		}),
+	// Delete Proxy
+	deleteProxy: async (proxyId) => {
+		try {
+			const response = await fetch(`/api/proxies/${proxyId}`, {
+				method: 'DELETE',
+			});
 
-	// ** Clear Bad Proxies in Selected Group **
-	clearBadProxies: () =>
-		set((state) => {
-			const { selectedGroup, proxiesByGroup } = state;
-			const groupId = selectedGroup.id;
+			if (!response.ok) throw new Error('Failed to delete proxy');
 
-			const updatedProxies = (proxiesByGroup[groupId] || []).filter((proxy) => proxy.status !== 'Bad');
-			const updatedProxiesByGroup = { ...proxiesByGroup, [groupId]: updatedProxies };
+			// Refresh proxies list
+			await get().fetchProxies(get().selectedProxyGroup.id);
+		} catch (error) {
+			console.error('❌ Error deleting proxy:', error);
+			throw error;
+		}
+	},
 
-			localStorage.setItem('proxiesByGroup', JSON.stringify(updatedProxiesByGroup));
-			return { proxiesByGroup: updatedProxiesByGroup };
-		}),
+	// Fetch Proxy Groups
+	fetchProxyGroups: async () => {
+		try {
+			const response = await fetch('/api/proxy-groups');
+			if (!response.ok) {
+				const error = await response.json();
+				throw new Error(error.message || 'Failed to fetch proxy groups');
+			}
 
-	// ** Add Proxy Group **
-	addProxyGroup: (group) =>
-		set((state) => {
-			const updatedGroups = [...state.proxyGroups, group];
-			const updatedProxiesByGroup = { ...state.proxiesByGroup, [group.id]: [] }; // Initialize empty proxies for the new group
+			const { proxyGroups } = await response.json();
+			if (!proxyGroups || proxyGroups.length === 0) {
+				// If no groups exist, create a default group
+				await get().addProxyGroup('Default');
+				return;
+			}
 
-			localStorage.setItem('proxyGroups', JSON.stringify(updatedGroups));
-			localStorage.setItem('proxiesByGroup', JSON.stringify(updatedProxiesByGroup));
-			return { proxyGroups: updatedGroups, proxiesByGroup: updatedProxiesByGroup };
-		}),
+			// Ensure default group is first
+			const sortedGroups = proxyGroups.sort((a, b) =>
+				a.is_default ? -1 : b.is_default ? 1 : 0
+			);
 
-	// ** Delete Proxy Group (except Default Group) **
-	deleteProxyGroup: (groupId) =>
-		set((state) => {
-			if (groupId === 1) return state; // Prevent deleting default group
+			set({
+				proxyGroups: sortedGroups,
+				selectedProxyGroup: sortedGroups[0],
+			});
 
-			const updatedGroups = state.proxyGroups.filter((group) => group.id !== groupId);
-			const updatedProxiesByGroup = { ...state.proxiesByGroup };
-			delete updatedProxiesByGroup[groupId]; // Remove proxies of deleted group
+			// If we have groups, fetch proxies for the selected group
+			if (sortedGroups[0]) {
+				await get().fetchProxies(sortedGroups[0].id);
+			}
+		} catch (error) {
+			console.error('❌ Error fetching proxy groups:', error);
+			throw error;
+		}
+	},
 
-			// Reset selection if the deleted group was selected
-			let newSelectedGroup = state.selectedGroup.id === groupId ? { id: 1, name: "Default Group" } : state.selectedGroup;
+	// Add Proxy Group
+	addProxyGroup: async (name) => {
+		try {
+			const response = await fetch('/api/proxy-groups', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ name }),
+			});
 
-			localStorage.setItem('proxyGroups', JSON.stringify(updatedGroups));
-			localStorage.setItem('proxiesByGroup', JSON.stringify(updatedProxiesByGroup));
-			localStorage.setItem('selectedProxyGroup', JSON.stringify(newSelectedGroup));
+			if (!response.ok) throw new Error('Failed to create proxy group');
 
-			return { proxyGroups: updatedGroups, proxiesByGroup: updatedProxiesByGroup, selectedGroup: newSelectedGroup };
-		}),
+			await get().fetchProxyGroups();
+		} catch (error) {
+			console.error('❌ Error creating proxy group:', error);
+			throw error;
+		}
+	},
 
-	// ** Select Proxy Group **
-	selectProxyGroup: (group) =>
-		set(() => {
-			localStorage.setItem('selectedProxyGroup', JSON.stringify(group));
-			return { selectedGroup: { ...group } }; // Ensures reactivity
-		}),
+	// Update Proxy Group
+	updateProxyGroup: async (groupId, name) => {
+		try {
+			const response = await fetch(`/api/proxy-groups/${groupId}`, {
+				method: 'PUT',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ name }),
+			});
+
+			if (!response.ok) throw new Error('Failed to update proxy group');
+
+			await get().fetchProxyGroups();
+		} catch (error) {
+			console.error('❌ Error updating proxy group:', error);
+			throw error;
+		}
+	},
+
+	// Delete Proxy Group
+	deleteProxyGroup: async (groupId) => {
+		try {
+			const response = await fetch(`/api/proxy-groups/${groupId}`, {
+				method: 'DELETE',
+			});
+
+			if (!response.ok) throw new Error('Failed to delete proxy group');
+
+			await get().fetchProxyGroups();
+		} catch (error) {
+			console.error('❌ Error deleting proxy group:', error);
+			throw error;
+		}
+	},
+
+	// Select Proxy Group
+	selectProxyGroup: (group) => {
+		set({ selectedProxyGroup: group });
+		get().fetchProxies(group.id);
+	},
 }));
 
 export default useProxyStore;
