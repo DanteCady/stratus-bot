@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
 		localStorage.setItem('stratus-theme', newTheme ? 'dark' : 'light');
 	};
 
-	const isLoginOrErrorPage = pathname === '/auth/login' || pathname === '/auth/error';
+	const isLoginOrErrorPage = pathname === '/auth/login' || pathname === '/auth/error' || pathname === '/splash' ;
 
 	return (
 		<html lang="en" style={{ height: '100%', overflow: 'hidden' }}>

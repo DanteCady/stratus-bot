@@ -42,10 +42,18 @@ const authOptions = {
 							[uuidv4(), userId]
 						);
 
-						await queryDatabase(
-							`INSERT INTO profile_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, 'Default', 1, NOW())`,
-							[uuidv4(), userId]
+						// Check if default profile group exists before creating
+						const existingDefaultGroup = await queryDatabase(
+							'SELECT id FROM profile_groups WHERE user_id = ? AND is_default = 1 LIMIT 1',
+							[userId]
 						);
+
+						if (!existingDefaultGroup.length) {
+							await queryDatabase(
+								`INSERT INTO profile_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, 'Default', 1, NOW())`,
+								[uuidv4(), userId]
+							);
+						}
 
 						await queryDatabase(
 							`UPDATE users SET is_first_login = 0 WHERE id = ?`,
@@ -95,19 +103,19 @@ const authOptions = {
 			return session;
 		},
 		async redirect({ url, baseUrl }) {
-            console.log("🔄 Redirect callback fired:", { url, baseUrl });
-        
-            // Prevent login page from redirecting to itself
-            if (url === `${baseUrl}/auth/login`) {
-                console.log("🚫 Preventing infinite redirect loop to /auth/login.");
-                return `${baseUrl}/dashboard`;
-            }
-        
-            // Ensure proper redirect behavior
-            if (url.startsWith(baseUrl)) {
-                return url;
-            }
-			
+			console.log('🔄 Redirect callback fired:', { url, baseUrl });
+
+			// Prevent login page from redirecting to itself
+			if (url === `${baseUrl}/auth/login`) {
+				console.log('🚫 Preventing infinite redirect loop to /auth/login.');
+				return `${baseUrl}/dashboard`;
+			}
+
+			// Ensure proper redirect behavior
+			if (url.startsWith(baseUrl)) {
+				return url;
+			}
+
 			return `${baseUrl}/dashboard`; // Default redirect after authentication
 		},
 	},

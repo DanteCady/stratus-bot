@@ -5,7 +5,7 @@ import ProfileSidebar from '@/components/profiles/profileSidebar';
 import ProfileModal from '@/components/profiles/profileModal';
 import ProfileControls from '@/components/profiles/profileControls';
 import useProfileStore from '@/store/profileStore';
-import GlobalTable from '@/components/global/globalTable';
+import ProfileList from '@/components/profiles/profileList';
 import { useSnackbar } from '@/context/snackbar';
 
 export default function Profiles() {
@@ -58,8 +58,7 @@ export default function Profiles() {
 				<ProfileControls openModal={() => setOpenModal(true)} />
 
 				{/* Profiles Table (Filtered by Selected Group) */}
-				<GlobalTable
-					headers={['Profile Name', 'Email', 'Address', 'Card']}
+				<ProfileList
 					data={profiles.map((profile) => ({
 						...profile,
 						card: profile.cardNumber ? `**** ${profile.cardNumber.slice(-4)}` : '****',

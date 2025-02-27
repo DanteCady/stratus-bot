@@ -183,11 +183,11 @@ const Sidebar = () => {
 				}}
 			>
 				<Image
-					src="/assets/logos/stratus_logo_3.png"
+					src="/assets/logos/stratus_logo_v1.png"
 					alt="Stratus Logo"
 					width={isCollapsed ? 85 : 100}
 					height={isCollapsed ? 85 : 100}
-					style={{ transition: 'all 0.2s ease-in-out', marginRight: '10px' }}
+					style={{ transition: 'all 0.2s ease-in-out',  }}
 				/>
 				<Typography variant="h6" sx={{ color: 'text.secondary', fontWeight: 'bold', fontSize: '12px' }}>
 					Menu

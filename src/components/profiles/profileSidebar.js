@@ -50,36 +50,37 @@ export default function ProfileSidebar() {
 	}, []);
 
 	// Open Context Menu
-	const handleOpenMenu = (event, group) => {
-		setSelectedGroup(group);
-		setMenuAnchor(event.currentTarget);
-
-		// Set up menu options dynamically
-		setMenuOptions([
-			{
-				label: 'Rename',
-				icon: <Edit fontSize="small" />,
-				action: () => {
-					setNewGroupName(group.name);
-					setIsRenaming(true);
-					setModalOpen(true);
-					setMenuAnchor(null);
-				},
-			},
-			{
-				label: 'Duplicate',
-				icon: <ContentCopy fontSize="small" />,
-				action: () => handleDuplicateGroup(group),
-			},
-			{
-				label: 'Delete',
-				icon: <Delete fontSize="small" />,
-				action: () => handleDeleteGroup(group),
-				disabled: group.name === 'Default',
-				style: { color: group.name === 'Default' ? 'gray' : 'error.main' },
-			},
-		]);
-	};
+    const handleOpenMenu = (event, group) => {
+        setSelectedGroup(group);
+        setMenuAnchor(event.currentTarget);
+    
+        setMenuOptions([
+            {
+                label: "Rename",
+                icon: <Edit fontSize="small" />,
+                action: () => {
+                    setNewGroupName(group.name);
+                    setIsRenaming(true);
+                    setModalOpen(true);
+                    setMenuAnchor(null);
+                },
+            },
+            {
+                label: "Duplicate",
+                icon: <ContentCopy fontSize="small" />,
+                action: () => handleDuplicateGroup(group), 
+            },
+            {
+                label: "Delete",
+                icon: <Delete fontSize="small" />,
+                action: () => handleDeleteGroup(group),
+                disabled: group.is_default, // Default group cannot be deleted
+                style: { color: group.is_default ? "gray" : "error.main" },
+            },
+        ]);
+    };
+    
+    
 
 	const handleCloseMenu = () => {
 		setMenuAnchor(null);
@@ -91,44 +92,40 @@ export default function ProfileSidebar() {
 		setModalOpen(true);
 	};
 
+	// Save or Rename Profile Group
 	const handleSaveGroup = async () => {
 		if (!newGroupName.trim()) return;
 
-		if (isRenaming && selectedGroup) {
-			try {
+		try {
+			if (isRenaming && selectedGroup) {
 				await renameProfileGroup(selectedGroup.id, newGroupName);
 				showSnackbar('✅ Profile group renamed successfully', 'success');
-				setModalOpen(false);
-			} catch (error) {
-				showSnackbar('❌ Error renaming profile group', 'error');
-				console.error('Error renaming profile group:', error);
-			}
-		} else {
-			try {
+			} else {
 				await addProfileGroup(newGroupName.trim());
 				showSnackbar('✅ Profile group created successfully', 'success');
-				setModalOpen(false);
-			} catch (error) {
-				showSnackbar('❌ Error creating profile group', 'error');
-				console.error('Error creating profile group:', error);
 			}
+			setModalOpen(false);
+		} catch (error) {
+			showSnackbar('❌ Error processing profile group', 'error');
+			console.error('Error:', error);
 		}
 	};
 
-	const handleDuplicateGroup = async () => {
-		if (selectedGroup) {
-			try {
-				await duplicateProfileGroup(selectedGroup.id);
-				showSnackbar('✅ Profile group duplicated successfully', 'success');
-			} catch (error) {
-				showSnackbar('❌ Error duplicating profile group', 'error');
-				console.error('Error duplicating profile group:', error);
-			}
+	// Duplicate Profile Group
+	const handleDuplicateGroup = async (group) => {
+		try {
+			await duplicateProfileGroup(group.id);
+			showSnackbar('✅ Profile group duplicated successfully', 'success');
+			setMenuAnchor(null);
+		} catch (error) {
+			showSnackbar('❌ Error duplicating profile group', 'error');
+			console.error('Error duplicating profile group:', error);
 		}
 	};
 
+	// Delete Profile Group
 	const handleDeleteGroup = async (group) => {
-		if (group.name === 'Default') return;
+		if (group.name === 'Default') return; // Prevent deleting default group
 
 		try {
 			await deleteProfileGroup(group.id);
@@ -158,9 +155,7 @@ export default function ProfileSidebar() {
 			<List>
 				{profileGroups
 					.slice()
-					.sort((a, b) =>
-						a.name === 'Default' ? -1 : b.name === 'Default' ? 1 : 0
-					) // Default group always first
+					.sort((a, b) => (a.name === 'Default' ? -1 : b.name === 'Default' ? 1 : 0))
 					.map((group) => (
 						<ListItem
 							key={group.id}
@@ -168,10 +163,7 @@ export default function ProfileSidebar() {
 							selected={selectedProfileGroup?.id === group.id}
 							onClick={() => setSelectedProfileGroup(group)}
 							sx={{
-								backgroundColor:
-									selectedProfileGroup?.id === group.id
-										? 'primary.light'
-										: 'transparent',
+								backgroundColor: selectedProfileGroup?.id === group.id ? 'primary.light' : 'transparent',
 								'&:hover': { backgroundColor: 'primary.dark' },
 								display: 'flex',
 								justifyContent: 'space-between',
@@ -181,10 +173,7 @@ export default function ProfileSidebar() {
 							<ListItemText primary={group.name} />
 
 							{/* More Options Button */}
-							<IconButton
-								size="small"
-								onClick={(e) => handleOpenMenu(e, group)}
-							>
+							<IconButton size="small" onClick={(e) => handleOpenMenu(e, group)}>
 								<MoreVertIcon />
 							</IconButton>
 						</ListItem>
@@ -192,28 +181,13 @@ export default function ProfileSidebar() {
 			</List>
 
 			{/* Global Context Menu */}
-			<SidebarContextMenu
-				anchorEl={menuAnchor}
-				open={Boolean(menuAnchor)}
-				onClose={handleCloseMenu}
-				menuItems={menuOptions}
-			/>
+			<SidebarContextMenu anchorEl={menuAnchor} open={Boolean(menuAnchor)} onClose={handleCloseMenu} menuItems={menuOptions} />
 
 			{/* Rename/Create Profile Group Modal */}
 			<Dialog open={modalOpen} onClose={() => setModalOpen(false)}>
-				<DialogTitle>
-					{isRenaming ? 'Rename Profile Group' : 'Create New Profile Group'}
-				</DialogTitle>
+				<DialogTitle>{isRenaming ? 'Rename Profile Group' : 'Create New Profile Group'}</DialogTitle>
 				<DialogContent>
-					<TextField
-						autoFocus
-						margin="dense"
-						label="Group Name"
-						type="text"
-						fullWidth
-						value={newGroupName}
-						onChange={(e) => setNewGroupName(e.target.value)}
-					/>
+					<TextField autoFocus margin="dense" label="Group Name" type="text" fullWidth value={newGroupName} onChange={(e) => setNewGroupName(e.target.value)} />
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={() => setModalOpen(false)} color="secondary">

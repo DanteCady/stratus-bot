@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { useSnackbar } from '@/context/snackbar';
 import {
 	Dialog,
 	DialogTitle,
@@ -28,13 +29,16 @@ const maskCardNumber = (cardNumber) => {
 
 export default function ProfileModal({ open, handleClose, profile }) {
 	const theme = useTheme();
-	const { addProfile, updateProfile } = useProfileStore();
+	const { addProfile, updateProfile, selectedProfileGroup } = useProfileStore();
+	const { showSnackbar } = useSnackbar();
 
 	const [profileData, setProfileData] = useState({
-		id: profile?.id || Date.now(),
-		profileName: profile?.profileName || '',
-		firstName: profile?.firstName || '',
-		lastName: profile?.lastName || '',
+		id: profile?.id || crypto.randomUUID(),
+		profileGroupId: selectedProfileGroup?.id || null,
+		userId: null,
+		profileName: profile?.profile_name || '',
+		firstName: profile?.first_name || '',
+		lastName: profile?.last_name || '',
 		email: profile?.email || '',
 		phone: profile?.phone || '',
 		address: profile?.address || '',
@@ -44,31 +48,89 @@ export default function ProfileModal({ open, handleClose, profile }) {
 		city: profile?.city || '',
 		zipcode: profile?.zipcode || '',
 		cardholder: profile?.cardholder || '',
-		cardNumber: profile?.cardNumber || '',
-		expMonth: profile?.expMonth || '',
-		expYear: profile?.expYear || '',
+		cardNumber: profile?.card_number || '',
+		expMonth: profile?.exp_month || '',
+		expYear: profile?.exp_year || '',
 		cvv: profile?.cvv || '',
 	});
 
+	// Reset form when modal opens/closes or profile changes
 	useEffect(() => {
 		if (profile) {
-			setProfileData({ ...profile });
+			setProfileData({
+				id: profile.id,
+				profileGroupId: selectedProfileGroup?.id,
+				userId: null,
+				profileName: profile.profile_name || '',
+				firstName: profile.first_name || '',
+				lastName: profile.last_name || '',
+				email: profile.email || '',
+				phone: profile.phone || '',
+				address: profile.address || '',
+				address2: profile.address2 || '',
+				country: profile.country || '',
+				state: profile.state || '',
+				city: profile.city || '',
+				zipcode: profile.zipcode || '',
+				cardholder: profile.cardholder || '',
+				cardNumber: profile.card_number || '',
+				expMonth: profile.exp_month || '',
+				expYear: profile.exp_year || '',
+				cvv: profile.cvv || '',
+			});
 		} else {
-			setProfileData((prev) => ({ ...prev, id: Date.now() }));
+			setProfileData({
+				id: crypto.randomUUID(),
+				profileGroupId: selectedProfileGroup?.id,
+				userId: null,
+				profileName: '',
+				firstName: '',
+				lastName: '',
+				email: '',
+				phone: '',
+				address: '',
+				address2: '',
+				country: '',
+				state: '',
+				city: '',
+				zipcode: '',
+				cardholder: '',
+				cardNumber: '',
+				expMonth: '',
+				expYear: '',
+				cvv: '',
+			});
 		}
-	}, [profile]);
+	}, [profile, selectedProfileGroup?.id]);
 
 	const handleChange = (e) => {
 		setProfileData({ ...profileData, [e.target.name]: e.target.value });
 	};
 
-	const handleSaveProfile = () => {
-		if (profile) {
-			updateProfile(profileData);
-		} else {
-			addProfile(profileData);
+	const handleSaveProfile = async () => {
+		try {
+			if (
+				!profileData.profileName ||
+				!profileData.firstName ||
+				!profileData.lastName ||
+				!profileData.email
+			) {
+				showSnackbar('Please fill in all required fields', 'error');
+				return;
+			}
+
+			if (profile) {
+				await updateProfile(profileData);
+				showSnackbar('✅ Profile updated successfully', 'success');
+			} else {
+				await addProfile(profileData);
+				showSnackbar('✅ Profile created successfully', 'success');
+			}
+			handleClose();
+		} catch (error) {
+			console.error('Error saving profile:', error);
+			showSnackbar('❌ Error saving profile', 'error');
 		}
-		handleClose();
 	};
 
 	return (
@@ -84,37 +146,91 @@ export default function ProfileModal({ open, handleClose, profile }) {
 				{profile ? 'Edit Profile' : 'Create Profile'}
 			</DialogTitle>
 
-			<DialogContent sx={{ backgroundColor: theme.palette.background.default, p: 3 }}>
+			<DialogContent
+				sx={{ backgroundColor: theme.palette.background.default, p: 3 }}
+			>
 				<Grid container spacing={3}>
 					{/* Left Side - Profile Info */}
 					<Grid item xs={12} md={6}>
-						<Typography variant="h6" sx={{ color: theme.palette.text.primary, mb: 1 }}>
+						<Typography
+							variant="h6"
+							sx={{ color: theme.palette.text.primary, mb: 1 }}
+						>
 							Profile Information
 						</Typography>
-						<TextField label="Profile Name" name="profileName" value={profileData.profileName} onChange={handleChange} fullWidth sx={{ mb: 2 }} />
+						<TextField
+							label="Profile Name"
+							name="profileName"
+							value={profileData.profileName}
+							onChange={handleChange}
+							fullWidth
+							sx={{ mb: 2 }}
+						/>
 						<Grid container spacing={2}>
 							<Grid item xs={6}>
-								<TextField label="First Name" name="firstName" value={profileData.firstName} onChange={handleChange} fullWidth />
+								<TextField
+									label="First Name"
+									name="firstName"
+									value={profileData.firstName}
+									onChange={handleChange}
+									fullWidth
+								/>
 							</Grid>
 							<Grid item xs={6}>
-								<TextField label="Last Name" name="lastName" value={profileData.lastName} onChange={handleChange} fullWidth />
+								<TextField
+									label="Last Name"
+									name="lastName"
+									value={profileData.lastName}
+									onChange={handleChange}
+									fullWidth
+								/>
 							</Grid>
 						</Grid>
 						<Grid container spacing={2} sx={{ mt: 2 }}>
 							<Grid item xs={6}>
-								<TextField label="Email" name="email" value={profileData.email} onChange={handleChange} fullWidth />
+								<TextField
+									label="Email"
+									name="email"
+									value={profileData.email}
+									onChange={handleChange}
+									fullWidth
+								/>
 							</Grid>
 							<Grid item xs={6}>
-								<TextField label="Phone" name="phone" value={profileData.phone} onChange={handleChange} fullWidth />
+								<TextField
+									label="Phone"
+									name="phone"
+									value={profileData.phone}
+									onChange={handleChange}
+									fullWidth
+								/>
 							</Grid>
 						</Grid>
-						<TextField label="Address" name="address" value={profileData.address} onChange={handleChange} fullWidth sx={{ mt: 2 }} />
-						<TextField label="Address 2 (Apt, Suite, etc.)" name="address2" value={profileData.address2} onChange={handleChange} fullWidth sx={{ mt: 2 }} />
+						<TextField
+							label="Address"
+							name="address"
+							value={profileData.address}
+							onChange={handleChange}
+							fullWidth
+							sx={{ mt: 2 }}
+						/>
+						<TextField
+							label="Address 2 (Apt, Suite, etc.)"
+							name="address2"
+							value={profileData.address2}
+							onChange={handleChange}
+							fullWidth
+							sx={{ mt: 2 }}
+						/>
 						<Grid container spacing={2} sx={{ mt: 2 }}>
 							<Grid item xs={6}>
 								<FormControl fullWidth>
 									<InputLabel>Country</InputLabel>
-									<Select name="country" value={profileData.country} onChange={handleChange}>
+									<Select
+										name="country"
+										value={profileData.country}
+										onChange={handleChange}
+									>
 										<MenuItem value="USA">USA</MenuItem>
 										<MenuItem value="Canada">Canada</MenuItem>
 									</Select>
@@ -123,7 +239,11 @@ export default function ProfileModal({ open, handleClose, profile }) {
 							<Grid item xs={6}>
 								<FormControl fullWidth>
 									<InputLabel>State</InputLabel>
-									<Select name="state" value={profileData.state} onChange={handleChange}>
+									<Select
+										name="state"
+										value={profileData.state}
+										onChange={handleChange}
+									>
 										<MenuItem value="CA">California</MenuItem>
 										<MenuItem value="NY">New York</MenuItem>
 									</Select>
@@ -132,10 +252,22 @@ export default function ProfileModal({ open, handleClose, profile }) {
 						</Grid>
 						<Grid container spacing={2} sx={{ mt: 2 }}>
 							<Grid item xs={6}>
-								<TextField label="City" name="city" value={profileData.city} onChange={handleChange} fullWidth />
+								<TextField
+									label="City"
+									name="city"
+									value={profileData.city}
+									onChange={handleChange}
+									fullWidth
+								/>
 							</Grid>
 							<Grid item xs={6}>
-								<TextField label="Zipcode" name="zipcode" value={profileData.zipcode} onChange={handleChange} fullWidth />
+								<TextField
+									label="Zipcode"
+									name="zipcode"
+									value={profileData.zipcode}
+									onChange={handleChange}
+									fullWidth
+								/>
 							</Grid>
 						</Grid>
 					</Grid>
@@ -147,7 +279,10 @@ export default function ProfileModal({ open, handleClose, profile }) {
 
 					{/* Right Side - Payment Info */}
 					<Grid item xs={12} md={5}>
-						<Typography variant="h6" sx={{ color: theme.palette.text.primary, mb: 1 }}>
+						<Typography
+							variant="h6"
+							sx={{ color: theme.palette.text.primary, mb: 1 }}
+						>
 							Payment Information
 						</Typography>
 						<Box
@@ -160,20 +295,42 @@ export default function ProfileModal({ open, handleClose, profile }) {
 								gap: 1,
 							}}
 						>
-							<Typography sx={{ color: theme.palette.grey[400], fontSize: '0.85rem' }}>
+							<Typography
+								sx={{ color: theme.palette.grey[400], fontSize: '0.85rem' }}
+							>
 								💳 {maskCardNumber(profileData.cardNumber)}
 							</Typography>
-							<Typography sx={{ color: theme.palette.grey[500], fontSize: '0.75rem' }}>
+							<Typography
+								sx={{ color: theme.palette.grey[500], fontSize: '0.75rem' }}
+							>
 								MM / YYYY CVV
 							</Typography>
 						</Box>
-						<TextField label="Cardholder Name" name="cardholder" value={profileData.cardholder} onChange={handleChange} fullWidth sx={{ mt: 2 }} />
-						<TextField label="Card Number" name="cardNumber" value={profileData.cardNumber} onChange={handleChange} fullWidth sx={{ mt: 2 }} />
+						<TextField
+							label="Cardholder Name"
+							name="cardholder"
+							value={profileData.cardholder}
+							onChange={handleChange}
+							fullWidth
+							sx={{ mt: 2 }}
+						/>
+						<TextField
+							label="Card Number"
+							name="cardNumber"
+							value={profileData.cardNumber}
+							onChange={handleChange}
+							fullWidth
+							sx={{ mt: 2 }}
+						/>
 						<Grid container spacing={2} sx={{ mt: 2 }}>
 							<Grid item xs={6}>
 								<FormControl fullWidth>
 									<InputLabel>Exp. Month</InputLabel>
-									<Select name="expMonth" value={profileData.expMonth} onChange={handleChange}>
+									<Select
+										name="expMonth"
+										value={profileData.expMonth}
+										onChange={handleChange}
+									>
 										<MenuItem value="01">January</MenuItem>
 										<MenuItem value="02">February</MenuItem>
 									</Select>
@@ -182,7 +339,11 @@ export default function ProfileModal({ open, handleClose, profile }) {
 							<Grid item xs={6}>
 								<FormControl fullWidth>
 									<InputLabel>Exp. Year</InputLabel>
-									<Select name="expYear" value={profileData.expYear} onChange={handleChange}>
+									<Select
+										name="expYear"
+										value={profileData.expYear}
+										onChange={handleChange}
+									>
 										<MenuItem value="2024">2024</MenuItem>
 										<MenuItem value="2025">2025</MenuItem>
 									</Select>
@@ -194,12 +355,17 @@ export default function ProfileModal({ open, handleClose, profile }) {
 			</DialogContent>
 
 			{/* Buttons */}
-			<DialogActions sx={{ backgroundColor: theme.palette.background.default, p: 2 }}>
-				<Button onClick={handleClose} sx={{ color: theme.palette.primary.light }}>
+			<DialogActions
+				sx={{ backgroundColor: theme.palette.background.default, p: 2 }}
+			>
+				<Button
+					onClick={handleClose}
+					sx={{ color: theme.palette.primary.light }}
+				>
 					Cancel
 				</Button>
 				<Button onClick={handleSaveProfile} variant="contained" color="primary">
-					+ Add Profile
+					{profile ? 'Update Profile' : '+ Add Profile'}
 				</Button>
 			</DialogActions>
 		</Dialog>

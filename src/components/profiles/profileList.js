@@ -15,7 +15,7 @@ import {
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import useProfileStore from '@/store/profileStore';
-import ProfileModal from '@/components/global/profileModal';
+import ProfileModal from '@/components/profiles/profileModal';
 
 export default function ProfileList() {
     const { profiles, deleteProfile } = useProfileStore();
@@ -46,8 +46,8 @@ export default function ProfileList() {
                     <TableHead>
                         <TableRow>
                             <TableCell>Profile Name</TableCell>
-                            <TableCell>Billing Name</TableCell>
-                            <TableCell>Card Type</TableCell>
+                            <TableCell>Email</TableCell>
+                            <TableCell>Address</TableCell>
                             <TableCell>Last 4 Digits</TableCell>
                             <TableCell>Actions</TableCell>
                         </TableRow>
@@ -55,10 +55,10 @@ export default function ProfileList() {
                     <TableBody>
                         {profiles.map((profile) => (
                             <TableRow key={profile.id}>
-                                <TableCell>{profile.profileName}</TableCell>
-                                <TableCell>{profile.billingName}</TableCell>
-                                <TableCell>{profile.cardType}</TableCell>
-                                <TableCell>**** {profile.last4Digits}</TableCell>
+                                <TableCell>{profile.profile_name}</TableCell>
+                                <TableCell>{profile.email}</TableCell>
+                                <TableCell>{profile.address}</TableCell>
+                                <TableCell>**** {profile.card_number.slice(-4)}</TableCell>
                                 <TableCell>
                                     <IconButton onClick={() => handleEdit(profile)} color="primary">
                                         <EditIcon />
