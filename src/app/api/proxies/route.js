@@ -11,19 +11,21 @@ export async function GET(req) {
 		}
 
 		const { searchParams } = new URL(req.url);
-		const groupId = searchParams.get('groupId');
+		const proxy_group_id = searchParams.get('groupId');
 
-		if (!groupId) {
+		if (!proxy_group_id) {
 			return NextResponse.json(
-				{ error: 'Group ID is required' },
+				{ error: 'Proxy Group ID is required' },
 				{ status: 400 }
 			);
 		}
 
+		// Fetch proxies based on proxy_group_id and user_id
 		const proxies = await queryDatabase(
-			`SELECT id, address, status FROM proxies 
+			`SELECT proxy_id, address, status 
+             FROM proxies 
              WHERE proxy_group_id = ? AND user_id = ?`,
-			[groupId, token.sub]
+			[proxy_group_id, token.sub]
 		);
 
 		return NextResponse.json({ proxies });
@@ -40,49 +42,47 @@ export async function POST(req) {
 			return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 		}
 
-		const { proxyGroupId, proxies } = await req.json();
+		const { proxy_group_id, proxies } = await req.json();
 
-		if (!proxyGroupId || !proxies || !proxies.length) {
+		if (!proxy_group_id || !proxies || !proxies.length) {
 			return NextResponse.json(
 				{ error: 'Invalid request data' },
 				{ status: 400 }
 			);
 		}
 
-		// Validate group ownership
-		const [group] = await queryDatabase(
-			'SELECT id FROM proxy_groups WHERE id = ? AND user_id = ?',
-			[proxyGroupId, token.sub]
+		// Validate that the proxy group belongs to the user
+		const group = await queryDatabase(
+			'SELECT proxy_group_id FROM proxy_groups WHERE proxy_group_id = ? AND user_id = ?',
+			[proxy_group_id, token.sub]
 		);
 
-		if (!group) {
+		if (!group.length) {
 			return NextResponse.json(
 				{ error: 'Proxy group not found' },
 				{ status: 404 }
 			);
 		}
 
-		// Generate IDs first
+		// Generate UUIDs for each proxy
 		const proxyEntries = proxies.map((proxy) => ({
-			id: uuidv4(),
+			proxy_id: uuidv4(),
 			address: proxy.trim(),
 		}));
 
-		// Create the VALUES part of the query dynamically
-		const placeholders = proxyEntries
-			.map(() => '(?, ?, ?, ?, ?, NOW())')
-			.join(', ');
+		// Construct query placeholders
+		const placeholders = proxyEntries.map(() => '(?, ?, ?, ?, ?, NOW())').join(', ');
 		const values = proxyEntries.flatMap((proxy) => [
-			proxy.id,
+			proxy.proxy_id,
 			token.sub,
-			proxyGroupId,
+			proxy_group_id,
 			proxy.address,
 			'Untested',
 		]);
 
-		// Insert all proxies with a single query
+		// Insert all proxies into database
 		await queryDatabase(
-			`INSERT INTO proxies (id, user_id, proxy_group_id, address, status, created_at) 
+			`INSERT INTO proxies (proxy_id, user_id, proxy_group_id, address, status, created_at) 
              VALUES ${placeholders}`,
 			values
 		);
@@ -91,7 +91,7 @@ export async function POST(req) {
 			{
 				message: 'Proxies added successfully',
 				proxies: proxyEntries.map((proxy) => ({
-					id: proxy.id,
+					proxy_id: proxy.proxy_id,
 					address: proxy.address,
 					status: 'Untested',
 				})),

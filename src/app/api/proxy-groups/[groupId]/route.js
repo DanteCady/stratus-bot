@@ -9,15 +9,15 @@ export async function DELETE(req, context) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
-        const groupId = context.params?.groupId;
-        if (!groupId) {
+        const proxy_group_id = context.params?.groupId;
+        if (!proxy_group_id) {
             return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
         }
 
-        // Check if the proxy group is the Default group
+        // Check if the proxy group exists and belongs to the user
         const group = await queryDatabase(
-            'SELECT is_default FROM proxy_groups WHERE id = ? AND user_id = ? LIMIT 1',
-            [groupId, token.sub]
+            'SELECT is_default FROM proxy_groups WHERE proxy_group_id = ? AND user_id = ? LIMIT 1',
+            [proxy_group_id, token.sub]
         );
 
         if (!group.length) {
@@ -28,9 +28,11 @@ export async function DELETE(req, context) {
             return NextResponse.json({ error: 'Default proxy group cannot be deleted' }, { status: 400 });
         }
 
-        // Delete the proxy group and its proxies
-        await queryDatabase('DELETE FROM proxies WHERE proxy_group_id = ?', [groupId]);
-        await queryDatabase('DELETE FROM proxy_groups WHERE id = ?', [groupId]);
+        // Delete all proxies linked to the proxy group
+        await queryDatabase('DELETE FROM proxies WHERE proxy_group_id = ?', [proxy_group_id]);
+        
+        // Delete the proxy group
+        await queryDatabase('DELETE FROM proxy_groups WHERE proxy_group_id = ?', [proxy_group_id]);
 
         return NextResponse.json({ message: 'Proxy group deleted successfully' });
     } catch (error) {
@@ -46,21 +48,26 @@ export async function PUT(req, context) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
-        const groupId = context.params?.groupId;
+        const proxy_group_id = context.params?.groupId;
         const { name } = await req.json();
 
-        if (!groupId || !name) {
+        if (!proxy_group_id || !name) {
             return NextResponse.json({ error: 'Name is required' }, { status: 400 });
         }
 
-        await queryDatabase(
-            `UPDATE proxy_groups SET name = ? WHERE id = ? AND user_id = ?`,
-            [name, groupId, token.sub]
+        // Update the proxy group name (ensuring it belongs to the user)
+        const updated = await queryDatabase(
+            `UPDATE proxy_groups SET name = ? WHERE proxy_group_id = ? AND user_id = ?`,
+            [name, proxy_group_id, token.sub]
         );
+
+        if (updated.affectedRows === 0) {
+            return NextResponse.json({ error: 'Proxy group not found or update failed' }, { status: 404 });
+        }
 
         return NextResponse.json({ message: 'Proxy group updated successfully' });
     } catch (error) {
         console.error('❌ Error updating proxy group:', error);
         return NextResponse.json({ error: 'Server error' }, { status: 500 });
     }
-} 
+}
