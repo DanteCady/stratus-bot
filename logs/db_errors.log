@@ -3758,3 +3758,848 @@ Error: Data truncated for column 'id' at row 1
     at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
     at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
 
+[2025-02-28T18:57:20.721Z] ERROR: Unknown column 'address2' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: INSERT INTO profiles (
+				profile_id, 
+				user_id,
+				profile_group_id,
+				profile_name,
+				first_name,
+				last_name,
+				email,
+				phone,
+				address,
+				address2,
+				country,
+				state,
+				city,
+				zipcode,
+				cardholder,
+				card_number,
+				exp_month,
+				exp_year,
+				cvv,
+				created_at
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW()) | Params: ["9808a1bd-670e-4e1f-b339-f8195d7bf4a9","292444939412045825","d5393ea0-b358-40b0-8dd8-6770dff0c98b","Test 1","Dante Jordan","Cady","dantecady@gmail.com","4015481179","68 judith st","3","USA","CA","Providence","02909","Dante Cady","55422354795","01","2025",null]
+Stack Trace:
+Error: Unknown column 'address2' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/profiles/route.js:56:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-02-28T19:01:27.194Z] ERROR: Unknown column 'address2' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: INSERT INTO profiles (
+				profile_id, 
+				user_id,
+				profile_group_id,
+				profile_name,
+				first_name,
+				last_name,
+				email,
+				phone,
+				address,
+				address2,
+				country,
+				state,
+				city,
+				zipcode,
+				cardholder,
+				card_number,
+				exp_month,
+				exp_year,
+				cvv,
+				created_at
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW()) | Params: ["8b63d7f5-7af1-4b3a-9dbf-48ea18d58894","292444939412045825","d5393ea0-b358-40b0-8dd8-6770dff0c98b","Test 1","Dante Jordan","Cady","dantecady@gmail.com","4015481179","68 judith st","3","Canada","CA","Providence","02909","Dante Cady","55422354795","01","2025",null]
+Stack Trace:
+Error: Unknown column 'address2' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/profiles/route.js:56:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-02-28T19:38:43.367Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT provider_id, is_first_login FROM users WHERE email = ? LIMIT 1 | Params: ["dantecady@gmail.com"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T19:39:00.188Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T19:39:00.476Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T20:51:55.099Z] ERROR: Unknown column 'address2' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: 
+			INSERT INTO profiles (
+				id,
+				user_id,
+				profile_name,
+				first_name,
+				last_name,
+				email,
+				phone,
+				address,
+				address2,
+				city,
+				state,
+				zipcode,
+				country,
+				card_number,
+				cardholder,
+				exp_month,
+				exp_year,
+				cvv,
+				created_at
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+		 | Params: ["914a0a12-dbf7-4308-a7c0-4302d26657d3","292444939412045825","Test 1","Dante Jordan","Cady","dantecady@gmail.com","4015481179","68 judith st","3","Providence","CA","02909","USA","55422354795","Dante Cady","02","2025","2322"]
+Stack Trace:
+Error: Unknown column 'address2' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/profiles/route.js:103:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-02-28T20:51:57.198Z] ERROR: Unknown column 'address2' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: 
+			INSERT INTO profiles (
+				id,
+				user_id,
+				profile_name,
+				first_name,
+				last_name,
+				email,
+				phone,
+				address,
+				address2,
+				city,
+				state,
+				zipcode,
+				country,
+				card_number,
+				cardholder,
+				exp_month,
+				exp_year,
+				cvv,
+				created_at
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+		 | Params: ["aade1e39-800f-4692-874a-03a4bac0d2ef","292444939412045825","Test 1","Dante Jordan","Cady","dantecady@gmail.com","4015481179","68 judith st","3","Providence","CA","02909","USA","55422354795","Dante Cady","02","2025","2322"]
+Stack Trace:
+Error: Unknown column 'address2' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/profiles/route.js:103:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-02-28T20:51:58.844Z] ERROR: Unknown column 'address2' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: 
+			INSERT INTO profiles (
+				id,
+				user_id,
+				profile_name,
+				first_name,
+				last_name,
+				email,
+				phone,
+				address,
+				address2,
+				city,
+				state,
+				zipcode,
+				country,
+				card_number,
+				cardholder,
+				exp_month,
+				exp_year,
+				cvv,
+				created_at
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+		 | Params: ["26e70a06-a527-46b2-8aea-3c6ed964fabd","292444939412045825","Test 1","Dante Jordan","Cady","dantecady@gmail.com","4015481179","68 judith st","3","Providence","CA","02909","USA","55422354795","Dante Cady","02","2025","2322"]
+Stack Trace:
+Error: Unknown column 'address2' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/profiles/route.js:103:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-02-28T20:52:48.854Z] ERROR: Data truncated for column 'id' at row 1 | Code: WARN_DATA_TRUNCATED | Query: 
+			INSERT INTO profiles (
+				id,
+				user_id,
+				profile_name,
+				first_name,
+				last_name,
+				email,
+				phone,
+				address,
+				address2,
+				city,
+				state,
+				zipcode,
+				country,
+				card_number,
+				cardholder,
+				exp_month,
+				exp_year,
+				cvv,
+				created_at
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+		 | Params: ["3f134be5-969a-4f97-98ee-3cfe618ce14f","292444939412045825","Test 1","Dante Jordan","Cady","dantecady@gmail.com","4015481179","68 judith st","3","Providence","CA","02909","USA","55422354795","Dante Cady","02","2025","2322"]
+Stack Trace:
+Error: Data truncated for column 'id' at row 1
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/profiles/route.js:103:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-02-28T20:52:57.590Z] ERROR: Data truncated for column 'id' at row 1 | Code: WARN_DATA_TRUNCATED | Query: 
+			INSERT INTO profiles (
+				id,
+				user_id,
+				profile_name,
+				first_name,
+				last_name,
+				email,
+				phone,
+				address,
+				address2,
+				city,
+				state,
+				zipcode,
+				country,
+				card_number,
+				cardholder,
+				exp_month,
+				exp_year,
+				cvv,
+				created_at
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+		 | Params: ["6b5c9aa7-e2d8-4a96-bf3c-cb999aa7d210","292444939412045825","Test 1","Dante Jordan","Cady","dantecady@gmail.com","4015481179","68 judith st","3","Providence","CA","02909","USA","55422354795","Dante Cady","02","2025","2322"]
+Stack Trace:
+Error: Data truncated for column 'id' at row 1
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/profiles/route.js:103:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-02-28T20:53:35.045Z] ERROR: Field 'profile_id' doesn't have a default value | Code: ER_NO_DEFAULT_FOR_FIELD | Query: 
+			INSERT INTO profiles (
+				id,
+				user_id,
+				profile_name,
+				first_name,
+				last_name,
+				email,
+				phone,
+				address,
+				address2,
+				city,
+				state,
+				zipcode,
+				country,
+				card_number,
+				cardholder,
+				exp_month,
+				exp_year,
+				cvv,
+				created_at
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+		 | Params: ["ad9aa8d4-4883-4b86-9f2c-a713c205417d","292444939412045825","Test 1","Dante Jordan","Cady","dantecady@gmail.com","4015481179","68 judith st","3","Providence","CA","02909","USA","55422354795","Dante Cady","02","2025","2322"]
+Stack Trace:
+Error: Field 'profile_id' doesn't have a default value
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/profiles/route.js:103:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-02-28T20:54:27.512Z] ERROR: Field 'id' doesn't have a default value | Code: ER_NO_DEFAULT_FOR_FIELD | Query: 
+			INSERT INTO profiles (
+				profile_id,
+				user_id,
+				profile_name,
+				first_name,
+				last_name,
+				email,
+				phone,
+				address,
+				address2,
+				city,
+				state,
+				zipcode,
+				country,
+				card_number,
+				cardholder,
+				exp_month,
+				exp_year,
+				cvv,
+				created_at
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+		 | Params: ["04b80770-770a-44ee-93c7-cc4c694bea80","292444939412045825","Test 1","Dante Jordan","Cady","dantecady@gmail.com","4015481179","68 judith st","3","Providence","CA","02909","USA","55422354795","Dante Cady","02","2025","2322"]
+Stack Trace:
+Error: Field 'id' doesn't have a default value
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/profiles/route.js:103:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-02-28T20:54:29.205Z] ERROR: Field 'id' doesn't have a default value | Code: ER_NO_DEFAULT_FOR_FIELD | Query: 
+			INSERT INTO profiles (
+				profile_id,
+				user_id,
+				profile_name,
+				first_name,
+				last_name,
+				email,
+				phone,
+				address,
+				address2,
+				city,
+				state,
+				zipcode,
+				country,
+				card_number,
+				cardholder,
+				exp_month,
+				exp_year,
+				cvv,
+				created_at
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+		 | Params: ["67d67415-13c9-4fff-b6dd-823ef944db96","292444939412045825","Test 1","Dante Jordan","Cady","dantecady@gmail.com","4015481179","68 judith st","3","Providence","CA","02909","USA","55422354795","Dante Cady","02","2025","2322"]
+Stack Trace:
+Error: Field 'id' doesn't have a default value
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/profiles/route.js:103:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-02-28T20:54:30.206Z] ERROR: Field 'id' doesn't have a default value | Code: ER_NO_DEFAULT_FOR_FIELD | Query: 
+			INSERT INTO profiles (
+				profile_id,
+				user_id,
+				profile_name,
+				first_name,
+				last_name,
+				email,
+				phone,
+				address,
+				address2,
+				city,
+				state,
+				zipcode,
+				country,
+				card_number,
+				cardholder,
+				exp_month,
+				exp_year,
+				cvv,
+				created_at
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+		 | Params: ["765b9ba6-d279-4bc7-98f5-140cb33befe1","292444939412045825","Test 1","Dante Jordan","Cady","dantecady@gmail.com","4015481179","68 judith st","3","Providence","CA","02909","USA","55422354795","Dante Cady","02","2025","2322"]
+Stack Trace:
+Error: Field 'id' doesn't have a default value
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/profiles/route.js:103:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-02-28T20:54:31.580Z] ERROR: Field 'id' doesn't have a default value | Code: ER_NO_DEFAULT_FOR_FIELD | Query: 
+			INSERT INTO profiles (
+				profile_id,
+				user_id,
+				profile_name,
+				first_name,
+				last_name,
+				email,
+				phone,
+				address,
+				address2,
+				city,
+				state,
+				zipcode,
+				country,
+				card_number,
+				cardholder,
+				exp_month,
+				exp_year,
+				cvv,
+				created_at
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+		 | Params: ["c498e800-ffbc-46a3-8482-904947bedf84","292444939412045825","Test 1","Dante Jordan","Cady","dantecady@gmail.com","4015481179","68 judith st","3","Providence","CA","02909","USA","55422354795","Dante Cady","02","2025","2322"]
+Stack Trace:
+Error: Field 'id' doesn't have a default value
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/profiles/route.js:103:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-02-28T20:55:33.880Z] ERROR: Field 'id' doesn't have a default value | Code: ER_NO_DEFAULT_FOR_FIELD | Query: 
+			INSERT INTO profiles (
+				profile_id,
+				user_id,
+				profile_name,
+				first_name,
+				last_name,
+				email,
+				phone,
+				address,
+				address2,
+				city,
+				state,
+				zipcode,
+				country,
+				card_number,
+				cardholder,
+				exp_month,
+				exp_year,
+				cvv,
+				created_at
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+		 | Params: ["fe738801-4c1b-4e40-9778-4e9dcf729b67","292444939412045825","Test 1","Dante Jordan","Cady","dantecady@gmail.com","4015481179","68 judith st","3","Providence","CA","02909","USA","55422354795","Dante Cady","02","2025","2322"]
+Stack Trace:
+Error: Field 'id' doesn't have a default value
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/profiles/route.js:104:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-02-28T20:55:35.588Z] ERROR: Field 'id' doesn't have a default value | Code: ER_NO_DEFAULT_FOR_FIELD | Query: 
+			INSERT INTO profiles (
+				profile_id,
+				user_id,
+				profile_name,
+				first_name,
+				last_name,
+				email,
+				phone,
+				address,
+				address2,
+				city,
+				state,
+				zipcode,
+				country,
+				card_number,
+				cardholder,
+				exp_month,
+				exp_year,
+				cvv,
+				created_at
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+		 | Params: ["f2e90e90-cf3a-4f88-9f46-98721fd78108","292444939412045825","Test 1","Dante Jordan","Cady","dantecady@gmail.com","4015481179","68 judith st","3","Providence","CA","02909","USA","55422354795","Dante Cady","02","2025","2322"]
+Stack Trace:
+Error: Field 'id' doesn't have a default value
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/profiles/route.js:104:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-02-28T20:58:02.928Z] ERROR: Field 'id' doesn't have a default value | Code: ER_NO_DEFAULT_FOR_FIELD | Query: 
+			INSERT INTO profiles (
+				profile_id,
+				user_id,
+				profile_group_id,
+				profile_name,
+				first_name,
+				last_name,
+				email,
+				phone,
+				address,
+				address2,
+				city,
+				state,
+				zipcode,
+				country,
+				card_number,
+				cardholder,
+				exp_month,
+				exp_year,
+				cvv
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		 | Params: ["5a2c8b9b-1d01-4632-90b7-f2fa9ecb0c68","292444939412045825","fbea595e-6da3-4fb7-bfd4-3fb935dbd25a","Test 1","Dante Jordan","Cady","dantecady@gmail.com","4015481179","68 judith st","3","Providence","CA","02909","USA","55422354795","Dante Cady","02","2025","2322"]
+Stack Trace:
+Error: Field 'id' doesn't have a default value
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/profiles/route.js:104:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-02-28T21:00:15.860Z] ERROR: Cannot add or update a child row: a foreign key constraint fails (`stratusbot`.`profiles`, CONSTRAINT `profiles_ibfk_1` FOREIGN KEY (`profile_group_id`) REFERENCES `profile_groups` (`profile_group_id`) ON DELETE CASCADE) | Code: ER_NO_REFERENCED_ROW_2 | Query: 
+			INSERT INTO profiles (
+				profile_id,
+				user_id,
+				profile_group_id,
+				profile_name,
+				first_name,
+				last_name,
+				email,
+				phone,
+				address,
+				address2,
+				city,
+				state,
+				zipcode,
+				country,
+				card_number,
+				cardholder,
+				exp_month,
+				exp_year,
+				cvv
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		 | Params: ["a25b83ee-2ad0-4c2d-94dd-71806a6f79e3","292444939412045825","2d5cfbab-b1d8-4ca2-971d-9c0776ef6971","Test 1","Dante Jordan","Cady","dantecady@gmail.com","4015481179","68 judith st","3","Providence","CA","02909","USA","55422354795","Dante Cady","02","2025","2322"]
+Stack Trace:
+Error: Cannot add or update a child row: a foreign key constraint fails (`stratusbot`.`profiles`, CONSTRAINT `profiles_ibfk_1` FOREIGN KEY (`profile_group_id`) REFERENCES `profile_groups` (`profile_group_id`) ON DELETE CASCADE)
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/profiles/route.js:104:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-02-28T21:02:59.827Z] ERROR: Cannot add or update a child row: a foreign key constraint fails (`stratusbot`.`profiles`, CONSTRAINT `profiles_ibfk_1` FOREIGN KEY (`profile_group_id`) REFERENCES `profile_groups` (`profile_group_id`) ON DELETE CASCADE) | Code: ER_NO_REFERENCED_ROW_2 | Query: 
+			INSERT INTO profiles (
+				profile_id,
+				user_id,
+				profile_group_id,
+				profile_name,
+				first_name,
+				last_name,
+				email,
+				phone,
+				address,
+				address2,
+				city,
+				state,
+				zipcode,
+				country,
+				card_number,
+				cardholder,
+				exp_month,
+				exp_year,
+				cvv
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		 | Params: ["80018d63-2f73-4722-8c72-c0374c88afa0","292444939412045825","2d2cb870-34e7-4a1d-95fb-8ebd29fd3e1a","Test 1","Dante Jordan","Cady","dantecady@gmail.com","4015481179","68 judith st","3","Providence","CA","02909","USA","55422354795","Dante Cady","02","2025","2322"]
+Stack Trace:
+Error: Cannot add or update a child row: a foreign key constraint fails (`stratusbot`.`profiles`, CONSTRAINT `profiles_ibfk_1` FOREIGN KEY (`profile_group_id`) REFERENCES `profile_groups` (`profile_group_id`) ON DELETE CASCADE)
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/profiles/route.js:104:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+

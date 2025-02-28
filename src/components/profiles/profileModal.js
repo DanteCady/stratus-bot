@@ -118,12 +118,31 @@ export default function ProfileModal({ open, handleClose, profile }) {
 				showSnackbar('Please fill in all required fields', 'error');
 				return;
 			}
-
+	
+			// Fetch user ID from session
+			const session = await fetch('/api/auth/session').then((res) => res.json());
+	
+			if (!session?.user?.id) {
+				showSnackbar('❌ Authentication Error: Unable to retrieve user ID.', 'error');
+				return;
+			}
+	
+			// Ensure CVV is included (null if empty)
+			const safeCvv = profileData.cvv && profileData.cvv.trim() !== '' ? profileData.cvv : null;
+	
+			// Include CVV and user ID in the request
+			const updatedProfileData = {
+				...profileData,
+				userId: session.user.id, // Fix user ID
+				profileGroupId: selectedProfileGroup?.id, // Fix group ID
+				cvv: safeCvv, // Ensure CVV is handled properly
+			};
+	
 			if (profile) {
-				await updateProfile(profileData);
+				await updateProfile(updatedProfileData);
 				showSnackbar('✅ Profile updated successfully', 'success');
 			} else {
-				await addProfile(profileData);
+				await addProfile(updatedProfileData);
 				showSnackbar('✅ Profile created successfully', 'success');
 			}
 			handleClose();
@@ -132,7 +151,7 @@ export default function ProfileModal({ open, handleClose, profile }) {
 			showSnackbar('❌ Error saving profile', 'error');
 		}
 	};
-
+	
 	return (
 		<Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
 			<DialogTitle
@@ -347,6 +366,17 @@ export default function ProfileModal({ open, handleClose, profile }) {
 										<MenuItem value="2024">2024</MenuItem>
 										<MenuItem value="2025">2025</MenuItem>
 									</Select>
+								</FormControl>
+							</Grid>
+							<Grid item xs={12}>
+								<FormControl fullWidth>
+									<InputLabel>CVV</InputLabel>
+									<TextField
+										name="cvv"
+										value={profileData.cvv}
+										onChange={handleChange}
+										fullWidth
+									/>
 								</FormControl>
 							</Grid>
 						</Grid>

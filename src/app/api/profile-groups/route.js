@@ -22,7 +22,7 @@ export async function POST(req) {
 
         // Check if user already has a "Default" group
         const existingDefaultGroup = await queryDatabase(
-            `SELECT id FROM profile_groups WHERE user_id = ? AND name = 'Default'`,
+            `SELECT profile_group_id FROM profile_groups WHERE user_id = ? AND name = 'Default'`,
             [token.sub]
         );
 
@@ -30,20 +30,28 @@ export async function POST(req) {
             // Create default group if missing
             const defaultGroupId = uuidv4();
             await queryDatabase(
-                `INSERT INTO profile_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, ?, 1, NOW())`,
+                `INSERT INTO profile_groups (profile_group_id, user_id, name, is_default, created_at) 
+                 VALUES (?, ?, ?, 1, NOW())`,
                 [defaultGroupId, token.sub, 'Default']
             );
-            return NextResponse.json({ message: 'Default profile group created', profileGroupId: defaultGroupId }, { status: 201 });
+            return NextResponse.json({ 
+                message: 'Default profile group created', 
+                profile_group_id: defaultGroupId 
+            }, { status: 201 });
         }
 
         // Create new profile group
-        const profileGroupId = uuidv4();
+        const profile_group_id = uuidv4();
         await queryDatabase(
-            `INSERT INTO profile_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, ?, 0, NOW())`,
-            [profileGroupId, token.sub, name]
+            `INSERT INTO profile_groups (profile_group_id, user_id, name, is_default, created_at) 
+             VALUES (?, ?, ?, 0, NOW())`,
+            [profile_group_id, token.sub, name]
         );
 
-        return NextResponse.json({ message: 'Profile group created successfully', profileGroupId }, { status: 201 });
+        return NextResponse.json({ 
+            message: 'Profile group created successfully', 
+            profile_group_id 
+        }, { status: 201 });
 
     } catch (error) {
         console.error('❌ [500] Profile group creation error:', error);
@@ -66,7 +74,7 @@ export async function GET(req) {
 
         // Fetch existing profile groups
         const existingGroups = await queryDatabase(
-            `SELECT id, name, is_default FROM profile_groups WHERE user_id = ?`,
+            `SELECT profile_group_id, name, is_default FROM profile_groups WHERE user_id = ?`,
             [userId]
         );
 
@@ -76,13 +84,14 @@ export async function GET(req) {
         if (!defaultGroup) {
             const defaultGroupId = uuidv4();
             await queryDatabase(
-                `INSERT INTO profile_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, 'Default', 1, NOW())`,
+                `INSERT INTO profile_groups (profile_group_id, user_id, name, is_default, created_at) 
+                 VALUES (?, ?, 'Default', 1, NOW())`,
                 [defaultGroupId, userId]
             );
 
             // Re-fetch the updated list from the database
             const updatedGroups = await queryDatabase(
-                `SELECT id, name, is_default FROM profile_groups WHERE user_id = ?`,
+                `SELECT profile_group_id, name, is_default FROM profile_groups WHERE user_id = ?`,
                 [userId]
             );
 
@@ -96,4 +105,3 @@ export async function GET(req) {
         return NextResponse.json({ error: 'Server error' }, { status: 500 });
     }
 }
-

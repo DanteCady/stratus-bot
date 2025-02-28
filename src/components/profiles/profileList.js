@@ -27,20 +27,14 @@ export default function ProfileList() {
         setOpenModal(true);
     };
 
-    return (
-        <Box sx={{ p: 3 }}>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                    setSelectedProfile(null);
-                    setOpenModal(true);
-                }}
-                sx={{ mb: 2 }}
-            >
-                + New Profile
-            </Button>
+    const handleDelete = (profileId, profileGroupId) => {
+        if (window.confirm('Are you sure you want to delete this profile?')) {
+            deleteProfile(profileId, profileGroupId);
+        }
+    };
 
+    return (
+        <Box>
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>
@@ -53,22 +47,37 @@ export default function ProfileList() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {profiles.map((profile) => (
-                            <TableRow key={profile.id}>
-                                <TableCell>{profile.profile_name}</TableCell>
-                                <TableCell>{profile.email}</TableCell>
-                                <TableCell>{profile.address}</TableCell>
-                                <TableCell>**** {profile.card_number.slice(-4)}</TableCell>
-                                <TableCell>
-                                    <IconButton onClick={() => handleEdit(profile)} color="primary">
-                                        <EditIcon />
-                                    </IconButton>
-                                    <IconButton onClick={() => deleteProfile(profile.id)} color="error">
-                                        <DeleteIcon />
-                                    </IconButton>
+                        {profiles.length > 0 ? (
+                            profiles.map((profile) => (
+                                <TableRow key={profile.profile_id}> {/* 🔹 Use `profile_id` instead of `id` */}
+                                    <TableCell>{profile.profile_name}</TableCell>
+                                    <TableCell>{profile.email}</TableCell>
+                                    <TableCell>{profile.address || 'N/A'}</TableCell>
+                                    <TableCell>
+                                        {profile.card_number
+                                            ? `**** ${profile.card_number.slice(-4)}`
+                                            : 'N/A'}
+                                    </TableCell>
+                                    <TableCell>
+                                        <IconButton onClick={() => handleEdit(profile)} color="primary">
+                                            <EditIcon />
+                                        </IconButton>
+                                        <IconButton
+                                            onClick={() => handleDelete(profile.profile_id, profile.profile_group_id)}
+                                            color="error"
+                                        >
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan={5} align="center">
+                                    No profiles found
                                 </TableCell>
                             </TableRow>
-                        ))}
+                        )}
                     </TableBody>
                 </Table>
             </TableContainer>
