@@ -17,6 +17,7 @@ import { DarkMode, LightMode } from '@mui/icons-material';
 import { navigationMenuItems } from '@/app/config/navigationMenu';
 import { DropdownDataProvider } from '@/context/dropdownData';
 import { SnackbarProvider } from '@/context/snackbar';
+import SessionInitializer from '@/components/global/SessionInitializer'; // ✅ Import the new component
 
 export default function RootLayout({ children }) {
 	const pathname = usePathname();
@@ -32,7 +33,6 @@ export default function RootLayout({ children }) {
 		if (storedTheme) {
 			setIsDarkMode(storedTheme === 'dark');
 		} else {
-			// If no stored value, ensure dark mode is saved as default
 			localStorage.setItem('stratus-theme', 'dark');
 		}
 	}, []);
@@ -43,12 +43,14 @@ export default function RootLayout({ children }) {
 		localStorage.setItem('stratus-theme', newTheme ? 'dark' : 'light');
 	};
 
-	const isLoginOrErrorPage = pathname === '/auth/login' || pathname === '/auth/error' || pathname === '/splash' ;
+	const isLoginOrErrorPage = pathname === '/auth/login' || pathname === '/auth/error' || pathname === '/splash';
 
 	return (
 		<html lang="en" style={{ height: '100%', overflow: 'hidden' }}>
 			<body style={{ height: '100%', margin: 0, overflow: 'hidden' }}>
+				{/* ✅ Ensure SessionProvider wraps everything */}
 				<SessionProvider>
+					<SessionInitializer /> {/* ✅ This will now fetch user data correctly */}
 					<ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
 						<CssBaseline />
 						<SnackbarProvider>

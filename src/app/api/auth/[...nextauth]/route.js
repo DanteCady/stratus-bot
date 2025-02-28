@@ -14,10 +14,45 @@ const authOptions = {
 			try {
 				console.log('🔄 Sign-in triggered for', user.email);
 
-				const existingUser = await queryDatabase(
-					'SELECT id, provider, is_first_login, provider_id FROM users WHERE email = ? LIMIT 1',
-					[user.email]
-				);
+				// Fetch all essential data in parallel
+				const [
+					existingUser,
+					// System Config
+					shops,
+					sites,
+					regions,
+					modes,
+					// User Data
+					taskGroups,
+					profileGroups,
+					proxyGroups,
+					tasks,
+					profiles,
+					proxies,
+				] = await Promise.all([
+					queryDatabase(
+						'SELECT id, provider_id, is_first_login FROM users WHERE email = ? LIMIT 1',
+						[user.email]
+					),
+					// System Config Queries
+					queryDatabase('SELECT id, name, is_enabled FROM shops'),
+					queryDatabase('SELECT id, name, shop_id, region_id FROM sites'),
+					queryDatabase('SELECT id, name FROM regions'),
+					queryDatabase('SELECT id, name FROM nike_modes'),
+					// User Data Queries
+					queryDatabase('SELECT * FROM task_groups WHERE user_id = ?', [
+						user.id,
+					]),
+					queryDatabase('SELECT * FROM profile_groups WHERE user_id = ?', [
+						user.id,
+					]),
+					queryDatabase('SELECT * FROM proxy_groups WHERE user_id = ?', [
+						user.id,
+					]),
+					queryDatabase('SELECT * FROM tasks WHERE user_id = ?', [user.id]),
+					queryDatabase('SELECT * FROM profiles WHERE user_id = ?', [user.id]),
+					queryDatabase('SELECT * FROM proxies WHERE user_id = ?', [user.id]),
+				]);
 
 				let userId;
 
@@ -103,7 +138,25 @@ const authOptions = {
 				}
 
 				console.log('✅ Sign-in successful for', user.email);
-				return true;
+				return {
+					...user,
+					initialData: {
+						system: {
+							shops,
+							sites,
+							regions,
+							modes,
+						},
+						user: {
+							taskGroups,
+							profileGroups,
+							proxyGroups,
+							tasks,
+							profiles,
+							proxies,
+						},
+					},
+				};
 			} catch (error) {
 				console.error('❌ Sign-in error:', error);
 				return `/auth/error?message=${encodeURIComponent(error.message)}`;
