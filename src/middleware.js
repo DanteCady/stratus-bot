@@ -8,25 +8,35 @@ export async function middleware(req) {
 	console.log(`🔍 Middleware Executed for: ${pathname}`);
 	console.log(`🟢 Token Retrieved:`, token);
 
+	// Allow access to auth-related routes
 	if (pathname.startsWith('/auth/login') || pathname.startsWith('/api/auth')) {
 		return NextResponse.next();
 	}
 
+	// Restrict access to /debug route only for authenticated users
+	if (pathname.startsWith('/debug') && !token) {
+		console.log('🔴 Unauthorized access to /debug - Redirecting');
+		return NextResponse.redirect(new URL('/auth/login', req.url));
+	}
+
+	// Protect /debug in production, redirect to /dashboard
+	if (pathname.startsWith('/debug') && process.env.NODE_ENV === 'production') {
+		console.log('🔒 Restricting /debug in production - Redirecting');
+		return NextResponse.redirect(new URL('/dashboard', req.url));
+	}
+
+	// Allow access if user is authenticated
 	if (token) {
 		console.log('✅ User is authenticated - Allowing access');
 		return NextResponse.next();
 	}
 
+	// Redirect unauthenticated users to login
 	console.log('🔴 No Session Found - Redirecting to Login');
 	return NextResponse.redirect(new URL('/auth/login', req.url));
-
-	// Protect debug route in production
-	if (pathname.startsWith('/debug') && process.env.NODE_ENV === 'production') {
-		return NextResponse.redirect(new URL('/dashboard', req.url));
-	}
 }
 
-// Apply middleware only to protected routes
+// ✅ Apply middleware to relevant routes
 export const config = {
-	matcher: ['/dashboard/:path*', '/admin/:path*'], // Define which routes require authentication
+	matcher: ['/dashboard/:path*', '/admin/:path*', '/debug'], 
 };
