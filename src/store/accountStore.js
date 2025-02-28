@@ -1,88 +1,105 @@
 import { create } from 'zustand';
 
-const useAccountStore = create((set) => ({
-	accountsByGroup: JSON.parse(localStorage.getItem('accountsByGroup')) || {
-		1: [],
+const useAccountStore = create((set, get) => ({
+	accountGroups: [],
+	selectedGroup: null,
+	accounts: [],
+
+	// Fetch account groups from API
+	fetchAccountGroups: async () => {
+		try {
+			const response = await fetch('/api/account-groups');
+			if (!response.ok) throw new Error('Failed to fetch account groups.');
+
+			const { accountGroups } = await response.json();
+			set({ accountGroups });
+
+			// Ensure "Default" group is always selected if available
+			const defaultGroup =
+				accountGroups.find((group) => group.name === 'Default') ||
+				accountGroups[0];
+			set({ selectedGroup: defaultGroup });
+		} catch (error) {
+			console.error('❌ Error fetching account groups:', error);
+		}
 	},
-	accountGroups: JSON.parse(localStorage.getItem('accountGroups')) || [
-		{ id: 1, name: 'Default Group' },
-	],
-	selectedGroup: JSON.parse(localStorage.getItem('selectedAccountGroup')) || {
-		id: 1,
-		name: 'Default Group',
+
+	// Create a new account group
+	addAccountGroup: async (name) => {
+		try {
+			const response = await fetch('/api/account-groups', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ name }),
+			});
+
+			if (!response.ok) throw new Error('Failed to create account group.');
+
+			const { accountGroupId } = await response.json();
+
+			// Update local state
+			set((state) => ({
+				accountGroups: [...state.accountGroups, { id: accountGroupId, name }],
+			}));
+
+			return accountGroupId;
+		} catch (error) {
+			console.error('❌ Error creating account group:', error);
+			throw error;
+		}
 	},
 
-	// ** Add Accounts - Fix Parsing Issue **
-		// ** Add Multiple Accounts to Selected Group **
-        addAccounts: (groupId, accountList) =>
-            set((state) => {
-                const updatedAccounts = {
-                    ...state.accountsByGroup,
-                    [groupId]: [...(state.accountsByGroup[groupId] || []), ...accountList],
-                };
-                localStorage.setItem('accountsByGroup', JSON.stringify(updatedAccounts));
-                return { accountsByGroup: updatedAccounts };
-            }),
+	// Select an account group
+	selectAccountGroup: async (group) => {
+		set({ selectedGroup: group, accounts: [] });
+		if (group) {
+			get().fetchAccounts(group.id);
+		}
+	},
 
-	// ** Update Account **
-	updateAccount: (updatedAccount) =>
-		set((state) => {
-			const groupId = state.selectedGroup.id;
-			if (!state.accountsByGroup[groupId]) return state; // Ensure group exists
+	// Fetch accounts for selected group
+	fetchAccounts: async (groupId) => {
+		try {
+			const response = await fetch(`/api/accounts?groupId=${groupId}`);
+			if (!response.ok) throw new Error('Failed to fetch accounts.');
 
-			const updatedAccounts = {
-				...state.accountsByGroup,
-				[groupId]: state.accountsByGroup[groupId].map((account) =>
-					account.id === updatedAccount.id
-						? { ...account, ...updatedAccount }
-						: account
-				),
-			};
+			const { accounts } = await response.json();
+			set({ accounts });
+		} catch (error) {
+			console.error('❌ Error fetching accounts:', error);
+			set({ accounts: [] });
+		}
+	},
 
-			localStorage.setItem('accountsByGroup', JSON.stringify(updatedAccounts));
-			return { accountsByGroup: updatedAccounts };
-		}),
+	// Add account to selected group
+	addAccount: async (accountData) => {
+		try {
+			const { selectedGroup } = get();
+			if (!selectedGroup?.id) {
+				throw new Error('No account group selected');
+			}
 
-	// ** Delete Single Account **
-	deleteAccount: (accountId) =>
-		set((state) => {
-			const updatedAccounts = {
-				...state.accountsByGroup,
-				[state.selectedGroup.id]: state.accountsByGroup[
-					state.selectedGroup.id
-				].filter((account) => account.id !== accountId),
-			};
+			const response = await fetch('/api/accounts', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					account_group_id: selectedGroup.id,
+					...accountData,
+				}),
+			});
 
-			localStorage.setItem('accountsByGroup', JSON.stringify(updatedAccounts));
-			return { accountsByGroup: updatedAccounts };
-		}),
+			if (!response.ok) {
+				const errorText = await response.text();
+				throw new Error(`Failed to create account: ${errorText}`);
+			}
 
-	// ** Delete All Accounts in Group **
-	deleteAllAccounts: () =>
-		set((state) => {
-			const updatedAccounts = {
-				...state.accountsByGroup,
-				[state.selectedGroup.id]: [],
-			};
-
-			localStorage.setItem('accountsByGroup', JSON.stringify(updatedAccounts));
-			return { accountsByGroup: updatedAccounts };
-		}),
-
-	// ** Add Account Group **
-	addAccountGroup: (group) =>
-		set((state) => {
-			const updatedGroups = [...state.accountGroups, group];
-			localStorage.setItem('accountGroups', JSON.stringify(updatedGroups));
-			return { accountGroups: updatedGroups };
-		}),
-
-	// ** Select Account Group **
-	selectAccountGroup: (group) =>
-		set(() => {
-			localStorage.setItem('selectedAccountGroup', JSON.stringify(group));
-			return { selectedGroup: { ...group } }; // Ensures reactivity
-		}),
+			// Refresh accounts after creation
+			await get().fetchAccounts(selectedGroup.id);
+		} catch (error) {
+			console.error('❌ Error creating account:', error);
+			throw error;
+		}
+	},
 }));
 
 export default useAccountStore;

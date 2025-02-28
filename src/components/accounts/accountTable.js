@@ -20,9 +20,19 @@ import useAccountStore from '@/store/accountStore';
 import { useState } from 'react';
 
 export default function AccountTable({ onEdit }) {
-	const { accountsByGroup, selectedGroup, deleteAccount } = useAccountStore();
-	const accounts = accountsByGroup[selectedGroup.id] || []; // Get accounts for selected group
+	const { accounts, selectedGroup, deleteAccount } = useAccountStore();
 	const [selectedAccounts, setSelectedAccounts] = useState([]);
+
+	// If no group is selected, show empty state
+	if (!selectedGroup) {
+		return (
+			<Paper sx={{ mt: 2, p: 3, textAlign: 'center' }}>
+				<Typography variant="body1" color="text.secondary">
+					Please select an account group
+				</Typography>
+			</Paper>
+		);
+	}
 
 	// Toggle selection
 	const handleSelect = (id) => {
@@ -76,7 +86,7 @@ export default function AccountTable({ onEdit }) {
 										/>
 									</TableCell>
 									<TableCell>{account.site}</TableCell>
-									<TableCell>{account.username}</TableCell>
+									<TableCell>{account.email}</TableCell>
 									<TableCell>******</TableCell>
 									<TableCell>
 										<Tooltip title={account.proxy} arrow>
@@ -112,7 +122,7 @@ export default function AccountTable({ onEdit }) {
 						) : (
 							<TableRow>
 								<TableCell colSpan={7} align="center">
-									No accounts found
+									No accounts found in this group
 								</TableCell>
 							</TableRow>
 						)}

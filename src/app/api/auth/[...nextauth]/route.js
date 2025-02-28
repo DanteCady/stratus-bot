@@ -3,6 +3,20 @@ import { discordProvider } from '@/app/providers/discordProvider';
 import { queryDatabase } from '@/utils/db';
 import { v4 as uuidv4 } from 'uuid';
 
+/** ✅ Function to check if column exists in a table */
+async function columnExists(table, column) {
+	try {
+		const result = await queryDatabase(
+			`SELECT COUNT(*) AS count FROM information_schema.columns WHERE table_name = ? AND column_name = ?`,
+			[table, column]
+		);
+		return result[0].count > 0;
+	} catch (error) {
+		console.error(`❌ Error checking column ${column} in ${table}:`, error);
+		return false;
+	}
+}
+
 const authOptions = {
 	providers: [discordProvider],
 	session: {
@@ -14,45 +28,11 @@ const authOptions = {
 			try {
 				console.log('🔄 Sign-in triggered for', user.email);
 
-				// Fetch all essential data in parallel
-				const [
-					existingUser,
-					// System Config
-					shops,
-					sites,
-					regions,
-					modes,
-					// User Data
-					taskGroups,
-					profileGroups,
-					proxyGroups,
-					tasks,
-					profiles,
-					proxies,
-				] = await Promise.all([
-					queryDatabase(
-						'SELECT id, provider_id, is_first_login FROM users WHERE email = ? LIMIT 1',
-						[user.email]
-					),
-					// System Config Queries
-					queryDatabase('SELECT id, name, is_enabled FROM shops'),
-					queryDatabase('SELECT id, name, shop_id, region_id FROM sites'),
-					queryDatabase('SELECT id, name FROM regions'),
-					queryDatabase('SELECT id, name FROM nike_modes'),
-					// User Data Queries
-					queryDatabase('SELECT * FROM task_groups WHERE user_id = ?', [
-						user.id,
-					]),
-					queryDatabase('SELECT * FROM profile_groups WHERE user_id = ?', [
-						user.id,
-					]),
-					queryDatabase('SELECT * FROM proxy_groups WHERE user_id = ?', [
-						user.id,
-					]),
-					queryDatabase('SELECT * FROM tasks WHERE user_id = ?', [user.id]),
-					queryDatabase('SELECT * FROM profiles WHERE user_id = ?', [user.id]),
-					queryDatabase('SELECT * FROM proxies WHERE user_id = ?', [user.id]),
-				]);
+				// Check if user exists in DB
+				const existingUser = await queryDatabase(
+					'SELECT id, provider, provider_id, is_first_login FROM users WHERE email = ? LIMIT 1',
+					[user.email]
+				);
 
 				let userId;
 
@@ -60,6 +40,7 @@ const authOptions = {
 					const { id, provider, is_first_login, provider_id } = existingUser[0];
 					userId = provider_id;
 
+					// Ensure provider matches, update if necessary
 					if (provider !== account.provider) {
 						await queryDatabase(
 							'UPDATE users SET provider = ?, provider_id = ? WHERE id = ?',
@@ -67,48 +48,40 @@ const authOptions = {
 						);
 					}
 
+					// **First-time login setup**
 					if (is_first_login === 1) {
-						console.log(
-							`🟢 First login detected for ${userId}. Creating default task group.`
-						);
+						console.log(`🟢 First login detected for ${userId}. Creating default groups.`);
 
-						await queryDatabase(
-							`INSERT INTO task_groups (id, user_id, name, created_at) VALUES (?, ?, 'Default', NOW())`,
-							[uuidv4(), userId]
-						);
+						// Create missing default groups
+						const defaultGroups = [
+							{ table: 'task_groups', name: 'Default' },
+							{ table: 'profile_groups', name: 'Default' },
+							{ table: 'proxy_groups', name: 'Default' },
+							{ table: 'account_groups', name: 'Default' },
+						];
 
-						// Check if default profile group exists before creating
-						const existingDefaultGroup = await queryDatabase(
-							'SELECT id FROM profile_groups WHERE user_id = ? AND is_default = 1 LIMIT 1',
-							[userId]
-						);
+						for (const group of defaultGroups) {
+							const hasIsDefault = await columnExists(group.table, 'is_default');
+							const query = hasIsDefault
+								? `SELECT id FROM ${group.table} WHERE user_id = ? AND is_default = 1 LIMIT 1`
+								: `SELECT id FROM ${group.table} WHERE user_id = ? LIMIT 1`;
 
-						if (!existingDefaultGroup.length) {
-							await queryDatabase(
-								`INSERT INTO profile_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, 'Default', 1, NOW())`,
-								[uuidv4(), userId]
-							);
+							const existingGroup = await queryDatabase(query, [userId]);
+
+							if (!existingGroup.length) {
+								const insertQuery = hasIsDefault
+									? `INSERT INTO ${group.table} (id, user_id, name, is_default, created_at) VALUES (?, ?, ?, 1, NOW())`
+									: `INSERT INTO ${group.table} (id, user_id, name, created_at) VALUES (?, ?, ?, NOW())`;
+
+								await queryDatabase(insertQuery, [uuidv4(), userId, group.name]);
+							}
 						}
 
-						// Check if default proxy group exists before creating
-						const existingProxyGroup = await queryDatabase(
-							'SELECT id FROM proxy_groups WHERE user_id = ? AND is_default = 1 LIMIT 1',
-							[userId]
-						);
-
-						if (!existingProxyGroup.length) {
-							await queryDatabase(
-								`INSERT INTO proxy_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, 'Default', 1, NOW())`,
-								[uuidv4(), userId]
-							);
-						}
-
-						await queryDatabase(
-							`UPDATE users SET is_first_login = 0 WHERE id = ?`,
-							[userId]
-						);
+						// Mark first login as completed
+						await queryDatabase(`UPDATE users SET is_first_login = 0 WHERE id = ?`, [userId]);
 					}
 				} else {
+					// **New user registration**
 					userId = uuidv4();
 					await queryDatabase(
 						`INSERT INTO users (id, email, provider, provider_id, is_first_login, created_at)
@@ -116,45 +89,60 @@ const authOptions = {
 						[userId, user.email, account.provider, user.id]
 					);
 
-					await queryDatabase(
-						`INSERT INTO task_groups (id, user_id, name, created_at) VALUES (?, ?, 'Default', NOW())`,
-						[uuidv4(), userId]
-					);
+					// Create default groups for new user
+					const defaultGroups = [
+						{ table: 'task_groups', name: 'Default' },
+						{ table: 'profile_groups', name: 'Default' },
+						{ table: 'proxy_groups', name: 'Default' },
+						{ table: 'account_groups', name: 'Default' },
+					];
 
-					await queryDatabase(
-						`INSERT INTO profile_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, 'Default', 1, NOW())`,
-						[uuidv4(), userId]
-					);
+					for (const group of defaultGroups) {
+						const hasIsDefault = await columnExists(group.table, 'is_default');
+						const insertQuery = hasIsDefault
+							? `INSERT INTO ${group.table} (id, user_id, name, is_default, created_at) VALUES (?, ?, ?, 1, NOW())`
+							: `INSERT INTO ${group.table} (id, user_id, name, created_at) VALUES (?, ?, ?, NOW())`;
 
-					await queryDatabase(
-						`INSERT INTO proxy_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, 'Default', 1, NOW())`,
-						[uuidv4(), userId]
-					);
+						await queryDatabase(insertQuery, [uuidv4(), userId, group.name]);
+					}
 
-					await queryDatabase(
-						`UPDATE users SET is_first_login = 0 WHERE id = ?`,
-						[userId]
-					);
+					// Mark first login as completed
+					await queryDatabase(`UPDATE users SET is_first_login = 0 WHERE id = ?`, [userId]);
 				}
+
+				// Fetch **system config** and **user-specific data** in parallel
+				const [
+					shops,
+					sites,
+					regions,
+					modes,
+					taskGroups,
+					profileGroups,
+					proxyGroups,
+					accountGroups,
+					tasks,
+					profiles,
+					proxies,
+				] = await Promise.all([
+					queryDatabase('SELECT id, name, is_enabled FROM shops'),
+					queryDatabase('SELECT id, name, shop_id, region_id FROM sites'),
+					queryDatabase('SELECT id, name FROM regions'),
+					queryDatabase('SELECT id, name FROM nike_modes'),
+					queryDatabase('SELECT * FROM task_groups WHERE user_id = ?', [userId]),
+					queryDatabase('SELECT * FROM profile_groups WHERE user_id = ?', [userId]),
+					queryDatabase('SELECT * FROM proxy_groups WHERE user_id = ?', [userId]),
+					queryDatabase('SELECT * FROM account_groups WHERE user_id = ?', [userId]),
+					queryDatabase('SELECT * FROM tasks WHERE user_id = ?', [userId]),
+					queryDatabase('SELECT * FROM profiles WHERE user_id = ?', [userId]),
+					queryDatabase('SELECT * FROM proxies WHERE user_id = ?', [userId]),
+				]);
 
 				console.log('✅ Sign-in successful for', user.email);
 				return {
 					...user,
 					initialData: {
-						system: {
-							shops,
-							sites,
-							regions,
-							modes,
-						},
-						user: {
-							taskGroups,
-							profileGroups,
-							proxyGroups,
-							tasks,
-							profiles,
-							proxies,
-						},
+						system: { shops, sites, regions, modes },
+						user: { taskGroups, profileGroups, proxyGroups, accountGroups, tasks, profiles, proxies },
 					},
 				};
 			} catch (error) {
@@ -162,6 +150,8 @@ const authOptions = {
 				return `/auth/error?message=${encodeURIComponent(error.message)}`;
 			}
 		},
+
+		/** JWT callback ensures the correct user ID is attached */
 		async jwt({ token, user }) {
 			if (user) {
 				token.sub = user.id;
@@ -169,20 +159,24 @@ const authOptions = {
 			}
 			return token;
 		},
+
+		/** Attach user ID to session */
 		async session({ session, token }) {
 			session.user.id = token.sub ?? null;
 			return session;
 		},
+
+		/** Handles redirects properly */
 		async redirect({ url, baseUrl }) {
 			console.log('🔄 Redirect callback fired:', { url, baseUrl });
 
-			// Prevent login page from redirecting to itself
+			// Prevent login page redirect loop
 			if (url === `${baseUrl}/auth/login`) {
 				console.log('🚫 Preventing infinite redirect loop to /auth/login.');
 				return `${baseUrl}/dashboard`;
 			}
 
-			// Ensure proper redirect behavior
+			// Ensure valid redirect behavior
 			if (url.startsWith(baseUrl)) {
 				return url;
 			}
@@ -190,17 +184,17 @@ const authOptions = {
 			return `${baseUrl}/dashboard`; // Default redirect after authentication
 		},
 	},
+
 	pages: {
 		signIn: '/auth/login',
 		error: '/auth/error',
 	},
+
 	useSecureCookies: process.env.NODE_ENV === 'production',
+
 	cookies: {
 		sessionToken: {
-			name:
-				process.env.NODE_ENV === 'production'
-					? '__Secure-next-auth.session-token'
-					: 'next-auth.session-token',
+			name: process.env.NODE_ENV === 'production' ? '__Secure-next-auth.session-token' : 'next-auth.session-token',
 			options: {
 				httpOnly: true,
 				sameSite: 'lax',

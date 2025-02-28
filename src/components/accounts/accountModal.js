@@ -1,109 +1,135 @@
 'use client';
 import { useState } from 'react';
 import {
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
-    Button,
-    TextField,
-    MenuItem,
-    Select,
-    FormControl,
-    InputLabel,
+	Dialog,
+	DialogTitle,
+	DialogContent,
+	DialogActions,
+	Button,
+	TextField,
+	MenuItem,
+	Select,
+	FormControl,
+	InputLabel,
 } from '@mui/material';
 import useAccountStore from '@/store/accountStore';
+import { useSnackbar } from '@/context/snackbar';
 
 export default function AddAccountModal({ open, handleClose }) {
-    const { addAccounts, selectedGroup } = useAccountStore();
-    const [accountInput, setAccountInput] = useState('');
-    const [selectedSite, setSelectedSite] = useState('');
+	const { addAccount, selectedGroup } = useAccountStore();
+	const { showSnackbar } = useSnackbar();
+	const [accountInput, setAccountInput] = useState('');
+	const [selectedSite, setSelectedSite] = useState('');
 
-    // Predefined site options
-    const siteOptions = ['Nike', 'Footlocker', 'Adidas', 'SNKRS'];
+	// Predefined site options
+	const siteOptions = ['Nike', 'Footlocker', 'Adidas', 'SNKRS'];
 
-    // Ensure valid formatting and parsing
-    const handleSaveAccounts = () => {
-        if (!selectedSite) {
-            alert('Please select a site!');
-            return;
-        }
+	const handleSaveAccounts = async () => {
+		if (!selectedSite) {
+			showSnackbar('Please select a site!', 'error');
+			return;
+		}
 
-        const accountLines = accountInput
-            .trim()
-            .split('\n')
-            .map((line) => line.trim())
-            .filter((line) => line.length > 0); // Remove empty lines
+		const accountLines = accountInput
+			.trim()
+			.split('\n')
+			.map((line) => line.trim())
+			.filter((line) => line.length > 0);
 
-        if (accountLines.length === 0) {
-            alert('No valid accounts entered!');
-            return;
-        }
+		if (accountLines.length === 0) {
+			showSnackbar('No valid accounts entered!', 'error');
+			return;
+		}
 
-        const parsedAccounts = accountLines.map((line) => {
-            const parts = line.split(':::');
-            if (parts.length < 2) return null; // Ensure username and password exist
+		let successCount = 0;
+		let failCount = 0;
 
-            return {
-                id: Date.now() + Math.random(),
-                site: selectedSite,
-                username: parts[0] || '',
-                password: parts[1] || '',
-                proxy: parts.length > 2 ? parts[2] : 'N/A',
-                status: 'Unchecked',
-            };
-        }).filter(Boolean); // Remove invalid entries
+		// Process each account line
+		for (const line of accountLines) {
+			const parts = line.split(':::');
+			if (parts.length < 2) {
+				showSnackbar(
+					'Invalid format! Use: email:::password:::proxy (proxy optional)',
+					'error'
+				);
+				return;
+			}
 
-        if (parsedAccounts.length === 0) {
-            alert('Invalid format! Use: username:::password:::proxy (proxy optional)');
-            return;
-        }
+			const accountData = {
+				site: selectedSite,
+				email: parts[0],
+				password: parts[1],
+				proxy: parts[2] || null,
+				status: 'pending',
+			};
 
-        // Ensure `parsedAccounts` is an array before passing
-        addAccounts(selectedGroup.id, parsedAccounts);
+			try {
+				await addAccount(accountData);
+				successCount++;
+			} catch (error) {
+				console.error('Error adding account:', error);
+				failCount++;
+			}
+		}
 
-        // Clear input and close modal
-        setAccountInput('');
-        handleClose();
-    };
+		// Show summary message
+		if (successCount > 0) {
+			showSnackbar(
+				`✅ Successfully added ${successCount} account${
+					successCount > 1 ? 's' : ''
+				}` + (failCount > 0 ? ` (${failCount} failed)` : ''),
+				failCount > 0 ? 'warning' : 'success'
+			);
+		} else {
+			showSnackbar('❌ Failed to add accounts', 'error');
+		}
 
-    return (
-        <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
-            <DialogTitle>Add Accounts</DialogTitle>
-            <DialogContent>
-                {/* Site Selection Dropdown */}
-                <FormControl fullWidth sx={{ mb: 2 }}>
-                    <InputLabel>Select a Site</InputLabel>
-                    <Select
-                        value={selectedSite}
-                        onChange={(e) => setSelectedSite(e.target.value)}
-                        label="Select a Site"
-                    >
-                        {siteOptions.map((site) => (
-                            <MenuItem key={site} value={site}>
-                                {site}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
+		setAccountInput('');
+		setSelectedSite('');
+		handleClose();
+	};
 
-                {/* Account Input Field */}
-                <TextField
-                    label="Account List"
-                    multiline
-                    rows={10}
-                    fullWidth
-                    value={accountInput}
-                    onChange={(e) => setAccountInput(e.target.value)}
-                    placeholder="Enter accounts in format: username:::password:::proxy (proxy optional)"
-                />
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={handleClose} color="secondary">Cancel</Button>
-                <Button onClick={handleSaveAccounts} color="primary" variant="contained">
-                    Add Accounts
-                </Button>
-            </DialogActions>
-        </Dialog>
-    );
+	return (
+		<Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
+			<DialogTitle>Add Accounts</DialogTitle>
+			<DialogContent>
+				<FormControl fullWidth sx={{ mb: 2, mt: 1 }}>
+					<InputLabel>Site</InputLabel>
+					<Select
+						value={selectedSite}
+						label="Site"
+						onChange={(e) => setSelectedSite(e.target.value)}
+					>
+						{siteOptions.map((site) => (
+							<MenuItem key={site} value={site}>
+								{site}
+							</MenuItem>
+						))}
+					</Select>
+				</FormControl>
+
+				<TextField
+					fullWidth
+					multiline
+					rows={10}
+					value={accountInput}
+					onChange={(e) => setAccountInput(e.target.value)}
+					placeholder="Enter accounts in format: email:::password:::proxy"
+					variant="outlined"
+				/>
+			</DialogContent>
+			<DialogActions>
+				<Button onClick={handleClose} color="secondary">
+					Cancel
+				</Button>
+				<Button
+					onClick={handleSaveAccounts}
+					color="primary"
+					variant="contained"
+				>
+					Add Accounts
+				</Button>
+			</DialogActions>
+		</Dialog>
+	);
 }
