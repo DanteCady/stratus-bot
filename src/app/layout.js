@@ -84,7 +84,7 @@ export default function RootLayout({ children }) {
 											<AppBar
 												position="static"
 												color="transparent"
-												sx={{	
+												sx={{
 													padding: '10px 20px',
 													display: 'flex',
 													justifyContent: 'space-between',
@@ -124,12 +124,14 @@ export default function RootLayout({ children }) {
 															/>
 														)}
 													</Box>
-													<IconButton
+
+													{/* TODO: Re-enable Theme Toggle Button */}
+													{/* <IconButton
 														onClick={toggleTheme}
 														sx={{ color: 'theme.palette.primary.main' }}
 													>
 														{isDarkMode ? <LightMode /> : <DarkMode />}
-													</IconButton>
+													</IconButton> */}
 												</Toolbar>
 											</AppBar>
 										)}
