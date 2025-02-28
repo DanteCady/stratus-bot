@@ -169,6 +169,27 @@ const useProxyStore = create((set, get) => ({
 		set({ selectedProxyGroup: group });
 		get().fetchProxies(group.id);
 	},
+
+	duplicateProxyGroup: async (groupId) => {
+		try {
+			const response = await fetch(`/api/proxy-groups/${groupId}/duplicate`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
+
+			if (!response.ok) {
+				throw new Error('Failed to duplicate proxy group');
+			}
+
+			// Refresh the groups list
+			await get().fetchProxyGroups();
+		} catch (error) {
+			console.error('Error duplicating proxy group:', error);
+			throw error;
+		}
+	},
 }));
 
 export default useProxyStore;

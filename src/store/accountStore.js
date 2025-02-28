@@ -100,6 +100,27 @@ const useAccountStore = create((set, get) => ({
 			throw error;
 		}
 	},
+
+	duplicateAccountGroup: async (groupId) => {
+		try {
+			const response = await fetch(`/api/account-groups/${groupId}/duplicate`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
+
+			if (!response.ok) {
+				throw new Error('Failed to duplicate account group');
+			}
+
+			// Refresh the groups list
+			await get().fetchAccountGroups();
+		} catch (error) {
+			console.error('Error duplicating account group:', error);
+			throw error;
+		}
+	},
 }));
 
 export default useAccountStore;
