@@ -34,11 +34,18 @@ export default function AccountTable({ onEdit }) {
 		);
 	}
 
-	// Toggle selection
-	const handleSelect = (id) => {
+	const handleSelect = (account_id) => {
 		setSelectedAccounts((prev) =>
-			prev.includes(id) ? prev.filter((rowId) => rowId !== id) : [...prev, id]
+			prev.includes(account_id)
+				? prev.filter((rowId) => rowId !== account_id)
+				: [...prev, account_id]
 		);
+	};
+
+	
+	const handleDelete = (account_id) => {
+		deleteAccount(account_id);
+		setSelectedAccounts((prev) => prev.filter((id) => id !== account_id));
 	};
 
 	// Truncate proxy for display
@@ -62,7 +69,7 @@ export default function AccountTable({ onEdit }) {
 										setSelectedAccounts(
 											selectedAccounts.length === accounts.length
 												? []
-												: accounts.map((acc) => acc.id)
+												: accounts.map((acc) => acc.account_id) 
 										)
 									}
 								/>
@@ -78,11 +85,11 @@ export default function AccountTable({ onEdit }) {
 					<TableBody>
 						{accounts.length > 0 ? (
 							accounts.map((account) => (
-								<TableRow key={account.id}>
+								<TableRow key={account.account_id}> 
 									<TableCell padding="checkbox">
 										<Checkbox
-											checked={selectedAccounts.includes(account.id)}
-											onChange={() => handleSelect(account.id)}
+											checked={selectedAccounts.includes(account.account_id)}
+											onChange={() => handleSelect(account.account_id)}
 										/>
 									</TableCell>
 									<TableCell>{account.site}</TableCell>
@@ -111,7 +118,7 @@ export default function AccountTable({ onEdit }) {
 										<Tooltip title="Delete">
 											<IconButton
 												color="error"
-												onClick={() => deleteAccount(account.id)}
+												onClick={() => handleDelete(account.account_id)} 
 											>
 												<DeleteIcon />
 											</IconButton>

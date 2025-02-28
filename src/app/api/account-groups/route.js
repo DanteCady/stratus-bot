@@ -16,7 +16,7 @@ export async function GET(req) {
 
 		// Fetch existing account groups
 		const accountGroups = await queryDatabase(
-			'SELECT * FROM account_groups WHERE user_id = ?',
+			'SELECT account_group_id, user_id, name, is_default, created_at FROM account_groups WHERE user_id = ?',
 			[userId]
 		);
 
@@ -24,13 +24,13 @@ export async function GET(req) {
 		if (accountGroups.length === 0) {
 			const defaultGroupId = uuidv4();
 			await queryDatabase(
-				'INSERT INTO account_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, ?, 1, NOW())',
-				[defaultGroupId, userId, 'Default']
+				'INSERT INTO account_groups (account_group_id, user_id, name, is_default, created_at) VALUES (?, ?, "Default", 1, NOW())',
+				[defaultGroupId, userId]
 			);
 
 			// Fetch the newly created default group
 			const newGroups = await queryDatabase(
-				'SELECT * FROM account_groups WHERE user_id = ?',
+				'SELECT account_group_id, user_id, name, is_default, created_at FROM account_groups WHERE user_id = ?',
 				[userId]
 			);
 			return NextResponse.json({ accountGroups: newGroups });
@@ -56,14 +56,14 @@ export async function POST(req) {
 
 		const { name } = await req.json();
 		const userId = session.user.id;
-		const accountGroupId = uuidv4();
+		const accountGroupId = uuidv4(); 
 
 		await queryDatabase(
-			'INSERT INTO account_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, ?, 0, NOW())',
+			'INSERT INTO account_groups (account_group_id, user_id, name, is_default, created_at) VALUES (?, ?, ?, 0, NOW())',
 			[accountGroupId, userId, name]
 		);
 
-		return NextResponse.json({ accountGroupId });
+		return NextResponse.json({ account_group_id: accountGroupId });
 	} catch (error) {
 		console.error('❌ Error creating account group:', error);
 		return NextResponse.json(

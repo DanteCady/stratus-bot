@@ -1397,3 +1397,2339 @@ Error: Truncated incorrect DOUBLE value: '7806bf03-4d14-44d4-b64f-f7fe950bf0b6'
     at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
     at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
 
+[2025-02-28T17:35:09.052Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:35:09.138Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:35:09.139Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:27.032Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:27.097Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:27.102Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:27.102Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:27.096Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:27.101Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:38.965Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:39.140Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:39.190Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:39.198Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:39.191Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:39.192Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:39.202Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:48.571Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:48.695Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT id, name, is_enabled FROM shops | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:48.832Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM account_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:48.923Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:48.988Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:48.990Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:48.989Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:48.991Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:36:48.992Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:12.390Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:12.652Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM account_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:12.748Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT id, name, is_enabled FROM shops | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:12.837Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:12.904Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:12.905Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:12.906Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:12.907Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:12.904Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:29.390Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:29.438Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:29.439Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:29.440Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:29.441Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:29.442Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:34.513Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:34.747Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM account_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:34.830Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT id, name, is_enabled FROM shops | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:34.921Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:34.977Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:34.979Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:34.978Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:34.979Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:37:34.980Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:38:04.734Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:38:29.460Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:38:29.549Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:38:29.551Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:38:29.552Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:38:29.553Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:38:29.554Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:38:34.734Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:39:04.742Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:39:34.736Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:40:31.865Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:40:34.061Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:40:33.988Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:40:34.062Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:40:34.063Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:40:34.063Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:40:34.064Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:40:34.489Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:40:41.928Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:40:42.276Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT id, name, is_enabled FROM shops | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:40:42.367Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM account_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:40:42.482Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:40:42.567Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:40:42.571Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:40:42.572Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:40:42.573Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:40:42.577Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:41:10.732Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:41:40.743Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:42:10.731Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:42:40.737Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:43:55.317Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:43:55.518Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:43:55.585Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:43:55.587Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:43:55.586Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:43:55.587Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:43:55.588Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:44:10.740Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:44:40.729Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:33.436Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:33.987Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:34.050Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:34.053Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:34.053Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:34.050Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:34.051Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:38.024Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:38.116Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT id, name, is_enabled FROM shops | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:38.314Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT account_group_id, user_id, name, is_default, created_at FROM account_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:38.466Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:38.541Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:38.542Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:38.542Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:38.543Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:38.544Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:55.328Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:55.535Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT account_group_id, user_id, name, is_default, created_at FROM account_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:55.624Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT id, name, is_enabled FROM shops | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:55.761Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:55.820Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:55.824Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:55.821Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:55.825Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:45:55.822Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:46:25.742Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:46:55.772Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:28.801Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:35.169Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:35.212Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:35.213Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:35.213Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:35.214Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:35.214Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:39.387Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:40.150Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT id, name, is_enabled FROM shops | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:40.197Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT account_group_id, user_id, name, is_default, created_at FROM account_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:40.758Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:40.803Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:40.808Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:40.813Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:40.811Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:40.812Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:54.919Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:54.979Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:54.980Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:54.980Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:54.981Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:47:54.981Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:48:04.561Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:48:21.591Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:48:21.637Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:48:21.636Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:48:21.637Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:48:21.638Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:48:21.638Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-02-28T17:48:37.787Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+

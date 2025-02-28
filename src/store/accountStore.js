@@ -61,18 +61,31 @@ const useAccountStore = create((set, get) => ({
 	},
 
 	// Fetch accounts for selected group
-	fetchAccounts: async (groupId) => {
-		try {
-			const response = await fetch(`/api/accounts?groupId=${groupId}`);
-			if (!response.ok) throw new Error('Failed to fetch accounts.');
-
-			const { accounts } = await response.json();
-			set({ accounts });
-		} catch (error) {
-			console.error('❌ Error fetching accounts:', error);
-			set({ accounts: [] });
+fetchAccounts: async (groupId) => {
+	try {
+		if (!groupId) {
+			console.error('❌ Error: Missing groupId for fetching accounts.');
+			return;
 		}
-	},
+
+		console.log(`🔍 Fetching accounts for group: ${groupId}`);
+
+		const response = await fetch(`/api/accounts?groupId=${groupId}`);
+		if (!response.ok) {
+			const errorText = await response.text();
+			throw new Error(`Failed to fetch accounts: ${errorText}`);
+		}
+
+		const { accounts } = await response.json();
+		console.log('✅ Accounts fetched successfully:', accounts);
+
+		// Update Zustand state
+		set({ accounts });
+	} catch (error) {
+		console.error('❌ Error fetching accounts:', error);
+		set({ accounts: [] }); // Reset accounts on error
+	}
+},
 
 	// Add account to selected group
 	addAccount: async (accountData) => {

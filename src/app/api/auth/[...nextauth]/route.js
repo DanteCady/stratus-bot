@@ -3,7 +3,7 @@ import { discordProvider } from '@/app/providers/discordProvider';
 import { queryDatabase } from '@/utils/db';
 import { v4 as uuidv4 } from 'uuid';
 
-/** ✅ Function to check if column exists in a table */
+/** Function to check if column exists in a table */
 async function columnExists(table, column) {
 	try {
 		const result = await queryDatabase(
@@ -28,7 +28,7 @@ const authOptions = {
 			try {
 				console.log('🔄 Sign-in triggered for', user.email);
 
-				// ✅ Check if user exists in the database
+				// Check if user exists in the database
 				const existingUser = await queryDatabase(
 					'SELECT provider_id, is_first_login FROM users WHERE email = ? LIMIT 1',
 					[user.email]
@@ -46,7 +46,7 @@ const authOptions = {
 							`🟢 First login detected for ${userId}. Creating default groups.`
 						);
 
-						// ✅ Create missing default groups
+						// Create missing default groups
 						const defaultGroups = [
 							{
 								table: 'task_groups',
@@ -84,7 +84,7 @@ const authOptions = {
 							}
 						}
 
-						// ✅ Mark first login as completed
+						// Mark first login as completed
 						await queryDatabase(
 							`UPDATE users SET is_first_login = 0 WHERE provider_id = ?`,
 							[userId]
@@ -100,7 +100,7 @@ const authOptions = {
 						[uuidv4(), user.email, account.provider, userId]
 					);
 
-					// ✅ Create default groups for new user
+					// Create default groups for new user
 					const defaultGroups = [
 						{ table: 'task_groups', column: 'task_group_id', name: 'Default' },
 						{
@@ -127,14 +127,14 @@ const authOptions = {
 						);
 					}
 
-					// ✅ Mark first login as completed
+					// Mark first login as completed
 					await queryDatabase(
 						`UPDATE users SET is_first_login = 0 WHERE provider_id = ?`,
 						[userId]
 					);
 				}
 
-				// ✅ Fetch system and user-specific data
+				// Fetch system and user-specific data
 				const [
 					shops,
 					sites,

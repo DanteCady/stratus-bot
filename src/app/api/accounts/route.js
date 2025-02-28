@@ -8,19 +8,17 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 export async function GET(req) {
 	try {
 		const { searchParams } = new URL(req.url);
-		const accountGroupId = searchParams.get('accountGroupId'); // Updated param name
+		const account_group_id = searchParams.get('groupId'); // Ensure correct param is used
 
-		if (!accountGroupId) {
-			return NextResponse.json(
-				{ error: 'Missing accountGroupId parameter' },
-				{ status: 400 }
-			);
+		if (!account_group_id) {
+			return NextResponse.json({ error: 'Missing account_group_id' }, { status: 400 });
 		}
 
 		const accounts = await queryDatabase(
-			'SELECT id, account_group_id, site, email, status, proxy, created_at FROM accounts WHERE account_group_id = ?',
-			[accountGroupId]
+			'SELECT * FROM accounts WHERE account_group_id = ?',
+			[account_group_id]
 		);
+
 		return NextResponse.json({ accounts });
 	} catch (error) {
 		console.error('❌ Error fetching accounts:', error);
