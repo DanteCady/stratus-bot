@@ -17,7 +17,7 @@ const useAppStore = create((set, get) => ({
         proxies: [],
     },
 
-    // ✅ Fetch user data from the new API endpoint
+    // Fetch user data from the API endpoint
     fetchUserData: async () => {
         try {
             console.log("🔄 Fetching user data...");

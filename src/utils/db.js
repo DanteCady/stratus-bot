@@ -49,7 +49,7 @@ export async function queryDatabase(query, values = []) {
 
         throw new Error('❌ Database query execution failed. Check logs for details.');
     } finally {
-        if (connection) connection.release();  // ✅ Ensure connection is always released
+        if (connection) connection.release();  // Ensure connection is always released
     }
 }
 

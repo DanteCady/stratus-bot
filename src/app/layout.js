@@ -17,12 +17,14 @@ import { DarkMode, LightMode } from '@mui/icons-material';
 import { navigationMenuItems } from '@/app/config/navigationMenu';
 import { DropdownDataProvider } from '@/context/dropdownData';
 import { SnackbarProvider } from '@/context/snackbar';
-import SessionInitializer from '@/components/global/SessionInitializer'; // ✅ Import the new component
+import SessionInitializer from '@/components/global/sessionInitializer';
 
 export default function RootLayout({ children }) {
 	const pathname = usePathname();
 	const pageName = pathname.split('/').pop().toUpperCase();
-	const currentPage = navigationMenuItems.find((item) => item.path === pathname);
+	const currentPage = navigationMenuItems.find(
+		(item) => item.path === pathname
+	);
 	const PageIcon = currentPage ? currentPage.icon : null;
 
 	// Default dark mode enabled
@@ -43,28 +45,46 @@ export default function RootLayout({ children }) {
 		localStorage.setItem('stratus-theme', newTheme ? 'dark' : 'light');
 	};
 
-	const isLoginOrErrorPage = pathname === '/auth/login' || pathname === '/auth/error' || pathname === '/splash';
+	const isFullscreenPage =
+		pathname === '/auth/login' ||
+		pathname === '/auth/error' ||
+		pathname === '/splash' ||
+		pathname === '/debug';
 
 	return (
 		<html lang="en" style={{ height: '100%', overflow: 'hidden' }}>
 			<body style={{ height: '100%', margin: 0, overflow: 'hidden' }}>
-				{/* ✅ Ensure SessionProvider wraps everything */}
 				<SessionProvider>
-					<SessionInitializer /> {/* ✅ This will now fetch user data correctly */}
+					<SessionInitializer />
 					<ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
 						<CssBaseline />
 						<SnackbarProvider>
 							<DropdownDataProvider>
-								<Box sx={{ display: 'flex', height: '100vh', width: '100vw', overflow: 'hidden' }}>
+								<Box
+									sx={{
+										display: 'flex',
+										height: '100vh',
+										width: '100vw',
+										overflow: 'hidden',
+									}}
+								>
 									{/* Hide Sidebar on Login Page */}
-									{!isLoginOrErrorPage && <Sidebar />}
-									<Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+									{!isFullscreenPage && <Sidebar />}
+									<Box
+										sx={{
+											flexGrow: 1,
+											display: 'flex',
+											flexDirection: 'column',
+											height: '100vh',
+											overflow: 'hidden',
+										}}
+									>
 										{/* Hide AppBar on Login Page */}
-										{!isLoginOrErrorPage && (
+										{!isFullscreenPage && (
 											<AppBar
 												position="static"
 												color="transparent"
-												sx={{
+												sx={{	
 													padding: '10px 20px',
 													display: 'flex',
 													justifyContent: 'space-between',
@@ -72,14 +92,42 @@ export default function RootLayout({ children }) {
 													boxShadow: 0,
 												}}
 											>
-												<Toolbar sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-													<Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-														<Typography variant="h6" sx={{ fontWeight: 'bold', color: 'theme.palette.primary.main' }}>
+												<Toolbar
+													sx={{
+														display: 'flex',
+														justifyContent: 'space-between',
+														width: '100%',
+													}}
+												>
+													<Box
+														sx={{
+															display: 'flex',
+															alignItems: 'center',
+															gap: 1,
+														}}
+													>
+														<Typography
+															variant="h6"
+															sx={{
+																fontWeight: 'bold',
+																color: 'theme.palette.primary.main',
+															}}
+														>
 															{pageName}
 														</Typography>
-														{PageIcon && <PageIcon sx={{ fontSize: 28, color: 'theme.palette.primary.main' }} />}
+														{PageIcon && (
+															<PageIcon
+																sx={{
+																	fontSize: 28,
+																	color: 'theme.palette.primary.main',
+																}}
+															/>
+														)}
 													</Box>
-													<IconButton onClick={toggleTheme} sx={{ color: 'theme.palette.primary.main' }}>
+													<IconButton
+														onClick={toggleTheme}
+														sx={{ color: 'theme.palette.primary.main' }}
+													>
 														{isDarkMode ? <LightMode /> : <DarkMode />}
 													</IconButton>
 												</Toolbar>

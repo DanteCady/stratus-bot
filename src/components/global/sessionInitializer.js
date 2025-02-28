@@ -14,5 +14,5 @@ export default function SessionInitializer() {
         }
     }, [session, fetchUserData]);
 
-    return null; // ✅ This component runs logic but renders nothing
+    return null; // This component runs logic but renders nothing
 }
