@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import ProfileSidebar from '@/components/profiles/profileSidebar';
 import ProfileModal from '@/components/profiles/profileModal';
 import ProfileControls from '@/components/profiles/profileControls';
@@ -54,6 +54,9 @@ export default function Profiles() {
 
 			{/* Main Content */}
 			<Box sx={{ flexGrow: 1, p: 3 }}>
+				<Typography variant="h4" sx={{ mb: 2 }}>
+					Profiles ({selectedProfileGroup?.name || "No Group Selected"})
+				</Typography>
 				{/* Profile Controls */}
 				<ProfileControls openModal={() => setOpenModal(true)} />
 
