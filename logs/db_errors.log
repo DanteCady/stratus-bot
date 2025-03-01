@@ -4603,3 +4603,1709 @@ Error: Cannot add or update a child row: a foreign key constraint fails (`stratu
     at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
     at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
 
+[2025-03-01T04:18:32.507Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:18:32.567Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:18:32.568Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:20:09.824Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: INSERT INTO tasks (
+                id, 
+                user_id,
+                task_group_id, 
+                product, 
+                monitor_delay, 
+                error_delay, 
+                mode_id, 
+                status, 
+                site_id,
+                proxy_id,
+                created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW()) | Params: ["62814eda-a2c5-40ec-8e82-a96dfb147d86","292444939412045825","aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","+jordan",3500,3500,1,"pending","c9790b72-f621-11ef-a8b9-d8bbc191788f",null]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:20:14.818Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: INSERT INTO tasks (
+                id, 
+                user_id,
+                task_group_id, 
+                product, 
+                monitor_delay, 
+                error_delay, 
+                mode_id, 
+                status, 
+                site_id,
+                proxy_id,
+                created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW()) | Params: ["90ef43d1-6127-45b9-9906-e39364972e3e","292444939412045825","aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","+jordan",3500,3500,1,"pending","c9790b72-f621-11ef-a8b9-d8bbc191788f",null]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:20:28.283Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:20:58.278Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:21:28.285Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:21:58.283Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:22:28.280Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:22:58.277Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:23:28.531Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:23:52.408Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:23:52.478Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:23:52.480Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:23:52.481Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:23:52.481Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:23:52.479Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:23:58.526Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:23:58.588Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT task_group_id, name, is_default FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:23:58.649Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT id, name, shop_id, is_enabled FROM shops | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:23:58.845Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT task_group_id, name, is_default FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:23:58.917Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:23:58.989Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:23:58.990Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:23:58.990Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:23:58.992Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:23:58.991Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:24:27.334Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:24:49.521Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT 1 | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:24:49.641Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT task_group_id, name, is_default FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:24:49.783Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT id, name, shop_id, is_enabled FROM shops | Params: []
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:24:49.944Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT task_group_id, name, is_default FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:24:50.052Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM task_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:24:50.105Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxy_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:24:50.105Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profile_groups WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:24:50.107Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM proxies WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:24:50.106Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM tasks WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:24:50.106Z] ERROR: Too many connections | Code: ER_CON_COUNT_ERROR | Query: SELECT * FROM profiles WHERE user_id = ? | Params: ["292444939412045825"]
+Stack Trace:
+Error: Too many connections
+    at Packet.asError (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.eval [as onPacket] (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (webpack-internal:///(rsc)/./node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.eval (webpack-internal:///(rsc)/./node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+
+[2025-03-01T04:27:32.407Z] ERROR: Data truncated for column 'id' at row 1 | Code: WARN_DATA_TRUNCATED | Query: INSERT INTO tasks (
+                id, 
+                user_id,
+                task_group_id, 
+                product, 
+                monitor_delay, 
+                error_delay, 
+                mode_id, 
+                status, 
+                site_id,
+                proxy_id,
+                created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW()) | Params: ["0a481dbb-319f-46e1-ab20-53b98875319d","292444939412045825","aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","2TTP-QZF9-MO1O",3500,3500,"c1562ad7-f623-11ef-a8b9-d8bbc191788f","pending","c9793b10-f621-11ef-a8b9-d8bbc191788f",null]
+Stack Trace:
+Error: Data truncated for column 'id' at row 1
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:41:9)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:30:42.652Z] ERROR: Unknown column 'name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT id, name, site_id, region_id FROM sites | Params: []
+Stack Trace:
+Error: Unknown column 'name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/system/config/route.js:23:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:30:45.641Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:30:45.691Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:30:46.525Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["7df1ae4b-af2c-45b6-8ad4-2c93f02a1fa5","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:30:46.601Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["7df1ae4b-af2c-45b6-8ad4-2c93f02a1fa5","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:30:47.328Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:30:47.383Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:33:00.112Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["7df1ae4b-af2c-45b6-8ad4-2c93f02a1fa5","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:33:00.180Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["7df1ae4b-af2c-45b6-8ad4-2c93f02a1fa5","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:33:00.503Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:33:00.599Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:34:13.574Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["7df1ae4b-af2c-45b6-8ad4-2c93f02a1fa5","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:34:13.631Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["7df1ae4b-af2c-45b6-8ad4-2c93f02a1fa5","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:34:13.689Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["7df1ae4b-af2c-45b6-8ad4-2c93f02a1fa5","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:34:14.100Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:34:14.169Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:34:14.244Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:35:51.347Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:35:51.422Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:35:55.338Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["7df1ae4b-af2c-45b6-8ad4-2c93f02a1fa5","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:35:55.409Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["7df1ae4b-af2c-45b6-8ad4-2c93f02a1fa5","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:35:55.479Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["7df1ae4b-af2c-45b6-8ad4-2c93f02a1fa5","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:35:56.170Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:35:56.235Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:35:56.289Z] ERROR: Unknown column 's.name' in 'field list' | Code: ER_BAD_FIELD_ERROR | Query: SELECT t.*, s.name as site_name 
+             FROM tasks t 
+             LEFT JOIN sites s ON t.site_id = s.id 
+             WHERE t.task_group_id = ? AND t.user_id = ? 
+             ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Unknown column 's.name' in 'field list'
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:39:48.014Z] ERROR: Table 'stratusbot.modes' doesn't exist | Code: ER_NO_SUCH_TABLE | Query: SELECT t.*, s.site_name, m.mode_name
+			 FROM tasks t 
+			 LEFT JOIN sites s ON t.site_id = s.site_id
+			 LEFT JOIN modes m ON t.mode_id = m.mode_id
+			 WHERE t.task_group_id = ? AND t.user_id = ? 
+			 ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Table 'stratusbot.modes' doesn't exist
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:39:48.083Z] ERROR: Table 'stratusbot.modes' doesn't exist | Code: ER_NO_SUCH_TABLE | Query: SELECT t.*, s.site_name, m.mode_name
+			 FROM tasks t 
+			 LEFT JOIN sites s ON t.site_id = s.site_id
+			 LEFT JOIN modes m ON t.mode_id = m.mode_id
+			 WHERE t.task_group_id = ? AND t.user_id = ? 
+			 ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Table 'stratusbot.modes' doesn't exist
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:39:51.209Z] ERROR: Table 'stratusbot.modes' doesn't exist | Code: ER_NO_SUCH_TABLE | Query: SELECT t.*, s.site_name, m.mode_name
+			 FROM tasks t 
+			 LEFT JOIN sites s ON t.site_id = s.site_id
+			 LEFT JOIN modes m ON t.mode_id = m.mode_id
+			 WHERE t.task_group_id = ? AND t.user_id = ? 
+			 ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Table 'stratusbot.modes' doesn't exist
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:39:51.267Z] ERROR: Table 'stratusbot.modes' doesn't exist | Code: ER_NO_SUCH_TABLE | Query: SELECT t.*, s.site_name, m.mode_name
+			 FROM tasks t 
+			 LEFT JOIN sites s ON t.site_id = s.site_id
+			 LEFT JOIN modes m ON t.mode_id = m.mode_id
+			 WHERE t.task_group_id = ? AND t.user_id = ? 
+			 ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Table 'stratusbot.modes' doesn't exist
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:39:52.711Z] ERROR: Table 'stratusbot.modes' doesn't exist | Code: ER_NO_SUCH_TABLE | Query: SELECT t.*, s.site_name, m.mode_name
+			 FROM tasks t 
+			 LEFT JOIN sites s ON t.site_id = s.site_id
+			 LEFT JOIN modes m ON t.mode_id = m.mode_id
+			 WHERE t.task_group_id = ? AND t.user_id = ? 
+			 ORDER BY t.created_at DESC | Params: ["7df1ae4b-af2c-45b6-8ad4-2c93f02a1fa5","292444939412045825"]
+Stack Trace:
+Error: Table 'stratusbot.modes' doesn't exist
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:39:52.772Z] ERROR: Table 'stratusbot.modes' doesn't exist | Code: ER_NO_SUCH_TABLE | Query: SELECT t.*, s.site_name, m.mode_name
+			 FROM tasks t 
+			 LEFT JOIN sites s ON t.site_id = s.site_id
+			 LEFT JOIN modes m ON t.mode_id = m.mode_id
+			 WHERE t.task_group_id = ? AND t.user_id = ? 
+			 ORDER BY t.created_at DESC | Params: ["7df1ae4b-af2c-45b6-8ad4-2c93f02a1fa5","292444939412045825"]
+Stack Trace:
+Error: Table 'stratusbot.modes' doesn't exist
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:39:52.837Z] ERROR: Table 'stratusbot.modes' doesn't exist | Code: ER_NO_SUCH_TABLE | Query: SELECT t.*, s.site_name, m.mode_name
+			 FROM tasks t 
+			 LEFT JOIN sites s ON t.site_id = s.site_id
+			 LEFT JOIN modes m ON t.mode_id = m.mode_id
+			 WHERE t.task_group_id = ? AND t.user_id = ? 
+			 ORDER BY t.created_at DESC | Params: ["7df1ae4b-af2c-45b6-8ad4-2c93f02a1fa5","292444939412045825"]
+Stack Trace:
+Error: Table 'stratusbot.modes' doesn't exist
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:39:53.318Z] ERROR: Table 'stratusbot.modes' doesn't exist | Code: ER_NO_SUCH_TABLE | Query: SELECT t.*, s.site_name, m.mode_name
+			 FROM tasks t 
+			 LEFT JOIN sites s ON t.site_id = s.site_id
+			 LEFT JOIN modes m ON t.mode_id = m.mode_id
+			 WHERE t.task_group_id = ? AND t.user_id = ? 
+			 ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Table 'stratusbot.modes' doesn't exist
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:39:53.370Z] ERROR: Table 'stratusbot.modes' doesn't exist | Code: ER_NO_SUCH_TABLE | Query: SELECT t.*, s.site_name, m.mode_name
+			 FROM tasks t 
+			 LEFT JOIN sites s ON t.site_id = s.site_id
+			 LEFT JOIN modes m ON t.mode_id = m.mode_id
+			 WHERE t.task_group_id = ? AND t.user_id = ? 
+			 ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Table 'stratusbot.modes' doesn't exist
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+
+[2025-03-01T04:39:53.421Z] ERROR: Table 'stratusbot.modes' doesn't exist | Code: ER_NO_SUCH_TABLE | Query: SELECT t.*, s.site_name, m.mode_name
+			 FROM tasks t 
+			 LEFT JOIN sites s ON t.site_id = s.site_id
+			 LEFT JOIN modes m ON t.mode_id = m.mode_id
+			 WHERE t.task_group_id = ? AND t.user_id = ? 
+			 ORDER BY t.created_at DESC | Params: ["aa0c0767-bab8-4017-b6ee-eb53fd2b44f8","292444939412045825"]
+Stack Trace:
+Error: Table 'stratusbot.modes' doesn't exist
+    at PromisePoolConnection.execute (webpack-internal:///(rsc)/./node_modules/mysql2/lib/promise/connection.js:47:22)
+    at queryDatabase (webpack-internal:///(rsc)/./src/utils/db.js:41:44)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/tasks/route.js:104:23)
+    at async AppRouteRouteModule.do (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:32847)
+    at async AppRouteRouteModule.handle (G:\Dev\Personal\stratus-bot\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:10:39868)
+    at async doRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1452:42)
+    at async responseGenerator (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1822:28)
+    at async DevServer.renderToResponseWithComponentsImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:1832:28)
+    at async DevServer.renderPageComponent (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2259:24)
+    at async DevServer.renderToResponseImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:2297:32)
+    at async DevServer.pipeImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:959:25)
+    at async NextNodeServer.handleCatchallRenderRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\next-server.js:281:17)
+    at async DevServer.handleRequestImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\base-server.js:853:17)
+    at async G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:371:20
+    at async Span.traceAsyncFn (G:\Dev\Personal\stratus-bot\node_modules\next\dist\trace\trace.js:153:20)
+    at async DevServer.handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\dev\next-dev-server.js:368:24)
+    at async invokeRender (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:230:21)
+    at async handleRequest (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:408:24)
+    at async requestHandlerImpl (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\router-server.js:432:13)
+    at async Server.requestListener (G:\Dev\Personal\stratus-bot\node_modules\next\dist\server\lib\start-server.js:146:13)
+

@@ -44,20 +44,27 @@ export default function DynamicModal({
 	const [isSaving, setIsSaving] = useState(false);
 	const [showFields, setShowFields] = useState(false);
 
-	// Load editing task data
+	// Populate fields when editing
 	useEffect(() => {
 		if (editingTask) {
-			setSite(editingTask.site);
-			setProduct(editingTask.product);
-			setMode(editingTask.mode);
-			setProxyList(editingTask.proxy);
-			setProfile(editingTask.profile);
-			setMonitorDelay(editingTask.monitorDelay);
-			setErrorDelay(editingTask.errorDelay);
-			setTaskAmount(editingTask.taskAmount);
-			setShowFields(true);
-		} else if (!open) {
-			// Reset form when modal is closed
+			// Find the full site and mode objects from dropdownData
+			const selectedSite = dropdownData?.sites?.find(
+				(s) => s.site_id === editingTask.site_id
+			);
+			const selectedMode = dropdownData?.modes?.find(
+				(m) => m.mode_id === editingTask.mode_id
+			);
+
+			setSite(selectedSite?.site_name || '');
+			setProduct(editingTask.product || '');
+			setMode(selectedMode?.mode_name || '');
+			setProxyList(editingTask.proxy_id || '');
+			setProfile(editingTask.profile_id || '');
+			setMonitorDelay(editingTask.monitor_delay || 3500);
+			setErrorDelay(editingTask.error_delay || 3500);
+			setTaskAmount(1); // Reset to 1 when editing
+		} else {
+			// Reset form when not editing
 			setSite('');
 			setProduct('');
 			setMode('');
@@ -66,9 +73,15 @@ export default function DynamicModal({
 			setMonitorDelay(3500);
 			setErrorDelay(3500);
 			setTaskAmount(1);
-			setShowFields(false);
 		}
-	}, [open, editingTask]);
+	}, [editingTask, dropdownData]);
+
+	// Debug the sites data when it changes
+	useEffect(() => {
+		if (dropdownData?.sites) {
+			console.log('Available sites data:', dropdownData.sites);
+		}
+	}, [dropdownData]);
 
 	// Handle site selection
 	const handleSiteSelection = (value) => {
@@ -78,69 +91,109 @@ export default function DynamicModal({
 
 	// Save task
 	const handleSaveTask = async () => {
+		console.log('🟡 Attempting to save task...');
+		console.log('Current site selection:', site);
+		console.log('Available sites:', dropdownData.sites);
+
+		if (!selectedTaskGroup?.task_group_id) {
+			showSnackbar('No task group selected.', 'error');
+			console.error('❌ Task group is missing:', selectedTaskGroup);
+			return;
+		}
+
 		if (!site || !product || !mode || taskAmount < 1) {
 			showSnackbar('Please fill in all required fields.', 'error');
+			console.error('❌ Missing required fields:', {
+				site,
+				product,
+				mode,
+				taskAmount,
+			});
 			return;
 		}
 
-		if (!dropdownData?.sites) {
+		if (!dropdownData?.sites || !dropdownData?.modes) {
 			showSnackbar('Dropdown data not available. Try again later.', 'error');
-			console.error('Dropdown data missing:', dropdownData);
+			console.error('❌ Dropdown data missing:', dropdownData);
 			return;
 		}
 
-		const selectedSite = dropdownData.sites.find((s) => s.name === site);
+		// Debug logging
+		console.log('Selected site name:', site);
+		console.log('All available sites:', dropdownData.sites);
+		console.log('Selected mode name:', mode);
+		console.log('All available modes:', dropdownData.modes);
+
+		// Find selected site and mode with more detailed matching
+		const selectedSite = dropdownData.sites.find((s) => s.site_name === site);
+		const selectedMode = dropdownData.modes.find((m) => m.mode_name === mode);
+
+		console.log('Selected site object:', selectedSite);
+		console.log('Selected mode object:', selectedMode);
+
 		if (!selectedSite) {
 			showSnackbar('Selected site not found.', 'error');
 			console.error(
-				'Error: Selected site not found in dropdownData.sites',
-				dropdownData
+				'❌ Error: Site not found. Selected:',
+				site,
+				'Available sites:',
+				dropdownData.sites
+			);
+			return;
+		}
+
+		if (!selectedMode?.mode_id) {
+			showSnackbar('Invalid mode selected.', 'error');
+			console.error(
+				'❌ Error: Mode not found in dropdownData.modes',
+				dropdownData.modes
 			);
 			return;
 		}
 
 		try {
-			// Find the mode ID from the dropdownData
-			const selectedMode = dropdownData.modes.find((m) => m.name === mode);
-			if (!selectedMode) {
-				showSnackbar('Invalid mode selected.', 'error');
+			console.log('🔄 Fetching user session...');
+			const response = await fetch('/api/auth/session');
+			const session = await response.json();
+
+			if (!session?.user?.id) {
+				showSnackbar('User session expired. Please log in again.', 'error');
+				console.error('❌ Error: User session is invalid or expired.', session);
 				return;
 			}
 
 			const taskData = {
-				task_group_id: selectedTaskGroup.id,
+				task_id: crypto.randomUUID(),
+				user_id: session.user.id,
+				task_group_id: selectedTaskGroup.task_group_id,
 				product: product,
 				monitor_delay: parseInt(monitorDelay),
 				error_delay: parseInt(errorDelay),
-				mode_id: selectedMode.id, // Keep as string (varchar in DB)
-				status: 'pending', // Use valid enum value
-				site_id: selectedSite?.id || null, // Add site_id
-				proxy_id: proxyList || null, // Add proxy_id
+				mode_id: selectedMode.mode_id,
+				status: 'pending',
+				site_id: selectedSite.site_id,
+				proxy_id: proxyList || null,
 			};
 
-			console.log('📤 Sending Task Data:', taskData);
-
-			const response = await fetch('/api/tasks', {
+			const taskResponse = await fetch('/api/tasks', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(taskData),
 			});
 
-			if (!response.ok) {
-				const errorText = await response.text();
-				console.error(`❌ Server Error (${response.status}):`, errorText);
+			if (!taskResponse.ok) {
+				const errorText = await taskResponse.text();
+				console.error(`❌ Server Error (${taskResponse.status}):`, errorText);
 				showSnackbar(`Failed to create task: ${errorText}`, 'error');
 				return;
 			}
 
-			const result = await response.json();
+			console.log('✅ Task successfully created:', taskData.task_id);
 			showSnackbar(`${taskAmount} task(s) successfully created!`, 'success');
 			handleClose();
 		} catch (error) {
 			showSnackbar('Server error. Try again later.', 'error');
-			console.error('Task creation failed:', error);
-		} finally {
-			setIsSaving(false);
+			console.error('❌ Task creation failed:', error);
 		}
 	};
 
@@ -167,13 +220,9 @@ export default function DynamicModal({
 						onChange={(e) => handleSiteSelection(e.target.value)}
 						disabled={loading}
 					>
-						{dropdownData?.shops?.map((shop) => (
-							<MenuItem
-								key={shop.id}
-								value={shop.name}
-								disabled={!shop.is_enabled}
-							>
-								{shop.name} {!shop.is_enabled ? '(Locked)' : ''}
+						{dropdownData?.sites?.map((siteItem) => (
+							<MenuItem key={siteItem.site_id} value={siteItem.site_name}>
+								{siteItem.site_name}
 							</MenuItem>
 						))}
 					</Select>
@@ -200,8 +249,8 @@ export default function DynamicModal({
 								disabled={!site}
 							>
 								{dropdownData?.modes?.map((option) => (
-									<MenuItem key={option.id} value={option.name}>
-										{option.name}
+									<MenuItem key={option.mode_id} value={option.mode_name}>
+										{option.mode_name}
 									</MenuItem>
 								))}
 							</Select>

@@ -1,42 +1,49 @@
 import { NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 import { queryDatabase } from '@/utils/db';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'; // Use uuid for task IDs
 
 export async function POST(req) {
 	try {
-		// Get user token from the request
+		// Get user token from request
 		const token = await getToken({ req });
 		if (!token) {
-			return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-				status: 401,
-				headers: { 'Content-Type': 'application/json' },
-			});
+			return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 		}
 
+		// Parse request body
 		const {
 			task_group_id,
 			product,
 			monitor_delay,
 			error_delay,
 			mode_id,
-			status,
-			site_id,
-			proxy_id,
+			status = 'pending',
+			site_id = null,
+			proxy_id = null,
 		} = await req.json();
 
-		if (!task_group_id) {
-			return new Response(JSON.stringify({ error: 'Missing task_group_id' }), {
-				status: 400,
-				headers: { 'Content-Type': 'application/json' },
-			});
+		// Validate required fields
+		if (
+			!task_group_id ||
+			!product ||
+			!monitor_delay ||
+			!error_delay ||
+			!mode_id
+		) {
+			return NextResponse.json(
+				{ error: 'Missing required fields' },
+				{ status: 400 }
+			);
 		}
 
+		// Generate unique ID for new task
+		const task_id = uuidv4();
+
 		// Insert new task into the database
-		const newTaskId = crypto.randomUUID();
-		await queryDatabase(
+		const result = await queryDatabase(
 			`INSERT INTO tasks (
-                id, 
+                task_id,
                 user_id,
                 task_group_id, 
                 product, 
@@ -49,88 +56,120 @@ export async function POST(req) {
                 created_at
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())`,
 			[
-				newTaskId,
+				task_id,
 				token.sub,
 				task_group_id,
 				product,
-				parseInt(monitor_delay),
-				parseInt(error_delay),
-				mode_id,
-				status || 'pending',
-				site_id || null,
-				proxy_id || null,
-			]
-		);
-
-		return new Response(
-			JSON.stringify({
-				id: newTaskId,
-				user_id: token.sub,
-				task_group_id,
-				product,
-				monitor_delay,
-				error_delay,
+				parseInt(monitor_delay) || 0,
+				parseInt(error_delay) || 0,
 				mode_id,
 				status,
 				site_id,
 				proxy_id,
-			}),
-			{
-				status: 201,
-				headers: { 'Content-Type': 'application/json' },
-			}
+			]
 		);
+
+		// Return success response
+		return NextResponse.json({
+			success: true,
+			task_id,
+			id: result.insertId,
+		});
 	} catch (error) {
 		console.error('❌ Error creating task:', error);
-		return new Response(JSON.stringify({ error: error.message }), {
-			status: 500,
-			headers: { 'Content-Type': 'application/json' },
-		});
+		return NextResponse.json(
+			{ error: 'Internal server error' },
+			{ status: 500 }
+		);
 	}
 }
 
 export async function GET(req) {
 	try {
+		// Authenticate user
 		const token = await getToken({ req });
 		if (!token) {
-			return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-				status: 401,
-				headers: { 'Content-Type': 'application/json' },
-			});
+			return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 		}
 
+		// Extract groupId from query parameters
 		const { searchParams } = new URL(req.url);
 		const groupId = searchParams.get('groupId');
 
 		if (!groupId) {
-			return new Response(
-				JSON.stringify({ error: 'Missing groupId parameter' }),
-				{
-					status: 400,
-					headers: { 'Content-Type': 'application/json' },
-				}
+			return NextResponse.json(
+				{ error: 'Missing groupId parameter' },
+				{ status: 400 }
 			);
 		}
 
-		// Join with sites table to get site information
+		// Clear, readable query without abbreviations
 		const tasks = await queryDatabase(
-			`SELECT t.*, s.name as site_name 
-             FROM tasks t 
-             LEFT JOIN sites s ON t.site_id = s.id 
-             WHERE t.task_group_id = ? AND t.user_id = ? 
-             ORDER BY t.created_at DESC`,
+			`SELECT tasks.*, sites.site_name, nike_modes.mode_name
+			 FROM tasks 
+			 LEFT JOIN sites ON tasks.site_id = sites.site_id
+			 LEFT JOIN nike_modes ON tasks.mode_id = nike_modes.mode_id
+			 WHERE tasks.task_group_id = ? AND tasks.user_id = ? 
+			 ORDER BY tasks.created_at DESC`,
 			[groupId, token.sub]
 		);
 
-		return new Response(JSON.stringify({ tasks }), {
-			status: 200,
-			headers: { 'Content-Type': 'application/json' },
-		});
+		return NextResponse.json({ tasks }, { status: 200 });
 	} catch (error) {
 		console.error('❌ Error fetching tasks:', error);
-		return new Response(JSON.stringify({ error: 'Failed to fetch tasks' }), {
-			status: 500,
-			headers: { 'Content-Type': 'application/json' },
-		});
+		return NextResponse.json(
+			{ error: 'Failed to fetch tasks' },
+			{ status: 500 }
+		);
+	}
+}
+
+export async function PUT(req) {
+	try {
+		// Authenticate user
+		const token = await getToken({ req });
+		if (!token) {
+			return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+		}
+
+		const taskData = await req.json();
+		const taskId = taskData.task_id;
+
+		if (!taskId) {
+			return NextResponse.json({ error: 'Missing task ID' }, { status: 400 });
+		}
+
+		// Update the task in the database
+		await queryDatabase(
+			`UPDATE tasks 
+			 SET product = ?,
+				 monitor_delay = ?,
+				 error_delay = ?,
+				 mode_id = ?,
+				 site_id = ?,
+				 proxy_id = ?
+			 WHERE task_id = ? AND user_id = ?`,
+			[
+				taskData.product,
+				taskData.monitor_delay,
+				taskData.error_delay,
+				taskData.mode_id,
+				taskData.site_id,
+				taskData.proxy_id,
+				taskId,
+				token.sub,
+			]
+		);
+
+		return NextResponse.json(
+			{ message: 'Task updated successfully' },
+			{ status: 200 }
+		);
+	} catch (error) {
+		console.error('❌ Error updating task:', error);
+		return NextResponse.json(
+			{ error: 'Failed to update task' },
+			{ status: 500 }
+		);
 	}
 }

@@ -18,24 +18,24 @@ export async function POST(req) {
 
         // Check if user already has a "Default" group
         const existingDefaultGroup = await queryDatabase(
-            `SELECT id FROM task_groups WHERE user_id = ? AND name = 'Default'`,
+            `SELECT task_group_id FROM task_groups WHERE user_id = ? AND is_default = 1`,
             [token.sub]
         );
 
         if (!existingDefaultGroup.length && name === 'Default') {
-            // Create default group if missing
+            // Create the default group
             const defaultGroupId = uuidv4();
             await queryDatabase(
-                `INSERT INTO task_groups (id, user_id, name, created_at) VALUES (?, ?, ?, NOW())`,
+                `INSERT INTO task_groups (task_group_id, user_id, name, is_default, created_at) VALUES (?, ?, ?, 1, NOW())`,
                 [defaultGroupId, token.sub, 'Default']
             );
             return NextResponse.json({ message: 'Default task group created', taskGroupId: defaultGroupId }, { status: 201 });
         }
 
-        // Create new task group
+        // Create a new task group
         const taskGroupId = uuidv4();
         await queryDatabase(
-            `INSERT INTO task_groups (id, user_id, name, created_at) VALUES (?, ?, ?, NOW())`,
+            `INSERT INTO task_groups (task_group_id, user_id, name, is_default, created_at) VALUES (?, ?, ?, 0, NOW())`,
             [taskGroupId, token.sub, name]
         );
 
@@ -49,6 +49,7 @@ export async function POST(req) {
 
 export async function GET(req) {
     try {
+        // Authenticate user
         const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
         if (!token) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -56,23 +57,24 @@ export async function GET(req) {
 
         const userId = token.sub;
 
-        // Check if user already has task groups
+        // Fetch user's task groups
         const existingGroups = await queryDatabase(
-            `SELECT id, name FROM task_groups WHERE user_id = ?`,
+            `SELECT task_group_id, name, is_default FROM task_groups WHERE user_id = ?`,
             [userId]
         );
 
-        let defaultGroup = existingGroups.find(group => group.name === 'Default');
+        // Check if a "Default" group exists
+        let defaultGroup = existingGroups.find(group => group.is_default);
 
-        // If no Default group exists, create it automatically
         if (!defaultGroup) {
             const defaultGroupId = uuidv4();
             await queryDatabase(
-                `INSERT INTO task_groups (id, user_id, name, created_at) VALUES (?, ?, 'Default', NOW())`,
+                `INSERT INTO task_groups (task_group_id, user_id, name, is_default, created_at) VALUES (?, ?, 'Default', 1, NOW())`,
                 [defaultGroupId, userId]
             );
 
-            defaultGroup = { id: defaultGroupId, name: 'Default' };
+            // Add the new default group to the list
+            defaultGroup = { task_group_id: defaultGroupId, name: 'Default', is_default: 1 };
         }
 
         return NextResponse.json({ taskGroups: [...existingGroups, defaultGroup] }, { status: 200 });
@@ -82,4 +84,3 @@ export async function GET(req) {
         return NextResponse.json({ error: 'Server error' }, { status: 500 });
     }
 }
-
