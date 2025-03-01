@@ -10,18 +10,21 @@ const useTaskStore = create((set, get) => ({
 			const state = get();
 			const { selectedTaskGroup } = state;
 
-			if (!selectedTaskGroup?.id) {
+			if (!selectedTaskGroup?.task_group_id) {
 				console.error('❌ Error: No task group selected. Cannot create task.');
 				return;
 			}
 
-			console.log('🔄 Creating task in group:', selectedTaskGroup.id);
+			console.log(
+				'🔄 Creating task in group:',
+				selectedTaskGroup.task_group_id
+			);
 
 			const response = await fetch('/api/tasks', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
-					task_group_id: selectedTaskGroup.id,
+					task_group_id: selectedTaskGroup.task_group_id,
 					...taskData,
 				}),
 			});
@@ -37,7 +40,7 @@ const useTaskStore = create((set, get) => ({
 			console.log('✅ Task created successfully:', newTask);
 
 			// Fetch updated tasks after creation
-			await get().fetchTasks(selectedTaskGroup.id);
+			await get().fetchTasks(selectedTaskGroup.task_group_id);
 		} catch (error) {
 			console.error('❌ Error creating task:', error);
 		}
@@ -63,7 +66,6 @@ const useTaskStore = create((set, get) => ({
 			}
 
 			const { tasks } = await response.json();
-			console.log('✅ Tasks fetched successfully:', tasks);
 
 			// Update state with fetched tasks
 			set({ tasks });
@@ -109,7 +111,7 @@ const useTaskStore = create((set, get) => ({
 	setSelectedTaskGroup: (group) => {
 		set({ selectedTaskGroup: group, tasks: [] }); // Clear previous tasks before fetching new ones
 		if (group) {
-			get().fetchTasks(group.id); // Fetch tasks for the selected group
+			get().fetchTasks(group.task_group_id); // Fetch tasks for the selected group
 		}
 	},
 	// Add a new task group
@@ -125,7 +127,7 @@ const useTaskStore = create((set, get) => ({
 
 			const { taskGroupId } = await response.json();
 			set((state) => ({
-				taskGroups: [...state.taskGroups, { id: taskGroupId, name }],
+				taskGroups: [...state.taskGroups, { task_group_id: taskGroupId, name }],
 			}));
 		} catch (error) {
 			console.error('Error creating task group:', error);
@@ -155,7 +157,7 @@ const useTaskStore = create((set, get) => ({
 
 			set((state) => ({
 				taskGroups: state.taskGroups.map((group) =>
-					group.id === groupId ? { ...group, name: newName } : group
+					group.task_group_id === groupId ? { ...group, name: newName } : group
 				),
 			}));
 
@@ -170,7 +172,10 @@ const useTaskStore = create((set, get) => ({
 	deleteTaskGroup: async (groupId) => {
 		const { taskGroups, selectedTaskGroup } = get();
 
-		if (taskGroups.find((group) => group.id === groupId)?.name === 'Default') {
+		if (
+			taskGroups.find((group) => group.task_group_id === groupId)?.name ===
+			'Default'
+		) {
 			console.warn('🚨 Default Group cannot be deleted.');
 			return;
 		}
@@ -184,12 +189,12 @@ const useTaskStore = create((set, get) => ({
 
 			set((state) => {
 				const updatedGroups = state.taskGroups.filter(
-					(group) => group.id !== groupId
+					(group) => group.task_group_id !== groupId
 				);
 				return {
 					taskGroups: updatedGroups,
 					selectedTaskGroup:
-						selectedTaskGroup?.id === groupId
+						selectedTaskGroup?.task_group_id === groupId
 							? updatedGroups.length > 0
 								? updatedGroups[0]
 								: null
@@ -226,7 +231,7 @@ const useTaskStore = create((set, get) => ({
 
 			// Select the newly duplicated group
 			const duplicatedGroup = taskGroups.find(
-				(group) => group.id === taskGroupId
+				(group) => group.task_group_id === taskGroupId
 			);
 			if (duplicatedGroup) {
 				set({ selectedTaskGroup: duplicatedGroup });

@@ -18,6 +18,8 @@ const useAccountStore = create((set, get) => ({
 			const defaultGroup =
 				accountGroups.find((group) => group.name === 'Default') ||
 				accountGroups[0];
+
+			// 🔹 Set selected group using `account_group_id` instead of `id`
 			set({ selectedGroup: defaultGroup });
 		} catch (error) {
 			console.error('❌ Error fetching account groups:', error);
@@ -35,14 +37,14 @@ const useAccountStore = create((set, get) => ({
 
 			if (!response.ok) throw new Error('Failed to create account group.');
 
-			const { accountGroupId } = await response.json();
+			const { account_group_id } = await response.json();
 
-			// Update local state
+			// 🔹 Update local state to reference `account_group_id`
 			set((state) => ({
-				accountGroups: [...state.accountGroups, { id: accountGroupId, name }],
+				accountGroups: [...state.accountGroups, { account_group_id, name }],
 			}));
 
-			return accountGroupId;
+			return account_group_id;
 		} catch (error) {
 			console.error('❌ Error creating account group:', error);
 			throw error;
@@ -51,31 +53,45 @@ const useAccountStore = create((set, get) => ({
 
 	// Select an account group
 	selectAccountGroup: async (group) => {
+		// 🔹 Use `account_group_id` instead of `id`
 		set({ selectedGroup: group, accounts: [] });
-		if (group) {
-			get().fetchAccounts(group.id);
+		if (group?.account_group_id) {
+			get().fetchAccounts(group.account_group_id);
 		}
 	},
 
 	// Fetch accounts for selected group
-	fetchAccounts: async (groupId) => {
-		try {
-			const response = await fetch(`/api/accounts?groupId=${groupId}`);
-			if (!response.ok) throw new Error('Failed to fetch accounts.');
-
-			const { accounts } = await response.json();
-			set({ accounts });
-		} catch (error) {
-			console.error('❌ Error fetching accounts:', error);
-			set({ accounts: [] });
+fetchAccounts: async (groupId) => {
+	try {
+		if (!groupId) {
+			console.error('❌ Error: Missing groupId for fetching accounts.');
+			return;
 		}
-	},
+
+		console.log(`🔍 Fetching accounts for group: ${groupId}`);
+
+		const response = await fetch(`/api/accounts?groupId=${groupId}`);
+		if (!response.ok) {
+			const errorText = await response.text();
+			throw new Error(`Failed to fetch accounts: ${errorText}`);
+		}
+
+		const { accounts } = await response.json();
+		console.log('✅ Accounts fetched successfully:', accounts);
+
+		// Update Zustand state
+		set({ accounts });
+	} catch (error) {
+		console.error('❌ Error fetching accounts:', error);
+		set({ accounts: [] }); // Reset accounts on error
+	}
+},
 
 	// Add account to selected group
 	addAccount: async (accountData) => {
 		try {
 			const { selectedGroup } = get();
-			if (!selectedGroup?.id) {
+			if (!selectedGroup?.account_group_id) {
 				throw new Error('No account group selected');
 			}
 
@@ -83,7 +99,7 @@ const useAccountStore = create((set, get) => ({
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
-					account_group_id: selectedGroup.id,
+					account_group_id: selectedGroup.account_group_id, // 🔹 Fix here
 					...accountData,
 				}),
 			});
@@ -94,30 +110,9 @@ const useAccountStore = create((set, get) => ({
 			}
 
 			// Refresh accounts after creation
-			await get().fetchAccounts(selectedGroup.id);
+			await get().fetchAccounts(selectedGroup.account_group_id);
 		} catch (error) {
 			console.error('❌ Error creating account:', error);
-			throw error;
-		}
-	},
-
-	duplicateAccountGroup: async (groupId) => {
-		try {
-			const response = await fetch(`/api/account-groups/${groupId}/duplicate`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			});
-
-			if (!response.ok) {
-				throw new Error('Failed to duplicate account group');
-			}
-
-			// Refresh the groups list
-			await get().fetchAccountGroups();
-		} catch (error) {
-			console.error('Error duplicating account group:', error);
 			throw error;
 		}
 	},

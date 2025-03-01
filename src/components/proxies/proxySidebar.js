@@ -115,9 +115,9 @@ export default function ProxySidebar() {
 			showSnackbar('Cannot delete default group', 'error');
 			return;
 		}
-
+	
 		try {
-			await deleteProxyGroup(group.id);
+			await deleteProxyGroup(group.proxy_group_id);  // 🔹 Use `proxy_group_id`
 			showSnackbar('✅ Proxy group deleted successfully', 'success');
 			setMenuAnchor(null);
 		} catch (error) {
@@ -125,10 +125,10 @@ export default function ProxySidebar() {
 			console.error('Error deleting proxy group:', error);
 		}
 	};
-
+	
 	const handleDuplicateGroup = async (group) => {
 		try {
-			await duplicateProxyGroup(group.id);
+			await duplicateProxyGroup(group.proxy_group_id);  // 🔹 Use `proxy_group_id`
 			showSnackbar('✅ Proxy group duplicated successfully', 'success');
 			setMenuAnchor(null);
 		} catch (error) {
@@ -136,6 +136,8 @@ export default function ProxySidebar() {
 			console.error('Error duplicating proxy group:', error);
 		}
 	};
+	
+
 
 	return (
 		<Box sx={{ width: 250, p: 2, borderRight: '1px solid grey' }}>

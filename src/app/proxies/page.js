@@ -22,7 +22,7 @@ export default function Proxies() {
             <Box sx={{ flexGrow: 1, p: 3 }}>
                 {/* Header with Selected Proxy Group Name */}
                 <Typography variant="h5" sx={{ mb: 2 }}>
-                    Proxy List - <strong>{selectedGroup?.name || "Default Group"}</strong>
+                    Proxies ({selectedGroup?.name || "No Group Selected"})
                 </Typography>
 
                 {/* Proxy Controls */}

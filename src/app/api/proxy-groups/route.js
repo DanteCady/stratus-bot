@@ -20,14 +20,14 @@ export async function POST(req) {
 
 		// Check if user already has a "Default" group
 		const existingDefaultGroup = await queryDatabase(
-			`SELECT id FROM proxy_groups WHERE user_id = ? AND name = 'Default'`,
+			`SELECT proxy_group_id FROM proxy_groups WHERE user_id = ? AND name = 'Default'`,
 			[token.sub]
 		);
 
 		if (!existingDefaultGroup.length && name === 'Default') {
 			const defaultGroupId = uuidv4();
 			await queryDatabase(
-				`INSERT INTO proxy_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, ?, 1, NOW())`,
+				`INSERT INTO proxy_groups (proxy_group_id, user_id, name, is_default, created_at) VALUES (?, ?, ?, 1, NOW())`,
 				[defaultGroupId, token.sub, 'Default']
 			);
 			return NextResponse.json(
@@ -42,7 +42,7 @@ export async function POST(req) {
 		// Create new proxy group
 		const proxyGroupId = uuidv4();
 		await queryDatabase(
-			`INSERT INTO proxy_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, ?, 0, NOW())`,
+			`INSERT INTO proxy_groups (proxy_group_id, user_id, name, is_default, created_at) VALUES (?, ?, ?, 0, NOW())`,
 			[proxyGroupId, token.sub, name]
 		);
 
@@ -67,7 +67,7 @@ export async function GET(req) {
 
 		// Fetch existing proxy groups
 		const existingGroups = await queryDatabase(
-			`SELECT id, name, is_default FROM proxy_groups WHERE user_id = ?`,
+			`SELECT proxy_group_id, name, is_default FROM proxy_groups WHERE user_id = ?`,
 			[userId]
 		);
 
@@ -77,13 +77,13 @@ export async function GET(req) {
 		if (!defaultGroup) {
 			const defaultGroupId = uuidv4();
 			await queryDatabase(
-				`INSERT INTO proxy_groups (id, user_id, name, is_default, created_at) VALUES (?, ?, 'Default', 1, NOW())`,
+				`INSERT INTO proxy_groups (proxy_group_id, user_id, name, is_default, created_at) VALUES (?, ?, 'Default', 1, NOW())`,
 				[defaultGroupId, userId]
 			);
 
 			// Re-fetch the updated list
 			const updatedGroups = await queryDatabase(
-				`SELECT id, name, is_default FROM proxy_groups WHERE user_id = ?`,
+				`SELECT proxy_group_id, name, is_default FROM proxy_groups WHERE user_id = ?`,
 				[userId]
 			);
 

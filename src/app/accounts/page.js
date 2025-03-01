@@ -40,7 +40,7 @@ export default function Accounts() {
 			<Box sx={{ flexGrow: 1, p: 3 }}>
 				{/* Dynamic Header with null check */}
 				<Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2 }}>
-					Accounts {selectedGroup ? `(${selectedGroup.name})` : ''}
+					Accounts ({selectedGroup?.name || "No Group Selected"})
 				</Typography>
 				{/* Account Controls */}
 				<AccountControls openModal={() => setOpenModal(true)} />

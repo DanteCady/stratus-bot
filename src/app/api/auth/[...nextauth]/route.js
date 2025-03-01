@@ -3,7 +3,7 @@ import { discordProvider } from '@/app/providers/discordProvider';
 import { queryDatabase } from '@/utils/db';
 import { v4 as uuidv4 } from 'uuid';
 
-/** ✅ Function to check if column exists in a table */
+/** Function to check if column exists in a table */
 async function columnExists(table, column) {
 	try {
 		const result = await queryDatabase(
@@ -28,89 +28,113 @@ const authOptions = {
 			try {
 				console.log('🔄 Sign-in triggered for', user.email);
 
-				// Check if user exists in DB
+				// Check if user exists in the database
 				const existingUser = await queryDatabase(
-					'SELECT id, provider, provider_id, is_first_login FROM users WHERE email = ? LIMIT 1',
+					'SELECT provider_id, is_first_login FROM users WHERE email = ? LIMIT 1',
 					[user.email]
 				);
 
 				let userId;
 
 				if (existingUser.length) {
-					const { id, provider, is_first_login, provider_id } = existingUser[0];
+					const { provider_id, is_first_login } = existingUser[0];
 					userId = provider_id;
-
-					// Ensure provider matches, update if necessary
-					if (provider !== account.provider) {
-						await queryDatabase(
-							'UPDATE users SET provider = ?, provider_id = ? WHERE id = ?',
-							[account.provider, user.id, id]
-						);
-					}
 
 					// **First-time login setup**
 					if (is_first_login === 1) {
-						console.log(`🟢 First login detected for ${userId}. Creating default groups.`);
+						console.log(
+							`🟢 First login detected for ${userId}. Creating default groups.`
+						);
 
 						// Create missing default groups
 						const defaultGroups = [
-							{ table: 'task_groups', name: 'Default' },
-							{ table: 'profile_groups', name: 'Default' },
-							{ table: 'proxy_groups', name: 'Default' },
-							{ table: 'account_groups', name: 'Default' },
+							{
+								table: 'task_groups',
+								column: 'task_group_id',
+								name: 'Default',
+							},
+							{
+								table: 'profile_groups',
+								column: 'profile_group_id',
+								name: 'Default',
+							},
+							{
+								table: 'proxy_groups',
+								column: 'proxy_group_id',
+								name: 'Default',
+							},
+							{
+								table: 'account_groups',
+								column: 'account_group_id',
+								name: 'Default',
+							},
 						];
 
 						for (const group of defaultGroups) {
-							const hasIsDefault = await columnExists(group.table, 'is_default');
-							const query = hasIsDefault
-								? `SELECT id FROM ${group.table} WHERE user_id = ? AND is_default = 1 LIMIT 1`
-								: `SELECT id FROM ${group.table} WHERE user_id = ? LIMIT 1`;
-
-							const existingGroup = await queryDatabase(query, [userId]);
+							const existingGroup = await queryDatabase(
+								`SELECT ${group.column} FROM ${group.table} WHERE user_id = ? LIMIT 1`,
+								[userId]
+							);
 
 							if (!existingGroup.length) {
-								const insertQuery = hasIsDefault
-									? `INSERT INTO ${group.table} (id, user_id, name, is_default, created_at) VALUES (?, ?, ?, 1, NOW())`
-									: `INSERT INTO ${group.table} (id, user_id, name, created_at) VALUES (?, ?, ?, NOW())`;
-
-								await queryDatabase(insertQuery, [uuidv4(), userId, group.name]);
+								await queryDatabase(
+									`INSERT INTO ${group.table} (${group.column}, user_id, name, is_default, created_at) VALUES (?, ?, ?, 1, NOW())`,
+									[uuidv4(), userId, group.name]
+								);
 							}
 						}
 
 						// Mark first login as completed
-						await queryDatabase(`UPDATE users SET is_first_login = 0 WHERE id = ?`, [userId]);
+						await queryDatabase(
+							`UPDATE users SET is_first_login = 0 WHERE provider_id = ?`,
+							[userId]
+						);
 					}
 				} else {
 					// **New user registration**
-					userId = uuidv4();
+					userId = user.id; // The `provider_id` from Discord login
+
 					await queryDatabase(
-						`INSERT INTO users (id, email, provider, provider_id, is_first_login, created_at)
-                         VALUES (?, ?, ?, ?, 1, NOW())`,
-						[userId, user.email, account.provider, user.id]
+						`INSERT INTO users (user_id, email, provider, provider_id, is_first_login, created_at)
+						 VALUES (?, ?, ?, ?, 1, NOW())`,
+						[uuidv4(), user.email, account.provider, userId]
 					);
 
 					// Create default groups for new user
 					const defaultGroups = [
-						{ table: 'task_groups', name: 'Default' },
-						{ table: 'profile_groups', name: 'Default' },
-						{ table: 'proxy_groups', name: 'Default' },
-						{ table: 'account_groups', name: 'Default' },
+						{ table: 'task_groups', column: 'task_group_id', name: 'Default' },
+						{
+							table: 'profile_groups',
+							column: 'profile_group_id',
+							name: 'Default',
+						},
+						{
+							table: 'proxy_groups',
+							column: 'proxy_group_id',
+							name: 'Default',
+						},
+						{
+							table: 'account_groups',
+							column: 'account_group_id',
+							name: 'Default',
+						},
 					];
 
 					for (const group of defaultGroups) {
-						const hasIsDefault = await columnExists(group.table, 'is_default');
-						const insertQuery = hasIsDefault
-							? `INSERT INTO ${group.table} (id, user_id, name, is_default, created_at) VALUES (?, ?, ?, 1, NOW())`
-							: `INSERT INTO ${group.table} (id, user_id, name, created_at) VALUES (?, ?, ?, NOW())`;
-
-						await queryDatabase(insertQuery, [uuidv4(), userId, group.name]);
+						await queryDatabase(
+							`INSERT INTO ${group.table} (${group.column}, user_id, name, is_default, created_at) VALUES (?, ?, ?, 1, NOW())`,
+							[uuidv4(), userId, group.name]
+						);
 					}
 
 					// Mark first login as completed
-					await queryDatabase(`UPDATE users SET is_first_login = 0 WHERE id = ?`, [userId]);
+					await queryDatabase(
+						`UPDATE users SET is_first_login = 0 WHERE provider_id = ?`,
+						[userId]
+					);
 				}
 
-				// Fetch **system config** and **user-specific data** in parallel
+				// Fetch system and user-specific data
 				const [
 					shops,
 					sites,
@@ -128,10 +152,18 @@ const authOptions = {
 					queryDatabase('SELECT id, name, shop_id, region_id FROM sites'),
 					queryDatabase('SELECT id, name FROM regions'),
 					queryDatabase('SELECT id, name FROM nike_modes'),
-					queryDatabase('SELECT * FROM task_groups WHERE user_id = ?', [userId]),
-					queryDatabase('SELECT * FROM profile_groups WHERE user_id = ?', [userId]),
-					queryDatabase('SELECT * FROM proxy_groups WHERE user_id = ?', [userId]),
-					queryDatabase('SELECT * FROM account_groups WHERE user_id = ?', [userId]),
+					queryDatabase('SELECT * FROM task_groups WHERE user_id = ?', [
+						userId,
+					]),
+					queryDatabase('SELECT * FROM profile_groups WHERE user_id = ?', [
+						userId,
+					]),
+					queryDatabase('SELECT * FROM proxy_groups WHERE user_id = ?', [
+						userId,
+					]),
+					queryDatabase('SELECT * FROM account_groups WHERE user_id = ?', [
+						userId,
+					]),
 					queryDatabase('SELECT * FROM tasks WHERE user_id = ?', [userId]),
 					queryDatabase('SELECT * FROM profiles WHERE user_id = ?', [userId]),
 					queryDatabase('SELECT * FROM proxies WHERE user_id = ?', [userId]),
@@ -142,7 +174,15 @@ const authOptions = {
 					...user,
 					initialData: {
 						system: { shops, sites, regions, modes },
-						user: { taskGroups, profileGroups, proxyGroups, accountGroups, tasks, profiles, proxies },
+						user: {
+							taskGroups,
+							profileGroups,
+							proxyGroups,
+							accountGroups,
+							tasks,
+							profiles,
+							proxies,
+						},
 					},
 				};
 			} catch (error) {
@@ -150,7 +190,6 @@ const authOptions = {
 				return `/auth/error?message=${encodeURIComponent(error.message)}`;
 			}
 		},
-
 		/** JWT callback ensures the correct user ID is attached */
 		async jwt({ token, user }) {
 			if (user) {
@@ -194,7 +233,10 @@ const authOptions = {
 
 	cookies: {
 		sessionToken: {
-			name: process.env.NODE_ENV === 'production' ? '__Secure-next-auth.session-token' : 'next-auth.session-token',
+			name:
+				process.env.NODE_ENV === 'production'
+					? '__Secure-next-auth.session-token'
+					: 'next-auth.session-token',
 			options: {
 				httpOnly: true,
 				sameSite: 'lax',

@@ -18,7 +18,7 @@ const useProxyStore = create((set, get) => ({
 	addProxies: async (proxyList) => {
 		try {
 			const selectedGroup = get().selectedProxyGroup;
-			if (!selectedGroup) {
+			if (!selectedGroup?.proxy_group_id) {
 				throw new Error('No proxy group selected');
 			}
 
@@ -26,7 +26,7 @@ const useProxyStore = create((set, get) => ({
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
-					proxyGroupId: selectedGroup.id,
+					proxy_group_id: selectedGroup.proxy_group_id,
 					proxies: proxyList,
 				}),
 			});
@@ -38,7 +38,7 @@ const useProxyStore = create((set, get) => ({
 			}
 
 			// Refresh proxies list
-			await get().fetchProxies(selectedGroup.id);
+			await get().fetchProxies(selectedGroup.proxy_group_id);
 			return data;
 		} catch (error) {
 			console.error('❌ Error adding proxies:', error);
@@ -47,9 +47,9 @@ const useProxyStore = create((set, get) => ({
 	},
 
 	// Fetch Proxies for Group
-	fetchProxies: async (groupId) => {
+	fetchProxies: async (proxy_group_id) => {
 		try {
-			const response = await fetch(`/api/proxies?groupId=${groupId}`);
+			const response = await fetch(`/api/proxies?groupId=${proxy_group_id}`);
 			if (!response.ok) throw new Error('Failed to fetch proxies');
 
 			const { proxies } = await response.json();
@@ -60,16 +60,16 @@ const useProxyStore = create((set, get) => ({
 	},
 
 	// Delete Proxy
-	deleteProxy: async (proxyId) => {
+	deleteProxy: async (proxy_id) => {
 		try {
-			const response = await fetch(`/api/proxies/${proxyId}`, {
+			const response = await fetch(`/api/proxies/${proxy_id}`, {
 				method: 'DELETE',
 			});
 
 			if (!response.ok) throw new Error('Failed to delete proxy');
 
 			// Refresh proxies list
-			await get().fetchProxies(get().selectedProxyGroup.id);
+			await get().fetchProxies(get().selectedProxyGroup.proxy_group_id);
 		} catch (error) {
 			console.error('❌ Error deleting proxy:', error);
 			throw error;
@@ -102,9 +102,9 @@ const useProxyStore = create((set, get) => ({
 				selectedProxyGroup: sortedGroups[0],
 			});
 
-			// If we have groups, fetch proxies for the selected group
+			// Fetch proxies for the selected group
 			if (sortedGroups[0]) {
-				await get().fetchProxies(sortedGroups[0].id);
+				await get().fetchProxies(sortedGroups[0].proxy_group_id);
 			}
 		} catch (error) {
 			console.error('❌ Error fetching proxy groups:', error);
@@ -130,66 +130,50 @@ const useProxyStore = create((set, get) => ({
 		}
 	},
 
-	// Update Proxy Group
-	updateProxyGroup: async (groupId, name) => {
-		try {
-			const response = await fetch(`/api/proxy-groups/${groupId}`, {
-				method: 'PUT',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ name }),
-			});
-
-			if (!response.ok) throw new Error('Failed to update proxy group');
-
-			await get().fetchProxyGroups();
-		} catch (error) {
-			console.error('❌ Error updating proxy group:', error);
-			throw error;
-		}
-	},
-
-	// Delete Proxy Group
-	deleteProxyGroup: async (groupId) => {
-		try {
-			const response = await fetch(`/api/proxy-groups/${groupId}`, {
-				method: 'DELETE',
-			});
-
-			if (!response.ok) throw new Error('Failed to delete proxy group');
-
-			await get().fetchProxyGroups();
-		} catch (error) {
-			console.error('❌ Error deleting proxy group:', error);
-			throw error;
-		}
-	},
-
 	// Select Proxy Group
 	selectProxyGroup: (group) => {
 		set({ selectedProxyGroup: group });
-		get().fetchProxies(group.id);
+		get().fetchProxies(group.proxy_group_id);
 	},
+	
+	// Delete Proxy Group
+deleteProxyGroup: async (proxyGroupId) => {  // 🔹 Fix param to use `proxyGroupId`
+    try {
+        const response = await fetch(`/api/proxy-groups/${proxyGroupId}`, {
+            method: 'DELETE',
+        });
 
-	duplicateProxyGroup: async (groupId) => {
-		try {
-			const response = await fetch(`/api/proxy-groups/${groupId}/duplicate`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			});
+        if (!response.ok) throw new Error('Failed to delete proxy group');
 
-			if (!response.ok) {
-				throw new Error('Failed to duplicate proxy group');
-			}
+        await get().fetchProxyGroups();
+    } catch (error) {
+        console.error('❌ Error deleting proxy group:', error);
+        throw error;
+    }
+},
 
-			// Refresh the groups list
-			await get().fetchProxyGroups();
-		} catch (error) {
-			console.error('Error duplicating proxy group:', error);
-			throw error;
-		}
-	},
+// Duplicate Proxy Group
+duplicateProxyGroup: async (proxyGroupId) => {  // 🔹 Fix param to use `proxyGroupId`
+    try {
+        const response = await fetch(`/api/proxy-groups/${proxyGroupId}/duplicate`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to duplicate proxy group');
+        }
+
+        // Refresh the groups list
+        await get().fetchProxyGroups();
+    } catch (error) {
+        console.error('Error duplicating proxy group:', error);
+        throw error;
+    }
+},
+
 }));
 
 export default useProxyStore;

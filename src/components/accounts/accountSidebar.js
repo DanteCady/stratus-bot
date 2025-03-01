@@ -91,7 +91,7 @@ export default function AccountSidebar() {
 
 		try {
 			if (isRenaming && selectedGroupForMenu) {
-				await updateAccountGroup(selectedGroupForMenu.id, groupName);
+				await updateAccountGroup(selectedGroupForMenu.account_group_id, groupName);
 				showSnackbar('✅ Account group renamed successfully', 'success');
 			} else {
 				await addAccountGroup(groupName.trim());
@@ -111,7 +111,7 @@ export default function AccountSidebar() {
 		}
 
 		try {
-			await deleteAccountGroup(group.id);
+			await deleteAccountGroup(group.account_group_id);
 			showSnackbar('✅ Account group deleted successfully', 'success');
 			setMenuAnchor(null);
 		} catch (error) {
@@ -122,7 +122,7 @@ export default function AccountSidebar() {
 
 	const handleDuplicateGroup = async (group) => {
 		try {
-			await duplicateAccountGroup(group.id);
+			await duplicateAccountGroup(group.account_group_id);
 			showSnackbar('✅ Account group duplicated successfully', 'success');
 			setMenuAnchor(null);
 		} catch (error) {
@@ -149,13 +149,13 @@ export default function AccountSidebar() {
 					.sort((a, b) => (a.is_default ? -1 : b.is_default ? 1 : 0))
 					.map((group) => (
 						<ListItem
-							key={group.id}
+							key={group.account_group_id} 
 							button
-							selected={selectedGroup?.id === group.id}
-							onClick={() => selectAccountGroup(group)}
+							selected={selectedGroup?.account_group_id === group.account_group_id}
+							onClick={() => selectAccountGroup(group)} 
 							sx={{
 								backgroundColor:
-									selectedGroup?.id === group.id
+									selectedGroup?.account_group_id === group.account_group_id
 										? 'primary.light'
 										: 'transparent',
 								'&:hover': { backgroundColor: 'primary.dark' },
