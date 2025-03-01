@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  backend:
+    build: .
+    container_name: stratus-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=Micr0soft1512@!1998
+      - DB_NAME=stratusbot
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: stratus-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Micr0soft1512@!1998
+      MYSQL_DATABASE: stratusbot
+      MYSQL_USER: root
+      MYSQL_PASSWORD: Micr0soft1512@!1998
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
